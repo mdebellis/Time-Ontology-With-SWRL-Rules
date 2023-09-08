@@ -1,0 +1,2216 @@
+@prefix : <http://www.w3.org/2006/time#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+@prefix nd: <http://franz.com/ns/allegrograph/5.0/geo/nd#> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix err: <http://www.w3.org/2005/xqt-errors#> .
+@prefix fti: <http://franz.com/ns/allegrograph/2.2/textindex/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ndfn: <http://franz.com/ns/allegrograph/5.0/geo/nd/fn#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix keyword: <http://franz.com/ns/keyword#> .
+@base <http://www.w3.org/2006/time> .
+
+<http://www.w3.org/2006/time> rdf:type owl:Ontology ;
+                               owl:versionIRI <http://www.w3.org/2006/time#2016> ;
+                               dcterms:contributor <https://orcid.org/0000-0001-8269-8171> ,
+                                                   <mailto:chris.little@metoffice.gov.uk> ;
+                               dcterms:created "2006-09-27"^^xsd:date ;
+                               dcterms:creator <http://orcid.org/0000-0002-3884-3420> ,
+                                               <https://en.wikipedia.org/wiki/Jerry_Hobbs> ,
+                                               <mailto:panfeng66@gmail.com> ;
+                               dcterms:isVersionOf <http://www.w3.org/TR/owl-time> ;
+                               dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+                               dcterms:modified "2017-04-06"^^xsd:date ;
+                               dcterms:rights "Copyright © 2006-2017 W3C, OGC. W3C and OGC liability, trademark and document use rules apply."@en ;
+                               rdfs:label "OWL-Time"@en ,
+                                          "Tiempo en OWL"@es ;
+                               rdfs:seeAlso <http://dx.doi.org/10.3233/SW-150187> ,
+                                            <http://www.semantic-web-journal.net/content/time-ontology-extended-non-gregorian-calendar-applications> ,
+                                            <http://www.w3.org/TR/owl-time> ;
+                               owl:priorVersion <http://www.w3.org/2006/time#2006> ;
+                               skos:changeNote "2016-06-15 - initial update of OWL-Time - modified to support arbitrary temporal reference systems. " ,
+                                               "2016-12-20 - adjust range of time:timeZone to time:TimeZone, moved up from the tzont ontology.  " ,
+                                               "2016-12-20 - restore time:Year and time:January which were present in the 2006 version of the ontology, but now marked \"deprecated\". " ,
+                                               "2017-02 - intervalIn, intervalDisjoint, monthOfYear added; TemporalUnit subclass of TemporalDuration" ,
+                                               "2017-04-06 - hasTime, hasXSDDuration added; Number removed; all duration elements changed to xsd:decimal" ;
+                               skos:historyNote """Update of OWL-Time ontology, extended to support general temporal reference systems. 
+
+Ontology engineering by Simon J D Cox"""@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dcterms:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+dcterms:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/isVersionOf
+dcterms:isVersionOf rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/rights
+dcterms:rights rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2001/XMLSchema#pattern
+xsd:pattern rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#changeNote
+skos:changeNote rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+skos:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#editorialNote
+skos:editorialNote rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#historyNote
+skos:historyNote rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#note
+skos:note rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+skos:prefLabel rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#scopeNote
+skos:scopeNote rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#dateTimeStamp
+xsd:dateTimeStamp rdfs:label "sello de tiempo"@es .
+
+
+###  http://www.w3.org/2001/XMLSchema#duration
+xsd:duration rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#gDay
+xsd:gDay rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#gMonth
+xsd:gMonth rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#gYear
+xsd:gYear rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#gYearMonth
+xsd:gYearMonth rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2006/time#generalDay
+:generalDay rdf:type rdfs:Datatype ;
+            rdfs:comment """Day of month - formulated as a text string with a pattern constraint to reproduce the same lexical form as gDay, except that values up to 99 are permitted, in order to support calendars with more than 31 days in a month. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ,
+                         """Día del mes - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gDay, excepto que se permiten valores hasta el 99, con el propósito de proporcionar soporte a calendarios con meses con más de 31 días.
+            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo."""@es ;
+            rdfs:label "Día generalizado"@es ,
+                       "Generalized day"@en ;
+            skos:definition """Day of month - formulated as a text string with a pattern constraint to reproduce the same lexical form as gDay, except that values up to 99 are permitted, in order to support calendars with more than 31 days in a month. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ,
+                            """Día del mes - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gDay, excepto que se permiten valores hasta el 99, con el propósito de proporcionar soporte a calendarios con meses con más de 31 días.
+            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo."""@es .
+
+
+###  http://www.w3.org/2006/time#generalMonth
+:generalMonth rdf:type rdfs:Datatype ;
+              rdfs:comment """Mes del año - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gMonth, excepto que se permiten valores hasta el 20, con el propósito de proporcionar soporte a calendarios con años con más de 12 meses.
+            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo."""@es ,
+                           """Month of year - formulated as a text string with a pattern constraint to reproduce the same lexical form as gMonth, except that values up to 20 are permitted, in order to support calendars with more than 12 months in the year. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ;
+              rdfs:label "Generalized month"@en ,
+                         "Mes generalizado"@es ;
+              skos:definition """Mes del año - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gMonth, excepto que se permiten valores hasta el 20, con el propósito de proporcionar soporte a calendarios con años con más de 12 meses.
+            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo."""@es ,
+                              """Month of year - formulated as a text string with a pattern constraint to reproduce the same lexical form as gMonth, except that values up to 20 are permitted, in order to support calendars with more than 12 months in the year. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en .
+
+
+###  http://www.w3.org/2006/time#generalYear
+:generalYear rdf:type rdfs:Datatype ;
+             rdfs:comment """Número de año - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gYear, aunque no está restringido a valores del calendario gregoriano.
+            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo."""@es ,
+                          """Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ;
+             rdfs:label "Año generalizado"@es ,
+                        "Generalized year"@en ;
+             skos:definition """Número de año - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gYear, aunque no está restringido a valores del calendario gregoriano.
+            Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo."""@es ,
+                             """Year number - formulated as a text string with a pattern constraint to reproduce the same lexical form as gYear, but not restricted to values from the Gregorian calendar. 
+Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.w3.org/2006/time#after
+:after rdf:type owl:ObjectProperty ;
+       owl:inverseOf :before ;
+       rdfs:domain :TemporalEntity ;
+       rdfs:range :TemporalEntity ;
+       rdfs:comment "Asume una dirección en el tiempo. Si una entidad temporal T1 está después de otra entidad temporal T2, entonces el principio de T1 está después del final de T2."@es ,
+                    "Gives directionality to time. If a temporal entity T1 is after another temporal entity T2, then the beginning of T1 is after the end of T2."@en ;
+       rdfs:label "after"@en ,
+                  "después"@es ;
+       skos:definition "Asume una dirección en el tiempo. Si una entidad temporal T1 está después de otra entidad temporal T2, entonces el principio de T1 está después del final de T2."@es ,
+                       "Gives directionality to time. If a temporal entity T1 is after another temporal entity T2, then the beginning of T1 is after the end of T2."@en .
+
+
+###  http://www.w3.org/2006/time#before
+:before rdf:type owl:ObjectProperty ,
+                 owl:TransitiveProperty ;
+        rdfs:domain :TemporalEntity ;
+        rdfs:range :TemporalEntity ;
+        rdfs:comment "Asume una dirección en el tiempo. Si una entidad temporal T1 está antes que otra entidad temporal T2, entonces el final de T1 está antes que el principio de T2. Así, \"antes\" se puede considerar básica para instantes y derivada para intervalos."@es ,
+                     "Gives directionality to time. If a temporal entity T1 is before another temporal entity T2, then the end of T1 is before the beginning of T2. Thus, \"before\" can be considered to be basic to instants and derived for intervals."@en ;
+        rdfs:label "antes"@es ,
+                   "before"@en ;
+        skos:definition "Asume una dirección en el tiempo. Si una entidad temporal T1 está antes que otra entidad temporal T2, entonces el final de T1 está antes que el principio de T2. Así, \"antes\" se puede considerar básica para instantes y derivada para intervalos."@es ,
+                        "Gives directionality to time. If a temporal entity T1 is before another temporal entity T2, then the end of T1 is before the beginning of T2. Thus, \"before\" can be considered to be basic to instants and derived for intervals."@en .
+
+
+###  http://www.w3.org/2006/time#dayOfWeek
+:dayOfWeek rdf:type owl:ObjectProperty ;
+           rdfs:domain :GeneralDateTimeDescription ;
+           rdfs:range :DayOfWeek ;
+           rdfs:comment "The day of week, whose value is a member of the class time:DayOfWeek"@en ,
+                        "enEl día de la semana, cuyo valor es un miembro de la clase 'día de la semana'." ;
+           rdfs:label "day of week"@en ,
+                      "día de la semana"@es ;
+           skos:definition "El día de la semana, cuyo valor es un miembro de la clase 'día de la semana'."@es ,
+                           "The day of week, whose value is a member of the class time:DayOfWeek"@en .
+
+
+###  http://www.w3.org/2006/time#hasBeginning
+:hasBeginning rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasTime ;
+              rdfs:domain :TemporalEntity ;
+              rdfs:range :Instant ;
+              rdfs:comment "Beginning of a temporal entity"@en ,
+                           "Comienzo de una entidad temporal."@es ;
+              rdfs:label "has beginning"@en ,
+                         "tiene principio"@es ;
+              skos:definition "Beginning of a temporal entity."@en ,
+                              "Comienzo de una entidad temporal."@es .
+
+
+###  http://www.w3.org/2006/time#hasDateTimeDescription
+:hasDateTimeDescription rdf:type owl:ObjectProperty ;
+                        rdfs:domain :DateTimeInterval ;
+                        rdfs:range :GeneralDateTimeDescription ;
+                        rdfs:comment "Valor de intervalo de fecha-hora expresado como un valor estructurado. El principio y el final del intervalo coincide con los límites del elemento más corto en la descripción."@es ,
+                                     "Value of DateTimeInterval expressed as a structured value. The beginning and end of the interval coincide with the limits of the shortest element in the description."@en ;
+                        rdfs:label "has Date-Time description"@en ,
+                                   "tiene descripción fecha-hora"@es ;
+                        skos:definition "Valor de intervalo de fecha-hora expresado como un valor estructurado. El principio y el final del intervalo coincide con los límites del elemento más corto en la descripción."@es ,
+                                        "Value of DateTimeInterval expressed as a structured value. The beginning and end of the interval coincide with the limits of the shortest element in the description."@en .
+
+
+###  http://www.w3.org/2006/time#hasDuration
+:hasDuration rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasTemporalDuration ;
+             rdfs:range :Duration ;
+             rdfs:comment "Duración de una entidad temporal, expresada como un valor escalado o un valor nominal."@es ,
+                          "Duration of a temporal entity, expressed as a scaled value or nominal value"@en ;
+             rdfs:label "has duration"@en ,
+                        "tiene duración"@es ;
+             skos:definition "Duración de una entidad temporal, evento o actividad, o cosa, expresada como un valor escalado."@es ,
+                             "Duration of a temporal entity, event or activity, or thing, expressed as a scaled value"@en .
+
+
+###  http://www.w3.org/2006/time#hasDurationDescription
+:hasDurationDescription rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :hasTemporalDuration ;
+                        rdfs:range :GeneralDurationDescription ;
+                        rdfs:comment "Duración de una entidad temporal, expresada utilizando una descripción estructurada."@es ,
+                                     "Duration of a temporal entity, expressed using a structured description"@en ;
+                        rdfs:label "has duration description"@en ,
+                                   "tiene descripción de duración"@es ;
+                        skos:definition "Duración de una entidad temporal, expresada utilizando una descripción estructurada."@es ,
+                                        "Duration of a temporal entity, expressed using a structured description"@en .
+
+
+###  http://www.w3.org/2006/time#hasEnd
+:hasEnd rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :hasTime ;
+        rdfs:domain :TemporalEntity ;
+        rdfs:range :Instant ;
+        rdfs:comment "End of a temporal entity."@en ,
+                     "Final de una entidad temporal."@es ;
+        rdfs:label "has end"@en ,
+                   "tiene fin"@es ;
+        skos:definition "End of a temporal entity."@en ,
+                        "Final de una entidad temporal."@es .
+
+
+###  http://www.w3.org/2006/time#hasTRS
+:hasTRS rdf:type owl:ObjectProperty ,
+                 owl:FunctionalProperty ;
+        rdfs:domain [ rdf:type owl:Class ;
+                      owl:unionOf ( :GeneralDurationDescription
+                                    :TemporalPosition
+                                  )
+                    ] ;
+        rdfs:range :TRS ;
+        rdfs:comment "El sistema de referencia temporal utilizado por una posición temporal o descripción de extensión."@es ,
+                     "The temporal reference system used by a temporal position or extent description. "@en ;
+        rdfs:label "Temporal reference system used"@en ,
+                   "sistema de referencia temporal utilizado"@es ;
+        skos:definition "El sistema de referencia temporal utilizado por una posición temporal o descripción de extensión."@es ,
+                        "The temporal reference system used by a temporal position or extent description. "@en .
+
+
+###  http://www.w3.org/2006/time#hasTemporalDuration
+:hasTemporalDuration rdf:type owl:ObjectProperty ;
+                     rdfs:domain :TemporalEntity ;
+                     rdfs:range :TemporalDuration ;
+                     rdfs:comment "Duración de una entidad temporal."@es ,
+                                  "Duration of a temporal entity."@en ;
+                     rdfs:label "has temporal duration"@en ,
+                                "tiene duración temporal"@es ;
+                     skos:definition "Duración de una entidad temporal."@es ,
+                                     "Duration of a temporal entity."@en .
+
+
+###  http://www.w3.org/2006/time#hasTime
+:hasTime rdf:type owl:ObjectProperty ;
+         rdfs:range :TemporalEntity ;
+         rdfs:comment "Proporciona soporte a la asociación de una entidad temporal (instante o intervalo) a cualquier cosa."@es ,
+                      "Supports the association of a temporal entity (instant or interval) to any thing"@en ;
+         rdfs:label "has time"@en ,
+                    "tiene tiempo"@es ;
+         skos:definition "Proporciona soporte a la asociación de una entidad temporal (instante o intervalo) a cualquier cosa."@es ,
+                         "Supports the association of a temporal entity (instant or interval) to any thing"@en ;
+         skos:editorialNote "Característica arriesgada -añadida en la revisión del 2017 que no ha sido todavía utilizada de forma amplia."@es ,
+                            "Feature at risk - added in 2017 revision, and not yet widely used. "@en .
+
+
+###  http://www.w3.org/2006/time#inDateTime
+:inDateTime rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :inTemporalPosition ;
+            rdfs:domain :Instant ;
+            rdfs:range :GeneralDateTimeDescription ;
+            rdfs:comment "Posición de un instante, expresada utilizando una descripción estructurada."@es ,
+                         "Position of an instant, expressed using a structured description"@en ;
+            rdfs:label "en descripción de fecha-hora"@es ,
+                       "in date-time description"@en ;
+            skos:definition "Posición de un instante, expresada utilizando una descripción estructurada."@es ,
+                            "Position of an instant, expressed using a structured description"@en .
+
+
+###  http://www.w3.org/2006/time#inTemporalPosition
+:inTemporalPosition rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Instant ;
+                    rdfs:range :TemporalPosition ;
+                    rdfs:comment "Posición de un instante de tiempo."@es ,
+                                 "Position of a time instant"@en ;
+                    rdfs:label "Temporal position"@en ,
+                               "posición temporal"@es ;
+                    skos:definition "Posición de un instante de tiempo."@es ,
+                                    "Position of a time instant"@en .
+
+
+###  http://www.w3.org/2006/time#inTimePosition
+:inTimePosition rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :inTemporalPosition ;
+                rdfs:domain :Instant ;
+                rdfs:range :TimePosition ;
+                rdfs:comment "Posición de un instante, expresada como una coordenada temporal o un valor nominal."@es ,
+                             "Position of an instant, expressed as a temporal coordinate or nominal value"@en ;
+                rdfs:label "Time position"@en ,
+                           "posición de tiempo"@es ;
+                skos:definition "Posición de un instante, expresada como una coordenada temporal o un valor nominal."@es ,
+                                "Position of a time instant expressed as a TimePosition"@en .
+
+
+###  http://www.w3.org/2006/time#inside
+:inside rdf:type owl:ObjectProperty ;
+        rdfs:domain :Interval ;
+        rdfs:range :Instant ;
+        rdfs:comment "An instant that falls inside the interval. It is not intended to include beginnings and ends of intervals."@en ,
+                     "Un instante que cae dentro del intervalo. Se asume que no es ni el principio ni el final de ningún intervalo."@es ;
+        rdfs:label "has time instant inside"@en ,
+                   "tiene instante de tiempo dentro"@es ;
+        skos:definition "An instant that falls inside the interval. It is not intended to include beginnings and ends of intervals."@en ,
+                        "Un instante que cae dentro del intervalo. Se asume que no es ni el principio ni el final de ningún intervalo."@es .
+
+
+###  http://www.w3.org/2006/time#intervalAfter
+:intervalAfter rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :after ,
+                                  :intervalDisjoint ;
+               owl:inverseOf :intervalBefore ;
+               rdfs:domain :ProperInterval ;
+               rdfs:range :ProperInterval ;
+               rdfs:comment "If a proper interval T1 is intervalAfter another proper interval T2, then the beginning of T1 is after the end of T2."@en ,
+                            "enSi un intervalo propio T1 es posterior a otro intervalo propio T2, entonces el principio de T1 está después que el final de T2." ;
+               rdfs:label "interval after"@en ,
+                          "intervalo posterior"@es ;
+               skos:definition "If a proper interval T1 is intervalAfter another proper interval T2, then the beginning of T1 is after the end of T2."@en ,
+                               "Si un intervalo propio T1 es posterior a otro intervalo propio T2, entonces el principio de T1 está después que el final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalBefore
+:intervalBefore rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :before ,
+                                   :intervalDisjoint ;
+                rdfs:domain :ProperInterval ;
+                rdfs:range :ProperInterval ;
+                rdfs:comment "If a proper interval T1 is intervalBefore another proper interval T2, then the end of T1 is before the beginning of T2."@en ,
+                             "Si un intervalo propio T1 está antes que otro intervalo propio T2, entonces el final de T1 está antes que el principio de T2."@es ;
+                rdfs:label "interval before"@en ,
+                           "intervalo anterior"@es ;
+                skos:definition "If a proper interval T1 is intervalBefore another proper interval T2, then the end of T1 is before the beginning of T2."@en ,
+                                "Si un intervalo propio T1 está antes que otro intervalo propio T2, entonces el final de T1 está antes que el principio de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalContains
+:intervalContains rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :intervalDuring ;
+                  rdfs:domain :ProperInterval ;
+                  rdfs:range :ProperInterval ;
+                  rdfs:comment "If a proper interval T1 is intervalContains another proper interval T2, then the beginning of T1 is before the beginning of T2, and the end of T1 is after the end of T2."@en ,
+                               "Si un intervalo propio T1 contiene otro intervalo propio T2, entonces el principio de T1 está antes que el principio de T2, y el final de T1 está después del final de T2."@es ;
+                  rdfs:label "interval contains"@en ,
+                             "intervalo contiene"@es ;
+                  skos:definition "If a proper interval T1 is intervalContains another proper interval T2, then the beginning of T1 is before the beginning of T2, and the end of T1 is after the end of T2."@en ,
+                                  "Si un intervalo propio T1 contiene otro intervalo propio T2, entonces el principio de T1 está antes que el principio de T2, y el final de T1 está después del final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalDisjoint
+:intervalDisjoint rdf:type owl:ObjectProperty ;
+                  rdfs:domain :ProperInterval ;
+                  rdfs:range :ProperInterval ;
+                  rdfs:comment "If a proper interval T1 is intervalDisjoint another proper interval T2, then the beginning of T1 is after the end of T2, or the end of T1 is before the beginning of T2, i.e. the intervals do not overlap in any way, but their ordering relationship is not known."@en ,
+                               "Si un intervalo propio T1 es disjunto con otro intervalo propio T2, entonces el principio de T1 está después del final de T2, o el final de T1 está antes que el principio de T2, es decir, los intervalos no se solapan de ninguna forma, aunque su relación de orden no se conozca."@es ;
+                  rdfs:label "interval disjoint"@en ,
+                             "intervalo disjunto"@es ;
+                  skos:definition "If a proper interval T1 is intervalDisjoint another proper interval T2, then the beginning of T1 is after the end of T2, or the end of T1 is before the beginning of T2, i.e. the intervals do not overlap in any way, but their ordering relationship is not known."@en ,
+                                  "Si un intervalo propio T1 es disjunto con otro intervalo propio T2, entonces el principio de T1 está después del final de T2, o el final de T1 está antes que el principio de T2, es decir, los intervalos no se solapan de ninguna forma, aunque su relación de orden no se conozca."@es ;
+                  skos:note "Esta relación entre intervalos no estaba incluida en las 13 relaciones básicas definidas por Allen (1984), pero está definida en T.3 como la unión de 'intervalo anterior' con 'intervalo posterior'. Sin embargo, esto está fuera de la expresividad de OWL2, por tanto, está implementado como una propiedad explícita, con 'intervalo anterior' e 'intervalo posterior' como sub-propiedades."@es ,
+                            "This interval relation is not included in the 13 basic relationships defined in Allen (1984), but is defined in (T.3) as the union of :intervalBefore v :intervalAfter . However, that is outside OWL2 expressivity, so is implemented as an explicit property, with :intervalBefore , :intervalAfter as sub-properties"@en .
+
+
+###  http://www.w3.org/2006/time#intervalDuring
+:intervalDuring rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :intervalIn ;
+                rdfs:domain :ProperInterval ;
+                rdfs:range :ProperInterval ;
+                rdfs:comment "If a proper interval T1 is intervalDuring another proper interval T2, then the beginning of T1 is after the beginning of T2, and the end of T1 is before the end of T2."@en ,
+                             "Si un intervalo propio T1 está durante otro intervalo propio T2, entonces del principio de T1 está después del principio de T2, y el final de T1 está antes que el final de T2."@es ;
+                rdfs:label "interval during"@en ,
+                           "intervalo durante"@es ;
+                skos:definition "If a proper interval T1 is intervalDuring another proper interval T2, then the beginning of T1 is after the beginning of T2, and the end of T1 is before the end of T2."@en ,
+                                "Si un intervalo propio T1 está durante otro intervalo propio T2, entonces del principio de T1 está después del principio de T2, y el final de T1 está antes que el final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalEquals
+:intervalEquals rdf:type owl:ObjectProperty ;
+                rdfs:domain :ProperInterval ;
+                rdfs:range :ProperInterval ;
+                owl:propertyDisjointWith :intervalIn ;
+                rdfs:comment "If a proper interval T1 is intervalEquals another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is coincident with the end of T2."@en ,
+                             "Si un intervalo propio T1 es igual a otro intervalo propio T2, entonces el principio de T1 coincide con el principio de T2, y el final de T1 coincide con el final de T2."@es ;
+                rdfs:label "interval equals"@en ,
+                           "intervalo igual"@es ;
+                skos:definition "If a proper interval T1 is intervalEquals another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is coincident with the end of T2."@en ,
+                                "Si un intervalo propio T1 es igual a otro intervalo propio T2, entonces el principio de T1 coincide con el principio de T2, y el final de T1 coincide con el final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalFinishedBy
+:intervalFinishedBy rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :intervalFinishes ;
+                    rdfs:domain :ProperInterval ;
+                    rdfs:range :ProperInterval ;
+                    rdfs:comment "If a proper interval T1 is intervalFinishedBy another proper interval T2, then the beginning of T1 is before the beginning of T2, and the end of T1 is coincident with the end of T2."@en ,
+                                 "Si un intervalo propio T1 está terminado por otro intervalo propio T2, entonces el principio de T1 está antes que el principio de T2, y el final de T1 coincide con el final de T2."@es ;
+                    rdfs:label "interval finished by"@en ,
+                               "intervalo terminado por"@es ;
+                    skos:definition "If a proper interval T1 is intervalFinishedBy another proper interval T2, then the beginning of T1 is before the beginning of T2, and the end of T1 is coincident with the end of T2."@en ,
+                                    "Si un intervalo propio T1 está terminado por otro intervalo propio T2, entonces el principio de T1 está antes que el principio de T2, y el final de T1 coincide con el final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalFinishes
+:intervalFinishes rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :intervalIn ;
+                  rdfs:domain :ProperInterval ;
+                  rdfs:range :ProperInterval ;
+                  rdfs:comment "If a proper interval T1 is intervalFinishes another proper interval T2, then the beginning of T1 is after the beginning of T2, and the end of T1 is coincident with the end of T2."@en ,
+                               "Si un intervalo propio T1 termina otro intervalo propio T2, entonces del principio de T1 está después del principio de T2, y el final de T1 coincide con el final de T2."@es ;
+                  rdfs:label "interval finishes"@en ,
+                             "intervalo termina"@es ;
+                  skos:definition "If a proper interval T1 is intervalFinishes another proper interval T2, then the beginning of T1 is after the beginning of T2, and the end of T1 is coincident with the end of T2."@en ,
+                                  "Si un intervalo propio T1 termina otro intervalo propio T2, entonces del principio de T1 está después del principio de T2, y el final de T1 coincide con el final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalIn
+:intervalIn rdf:type owl:ObjectProperty ;
+            rdfs:domain :ProperInterval ;
+            rdfs:range :ProperInterval ;
+            rdfs:comment "If a proper interval T1 is intervalIn another proper interval T2, then the beginning of T1 is after the beginning of T2 or is coincident with the beginning of T2, and the end of T1 is before the end of T2, or is coincident with the end of T2, except that end of T1 may not be coincident with the end of T2 if the beginning of T1 is coincident with the beginning of T2."@en ,
+                         "Si un intervalo propio T1 es un intervalo interior a otro intervalo propio T2, entonces el principio de T1 está después del principio de T2 o coincide con el principio de T2, y el final de T1 está antes que el final de T2, o coincide con el final de T2, excepto que el final de T1 puede no coincidir con el final de T2 si el principio de T1 coincide con el principio de T2."@es ;
+            rdfs:label "interval in"@en ,
+                       "intervalo interior"@es ;
+            skos:definition "If a proper interval T1 is intervalIn another proper interval T2, then the beginning of T1 is after the beginning of T2 or is coincident with the beginning of T2, and the end of T1 is before the end of T2, or is coincident with the end of T2, except that end of T1 may not be coincident with the end of T2 if the beginning of T1 is coincident with the beginning of T2."@en ,
+                            "Si un intervalo propio T1 es un intervalo interior a otro intervalo propio T2, entonces el principio de T1 está después del principio de T2 o coincide con el principio de T2, y el final de T1 está antes que el final de T2, o coincide con el final de T2, excepto que el final de T1 puede no coincidir con el final de T2 si el principio de T1 coincide con el principio de T2."@es ;
+            skos:note "Esta relación entre intervalos no estaba incluida en las 13 relaciones básicas definidas por Allen (1984), pero se hace referencia a ella como \"una relación importante\" en Allen y Ferguson (1997). Es la unión disjunta de 'intervalo empieza', 'intervalo durante' y con 'intervalo termina'. Sin embargo, esto está fuera de la expresividad de OWL2, por tanto, se implementa como una propiedad explícita, con 'intervalo empieza', 'intervalo durante' e 'intervalo termina' como sub-propiedades."@es ,
+                      "This interval relation is not included in the 13 basic relationships defined in Allen (1984), but is referred to as 'an important relationship' in Allen and Ferguson (1997). It is the disjoint union of :intervalStarts v :intervalDuring v :intervalFinishes . However, that is outside OWL2 expressivity, so is implemented as an explicit property, with :intervalStarts , :intervalDuring , :intervalFinishes as sub-properties"@en .
+
+
+###  http://www.w3.org/2006/time#intervalMeets
+:intervalMeets rdf:type owl:ObjectProperty ;
+               owl:inverseOf :intervalMetBy ;
+               rdfs:domain :ProperInterval ;
+               rdfs:range :ProperInterval ;
+               rdfs:comment "If a proper interval T1 is intervalMeets another proper interval T2, then the end of T1 is coincident with the beginning of T2."@en ,
+                            "Si un intervalo propio T1 se encuentra con otro intervalo propio T2, entonces el final de T1 coincide con el principio de T2."@es ;
+               rdfs:label "interval meets"@en ,
+                          "intervalo se encuentra"@es ;
+               skos:definition "If a proper interval T1 is intervalMeets another proper interval T2, then the end of T1 is coincident with the beginning of T2."@en ,
+                               "Si un intervalo propio T1 se encuentra con otro intervalo propio T2, entonces el final de T1 coincide con el principio de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalMetBy
+:intervalMetBy rdf:type owl:ObjectProperty ;
+               rdfs:domain :ProperInterval ;
+               rdfs:range :ProperInterval ;
+               rdfs:comment "If a proper interval T1 is intervalMetBy another proper interval T2, then the beginning of T1 is coincident with the end of T2."@en ,
+                            "Si un intervalo propio T1 es 'intervalo encontrado por' otro intervalo propio T2, entonces el principio de T1 coincide con el final de T2."@es ;
+               rdfs:label "interval met by"@en ,
+                          "intervalo encontrado por"@es ;
+               skos:definition "If a proper interval T1 is intervalMetBy another proper interval T2, then the beginning of T1 is coincident with the end of T2."@en ,
+                               "Si un intervalo propio T1 es 'intervalo encontrado por' otro intervalo propio T2, entonces el principio de T1 coincide con el final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalOverlappedBy
+:intervalOverlappedBy rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :intervalOverlaps ;
+                      rdfs:domain :ProperInterval ;
+                      rdfs:range :ProperInterval ;
+                      rdfs:comment "If a proper interval T1 is intervalOverlappedBy another proper interval T2, then the beginning of T1 is after the beginning of T2, the beginning of T1 is before the end of T2, and the end of T1 is after the end of T2."@en ,
+                                   "Si un intervalo propio T1 es 'intervalo solapado por' otro intervalo propio T2, entonces el principio de T1 es posterior al principio de T2, y el principio de T1 es anterior al final de T2, y el final de T1 es posterior al final de T2."@es ;
+                      rdfs:label "interval overlapped by"@en ,
+                                 "intervalo solapado por"@es ;
+                      skos:definition "If a proper interval T1 is intervalOverlappedBy another proper interval T2, then the beginning of T1 is after the beginning of T2, the beginning of T1 is before the end of T2, and the end of T1 is after the end of T2."@en ,
+                                      "Si un intervalo propio T1 es 'intervalo solapado por' otro intervalo propio T2, entonces el principio de T1 es posterior al principio de T2, y el principio de T1 es anterior al final de T2, y el final de T1 es posterior al final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalOverlaps
+:intervalOverlaps rdf:type owl:ObjectProperty ;
+                  rdfs:domain :ProperInterval ;
+                  rdfs:range :ProperInterval ;
+                  rdfs:comment "Asume una dirección en el tiempo. Si una entidad temporal T1 está después de otra entidad temporal T2, entonces el principio de T1 está después del final de T2."@es ,
+                               "If a proper interval T1 is intervalOverlaps another proper interval T2, then the beginning of T1 is before the beginning of T2, the end of T1 is after the beginning of T2, and the end of T1 is before the end of T2."@en ,
+                               "Si un intervalo propio T1 se solapa con otro intervalo propio T2, entonces el principio de T1 es anterior al principio de T2, el final de T1 es posterior al principio de T2, y el final de T1 es anterior al final de T2."@es ;
+                  rdfs:label "interval overlaps"@en ,
+                             "intervalo se solapa"@es ;
+                  skos:definition "If a proper interval T1 is intervalOverlaps another proper interval T2, then the beginning of T1 is before the beginning of T2, the end of T1 is after the beginning of T2, and the end of T1 is before the end of T2."@en ,
+                                  "Si un intervalo propio T1 se solapa con otro intervalo propio T2, entonces el principio de T1 es anterior al principio de T2, el final de T1 es posterior al principio de T2, y el final de T1 es anterior al final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalStartedBy
+:intervalStartedBy rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :intervalStarts ;
+                   rdfs:domain :ProperInterval ;
+                   rdfs:range :ProperInterval ;
+                   rdfs:comment "If a proper interval T1 is intervalStarted another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is after the end of T2."@en ,
+                                "Si un intervalo propio T1 es empezado por otro intervalo propio T2, entonces el principio de T1 coincide con el principio de T2, y el final de T1 es posterior al final de T2."@es ;
+                   rdfs:label "interval started by"@en ;
+                   skos:definition "If a proper interval T1 is intervalStarted another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is after the end of T2."@en ,
+                                   "Si un intervalo propio T1 es empezado por otro intervalo propio T2, entonces el principio de T1 coincide con el principio de T2, y el final de T1 es posterior al final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#intervalStarts
+:intervalStarts rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :intervalIn ;
+                rdfs:domain :ProperInterval ;
+                rdfs:range :ProperInterval ;
+                rdfs:comment "If a proper interval T1 is intervalStarts another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is before the end of T2."@en ,
+                             "Si un intervalo propio T1 empieza otro intervalo propio T2, entonces del principio de T1 con el principio de T2, y el final de T1 es anterior al final de T2."@es ;
+                rdfs:label "interval starts"@en ,
+                           "intervalo empieza"@es ;
+                skos:definition "If a proper interval T1 is intervalStarts another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is before the end of T2."@en ,
+                                "Si un intervalo propio T1 empieza otro intervalo propio T2, entonces del principio de T1 con el final de T2, y el final de T1 es anterior al final de T2."@es .
+
+
+###  http://www.w3.org/2006/time#monthOfYear
+:monthOfYear rdf:type owl:ObjectProperty ;
+             rdfs:domain :GeneralDateTimeDescription ;
+             rdfs:range :MonthOfYear ;
+             rdfs:comment "El mes del año, cuyo valor es un miembro de la clase 'mes del año'."@es ,
+                          "The month of the year, whose value is a member of the class time:MonthOfYear"@en ;
+             rdfs:label "mes del año"@es ,
+                        "month of year"@en ;
+             skos:definition "El mes del año, cuyo valor es un miembro de la clase 'mes del año'."@es ,
+                             "The month of the year, whose value is a member of the class time:MonthOfYear"@en ;
+             skos:editorialNote "Característica arriesgada - añadida en la revisión de 2017, y todavía no ampliamente utilizada."@es ,
+                                "Feature at risk - added in 2017 revision, and not yet widely used. "@en .
+
+
+###  http://www.w3.org/2006/time#timeZone
+:timeZone rdf:type owl:ObjectProperty ;
+          rdfs:domain :GeneralDateTimeDescription ;
+          rdfs:range :TimeZone ;
+          rdfs:comment "The time zone for clock elements in the temporal position"@en ;
+          rdfs:label "en huso horario"@es ,
+                     "in time zone"@en ;
+          skos:historyNote """En la versión original de OWL-Time de 2006, el rango de 'en huso horario' se definió en un espacio de nombres diferente \"http://www.w3.org/2006/timezone#\".
+            Un axioma de alineación permite que los datos codificados de acuerdo con la versión anterior sean consistentes con la ontología actualizada."""@es ,
+                           """esIn the original 2006 version of OWL-Time, the range of time:timeZone was a TimeZone class in a separate namespace \"http://www.w3.org/2006/timezone#\". 
+An alignment axiom 
+	tzont:TimeZone rdfs:subClassOf time:TimeZone . 
+allows data encoded according to the previous version to be consistent with the updated ontology. """ ;
+          skos:note """IANA mantiene una base de datos de husos horarios. Éstas están bien mantenidas y generalmente se consideran autorizadas, pero los ítems individuales no están disponibles en URIs individuales, por tanto, no se pueden utilizar directamente en datos expresados utilizando OWL-Time.
+            La BDPedia proporciona un conjunto de recursos correspondientes a los husos horarios de IANA, con una URI para cada uno (por ejemplo, http://dbpedia.org/resource/Australia/Eucla). El Servicio de Reloj Mundial también proporciona una lista de husos horarios con la descripción de cada uno de los disponibles como una página Web individual con una URI adecuada individual (por ejemplo, https://www.timeanddate.com/time/zones/acwst). Éstos, y otros recursos similares, se puden usar como un valor de la propiedad 'huso horario'."""@es ,
+                    """esIANA maintains a database of timezones. These are well maintained and generally considered authoritative, but individual items are not available at individual URIs, so cannot be used directly in data expressed using OWL-Time.
+
+DBPedia provides a set of resources corresponding to the IANA timezones, with a URI for each (e.g. http://dbpedia.org/resource/Australia/Eucla). The World Clock service also provides a list of time zones with the description of each available as an individual webpage with a convenient individual URI (e.g. https://www.timeanddate.com/time/zones/acwst). These or other, similar, resources might be used as a value of the time:timeZone property.""" .
+
+
+###  http://www.w3.org/2006/time#unitType
+:unitType rdf:type owl:ObjectProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :Duration
+                                      :GeneralDateTimeDescription
+                                    )
+                      ] ;
+          rdfs:range :TemporalUnit ;
+          rdfs:comment "La unidad de tiempo que proporciona la precisión de un valor fecha-hora o la escala de una extensión temporal."@es ,
+                       "The temporal unit which provides the precision of a date-time value or scale of a temporal extent"@en ;
+          rdfs:label "temporal unit type"@en ,
+                     "tipo de unidad temporal"@es .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.w3.org/2006/time#day
+:day rdf:type owl:DatatypeProperty ;
+     rdfs:domain :GeneralDateTimeDescription ;
+     rdfs:comment """Day position in a calendar-clock system.
+
+The range of this property is not specified, so can be replaced by any specific representation of a calendar day from any calendar. """@en ,
+                  "Posición de día en un sistema calendario-reloj."@es ;
+     rdfs:label "day"@en ,
+                "día"@es ;
+     skos:definition """Day position in a calendar-clock system.
+
+The range of this property is not specified, so can be replaced by any specific representation of a calendar day from any calendar. """@en ,
+                     """Posición de día en un sistema calendario-reloj.
+
+El rango de esta propiedad no está especificado, por tanto, se puede reemplazar por una representación específica de un día de calendario de cualquier calendario."""@es .
+
+
+###  http://www.w3.org/2006/time#dayOfYear
+:dayOfYear rdf:type owl:DatatypeProperty ;
+           rdfs:domain :GeneralDateTimeDescription ;
+           rdfs:range xsd:nonNegativeInteger ;
+           rdfs:comment "El número de día en el año."@es ,
+                        "The number of the day within the year"@en ;
+           rdfs:label "day of year"@en ,
+                      "día del año"@es ;
+           skos:definition "El número de día en el año."@es ,
+                           "The number of the day within the year"@en .
+
+
+###  http://www.w3.org/2006/time#days
+:days rdf:type owl:DatatypeProperty ;
+      rdfs:domain :GeneralDurationDescription ;
+      rdfs:range xsd:decimal ;
+      rdfs:comment "Longitud de, o elemento de la longitud de, una extensión temporal expresada en días."@es ,
+                   "length of, or element of the length of, a temporal extent expressed in days"@en ;
+      rdfs:label "days duration"@en ,
+                 "duración en días"@es ;
+      skos:definition "Longitud de, o elemento de la longitud de, una extensión temporal expresada en días."@es ,
+                      "length of, or element of the length of, a temporal extent expressed in days"@en .
+
+
+###  http://www.w3.org/2006/time#hasXSDDuration
+:hasXSDDuration rdf:type owl:DatatypeProperty ;
+                rdfs:domain :TemporalEntity ;
+                rdfs:range xsd:duration ;
+                rdfs:comment "Extensión de una entidad temporal, expresada utilizando xsd:duration."@es ,
+                             "Extent of a temporal entity, expressed using xsd:duration"@en ;
+                rdfs:label "has XSD duration"@en ,
+                           "tiene duración XSD"@es ;
+                skos:definition "Extensión de una entidad temporal, expresada utilizando xsd:duration."@es ,
+                                "Extent of a temporal entity, expressed using xsd:duration"@en ;
+                skos:editorialNote "Característica arriesgada - añadida en la revisión de 2017, y todavía no ampliamente utilizada."@es ,
+                                   "Feature at risk - added in 2017 revision, and not yet widely used. "@en .
+
+
+###  http://www.w3.org/2006/time#hour
+:hour rdf:type owl:DatatypeProperty ;
+      rdfs:domain :GeneralDateTimeDescription ;
+      rdfs:range xsd:nonNegativeInteger ;
+      rdfs:comment "Hour position in a calendar-clock system."@en ,
+                   "Posición de hora en un sistema calendario-reloj."@es ;
+      rdfs:label "hora"@es ,
+                 "hour"@en ;
+      skos:definition "Hour position in a calendar-clock system."@en ,
+                      "Posición de hora en un sistema calendario-reloj."@es .
+
+
+###  http://www.w3.org/2006/time#hours
+:hours rdf:type owl:DatatypeProperty ;
+       rdfs:domain :GeneralDurationDescription ;
+       rdfs:range xsd:decimal ;
+       rdfs:comment "Longitud de, o elemento de la longitud de, una extensión temporal expresada en horas."@es ,
+                    "length of, or element of the length of, a temporal extent expressed in hours"@en ;
+       rdfs:label "duración en horas"@es ,
+                  "hours duration"@en ;
+       skos:definition "Longitud de, o elemento de la longitud de, una extensión temporal expresada en horas."@es ,
+                       "length of, or element of the length of, a temporal extent expressed in hours"@en .
+
+
+###  http://www.w3.org/2006/time#inXSDDate
+:inXSDDate rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Instant ;
+           rdfs:range xsd:date ;
+           rdfs:comment "Posición de un instante, expresado utilizando xsd:date."@es ,
+                        "Position of an instant, expressed using xsd:date"@en ;
+           rdfs:label "en fecha XSD"@es ,
+                      "in XSD date"@en ;
+           skos:definition "Posición de un instante, expresado utilizando xsd:date."@es ,
+                           "Position of an instant, expressed using xsd:date"@en .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTime
+:inXSDDateTime rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Instant ;
+               rdfs:range xsd:dateTime ;
+               rdfs:comment "Posición de un instante, expresado utilizando xsd:dateTime."@es ,
+                            "Position of an instant, expressed using xsd:dateTime"@en ;
+               rdfs:label "en fecha-tiempo XSD"@es ,
+                          "in XSD Date-Time"@en ;
+               owl:deprecated "true"^^xsd:boolean ;
+               skos:definition "Posición de un instante, expresado utilizando xsd:dateTime."@es ,
+                               "Position of an instant, expressed using xsd:dateTime"@en ;
+               skos:note "La propiedad 'en fecha-hora XSD' ha sido reemplazada por 'en fecha-sello de tiempo XSD' que hace obligatorio el campo 'huso horario'."@es ,
+                         "The property :inXSDDateTime is replaced by :inXSDDateTimeStamp which makes the time-zone field mandatory."@en .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTimeStamp
+:inXSDDateTimeStamp rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Instant ;
+                    rdfs:range xsd:dateTimeStamp ;
+                    rdfs:comment "Posición de un instante, expresado utilizando xsd:dateTimeStamp."@es ,
+                                 "Position of an instant, expressed using xsd:dateTimeStamp"@en ;
+                    rdfs:label "en fecha-sello de tiempo XSD"@es ,
+                               "in XSD Date-Time-Stamp"@en ;
+                    skos:definition "Posición de un instante, expresado utilizando xsd:dateTimeStamp."@es ,
+                                    "Position of an instant, expressed using xsd:dateTimeStamp"@en .
+
+
+###  http://www.w3.org/2006/time#inXSDgYear
+:inXSDgYear rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Instant ;
+            rdfs:range xsd:gYear ;
+            rdfs:comment "Posición de un instante, expresado utilizando xsd:gYear."@es ,
+                         "Position of an instant, expressed using xsd:gYear"@en ;
+            rdfs:label "en año gregoriano XSD"@es ,
+                       "in XSD g-Year"@en ;
+            skos:definition "Posición de un instante, expresado utilizando xsd:gYear."@es ,
+                            "Position of an instant, expressed using xsd:gYear"@en .
+
+
+###  http://www.w3.org/2006/time#inXSDgYearMonth
+:inXSDgYearMonth rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Instant ;
+                 rdfs:range xsd:gYearMonth ;
+                 rdfs:comment "Posición de un instante, expresado utilizando xsd:gYearMonth."@es ,
+                              "Position of an instant, expressed using xsd:gYearMonth"@en ;
+                 rdfs:label "en año-mes gregoriano XSD"@es ,
+                            "in XSD g-YearMonth"@en ;
+                 skos:definition "Posición de un instante, expresado utilizando xsd:gYearMonth."@es ,
+                                 "Position of an instant, expressed using xsd:gYearMonth"@en .
+
+
+###  http://www.w3.org/2006/time#minute
+:minute rdf:type owl:DatatypeProperty ;
+        rdfs:domain :GeneralDateTimeDescription ;
+        rdfs:range xsd:nonNegativeInteger ;
+        rdfs:comment "Minute position in a calendar-clock system."@en ,
+                     "Posición de minuto en un sistema calendario-reloj."@es ;
+        rdfs:label "minute"@en ,
+                   "minuto"@es ;
+        skos:definition "Minute position in a calendar-clock system."@en ,
+                        "Posición de minuto en un sistema calendario-reloj."@es .
+
+
+###  http://www.w3.org/2006/time#minutes
+:minutes rdf:type owl:DatatypeProperty ;
+         rdfs:domain :GeneralDurationDescription ;
+         rdfs:range xsd:decimal ;
+         rdfs:comment "Longitud de, o elemento de la longitud de, una extensión temporal expresada en minutos."@es ,
+                      "length, or element of, a temporal extent expressed in minutes"@en ;
+         rdfs:label "minutes"@en ,
+                    "minutos"@es ;
+         skos:definition "Longitud de, o elemento de la longitud de, una extensión temporal expresada en minutos."@es ,
+                         "length, or element of, a temporal extent expressed in minutes"@en .
+
+
+###  http://www.w3.org/2006/time#month
+:month rdf:type owl:DatatypeProperty ;
+       rdfs:domain :GeneralDateTimeDescription ;
+       rdfs:comment """Month position in a calendar-clock system.
+
+The range of this property is not specified, so can be replaced by any specific representation of a calendar month from any calendar. """@en ,
+                    """Posición de mes en un sistema calendario-reloj.
+    El rango de esta propiedad no está especificado, por tanto, se puede reemplazar por cualquier representación específica de un mes de calendario de un calendario cualquiera."""@es ;
+       rdfs:label "mes"@es ,
+                  "month"@en ;
+       skos:definition """Month position in a calendar-clock system.
+
+The range of this property is not specified, so can be replaced by any specific representation of a calendar month from any calendar. """@en ,
+                       """Posición de mes en un sistema calendario-reloj.
+            El rango de esta propiedad no está especificado, por tanto, se puede reemplazar por cualquier representación específica de un mes de calendario de un calendario cualquiera."""@es .
+
+
+###  http://www.w3.org/2006/time#months
+:months rdf:type owl:DatatypeProperty ;
+        rdfs:domain :GeneralDurationDescription ;
+        rdfs:range xsd:decimal ;
+        rdfs:comment "Longitud de, o elemento de la longitud de, una extensión temporal expresada en meses."@es ,
+                     "length of, or element of the length of, a temporal extent expressed in months"@en ;
+        rdfs:label "duración en meses"@es ,
+                   "months duration"@en ;
+        skos:definition "Longitud de, o elemento de la longitud de, una extensión temporal expresada en meses."@es ,
+                        "length of, or element of the length of, a temporal extent expressed in months"@en .
+
+
+###  http://www.w3.org/2006/time#nominalPosition
+:nominalPosition rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :TimePosition ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "El valor (nominal) que indica posición temporal en un sistema de referencia ordinal."@es ,
+                              "The (nominal) value indicating temporal position in an ordinal reference system "@en ;
+                 rdfs:label "Name of temporal position"@en ,
+                            "nombre de posición temporal"@es ;
+                 skos:definition "El valor (nominal) que indica posición temporal en un sistema de referencia ordinal."@es ,
+                                 "The (nominal) value indicating temporal position in an ordinal reference system "@en .
+
+
+###  http://www.w3.org/2006/time#numericDuration
+:numericDuration rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Duration ;
+                 rdfs:range xsd:decimal ;
+                 rdfs:comment "Valor de una extensión temporal expresada como un número decimal escalado por una unidad de tiempo."@es ,
+                              "Value of a temporal extent expressed as a decimal number scaled by a temporal unit"@en ;
+                 rdfs:label "Numeric value of temporal duration"@en ,
+                            "valor numérico de duración temporal"@es ;
+                 skos:definition "Valor de una extensión temporal expresada como un número decimal escalado por una unidad de tiempo."@es ,
+                                 "Value of a temporal extent expressed as a decimal number scaled by a temporal unit"@en .
+
+
+###  http://www.w3.org/2006/time#numericPosition
+:numericPosition rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :TimePosition ;
+                 rdfs:range xsd:decimal ;
+                 rdfs:comment "El valor (numérico) que indica posición temporal en un sistema de referencia ordinal."@es ,
+                              "The (numeric) value indicating position within a temporal coordinate system "@en ;
+                 rdfs:label "Numeric value of temporal position"@en ,
+                            "valor numérico de posición temporal"@es ;
+                 skos:definition "El valor (numérico) que indica posición temporal en un sistema de referencia ordinal."@es ,
+                                 "The (numeric) value indicating position within a temporal coordinate system "@en .
+
+
+###  http://www.w3.org/2006/time#second
+:second rdf:type owl:DatatypeProperty ;
+        rdfs:domain :GeneralDateTimeDescription ;
+        rdfs:range xsd:decimal ;
+        rdfs:comment "Posición de segundo en un sistema calendario-reloj."@es ,
+                     "Second position in a calendar-clock system."@en ;
+        rdfs:label "second"@en ,
+                   "segundo"@es .
+
+
+###  http://www.w3.org/2006/time#seconds
+:seconds rdf:type owl:DatatypeProperty ;
+         rdfs:domain :GeneralDurationDescription ;
+         rdfs:range xsd:decimal ;
+         rdfs:comment "Longitud de, o elemento de la longitud de, una extensión temporal expresada en segundos."@es ,
+                      "length of, or element of the length of, a temporal extent expressed in seconds"@en ;
+         rdfs:label "duración en segundos"@es ,
+                    "seconds duration"@en ;
+         rdfs:seeAlso <http://www.bipm.org/en/publications/si-brochure/second.html> .
+
+
+###  http://www.w3.org/2006/time#week
+:week rdf:type owl:DatatypeProperty ;
+      rdfs:domain :GeneralDateTimeDescription ;
+      rdfs:range xsd:nonNegativeInteger ;
+      rdfs:comment "Número de semana en el año."@es ,
+                   "Week number within the year."@en ;
+      rdfs:label "semana"@es ,
+                 "week"@en ;
+      skos:note "Weeks are numbered differently depending on the calendar in use and the local language or cultural conventions (locale). ISO-8601 specifies that the first week of the year includes at least four days, and that Monday is the first day of the week. In that system, week 1 is the week that contains the first Thursday in the year."@en ;
+      skos:scopeNote "Las semanas están numeradas de forma diferente dependiendo del calendario en uso y de las convenciones lingüísticas y culturales locales (locale en inglés). El ISO-8601 especifica que la primera semana del año incluye al menos cuatro días, y que el lunes es el primer día de la semana. En ese sistema, la semana 1 es la semana que contiene el primer jueves del año."@es .
+
+
+###  http://www.w3.org/2006/time#weeks
+:weeks rdf:type owl:DatatypeProperty ;
+       rdfs:domain :GeneralDurationDescription ;
+       rdfs:range xsd:decimal ;
+       rdfs:comment "Longitud de, o elemento de la longitud de, una extensión temporal expresada en semanas."@es ,
+                    "length of, or element of the length of, a temporal extent expressed in weeks"@en ;
+       rdfs:label "duración en semanas"@es ,
+                  "weeks duration"@en .
+
+
+###  http://www.w3.org/2006/time#xsdDateTime
+:xsdDateTime rdf:type owl:DatatypeProperty ;
+             rdfs:domain :DateTimeInterval ;
+             rdfs:range xsd:dateTime ;
+             rdfs:comment "Valor de 'intervalo de fecha-hora' expresado como un valor compacto."@es ,
+                          "Value of DateTimeInterval expressed as a compact value."@en ;
+             rdfs:label "has XSD date-time"@en ,
+                        "tiene fecha-hora XSD"@es ;
+             owl:deprecated "true"^^xsd:boolean ;
+             skos:note "Using xsd:dateTime in this place means that the duration of the interval is implicit: it corresponds to the length of the smallest non-zero element of the date-time literal. However, this rule cannot be used for intervals whose duration is more than one rank smaller than the starting time - e.g. the first minute or second of a day, the first hour of a month, or the first day of a year. In these cases the desired interval cannot be distinguished from the interval corresponding to the next rank up. Because of this essential ambiguity, use of this property is not recommended and it is deprecated."@en ,
+                       "enUtilizando xsd:dateTime en este lugar significa que la duración del intervalo está implícita: se corresponde con la longitud del elemento más pequeño distinto de cero del literal fecha-hora. Sin embargo, esta regla no se puede utilizar para intervalos cuya duración es mayor que un rango más pequeño que el tiempo de comienzo - p.ej. el primer minuto o segundo del día, la primera hora del mes, o el primer día del año. En estos casos el intervalo deseado no se puede distinguir del intervalo correspondiente al próximo rango más alto. Debido a esta ambigüedad esencial, no se recomienda el uso de esta propiedad y está desaprobada." .
+
+
+###  http://www.w3.org/2006/time#year
+:year rdf:type owl:DatatypeProperty ;
+      rdfs:domain :GeneralDateTimeDescription ;
+      rdfs:comment """Posición de año en un sistema calendario-reloj.
+
+l rango de esta propiedad no está especificado, por tanto, se puede reemplazar por cualquier representación específica de un año de calendario de un calendario cualquiera."""@es ,
+                   """Year position in a calendar-clock system.
+
+The range of this property is not specified, so can be replaced by any specific representation of a calendar year from any calendar. """@en ;
+      rdfs:label "year"@en .
+
+
+###  http://www.w3.org/2006/time#years
+:years rdf:type owl:DatatypeProperty ;
+       rdfs:domain :GeneralDurationDescription ;
+       rdfs:range xsd:decimal ;
+       rdfs:comment "Longitud de, o elemento de la longitud de, una extensión temporal expresada en años."@es ,
+                    "length of, or element of the length of, a temporal extent expressed in years"@en ;
+       rdfs:label "duración en años"@es ,
+                  "years duration"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2006/time#DateTimeDescription
+:DateTimeDescription rdf:type owl:Class ;
+                     rdfs:subClassOf :GeneralDateTimeDescription ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasTRS ;
+                                       owl:hasValue <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian>
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :day ;
+                                       owl:allValuesFrom xsd:gDay
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :month ;
+                                       owl:allValuesFrom xsd:gMonth
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :year ;
+                                       owl:allValuesFrom xsd:gYear
+                                     ] ;
+                     rdfs:comment "Descripción de fecha y tiempo estructurada con valores separados para los diferentes elementos de un sistema calendario-reloj. El sistema de referencia temporal está fijado al calendario gregoriano, y el rango de las propiedades año, mes, día restringidas a los correspondientes tipos del XML Schema xsd:gYear, xsd:gMonth y xsd:gDay respectivamente."@es ,
+                                  "Description of date and time structured with separate values for the various elements of a calendar-clock system. The temporal reference system is fixed to Gregorian Calendar, and the range of year, month, day properties restricted to corresponding XML Schema types xsd:gYear, xsd:gMonth and xsd:gDay, respectively."@en ;
+                     rdfs:label "Date-Time description"@en ,
+                                "descripción de fecha-tiempo"@es ;
+                     skos:definition "Descripción de fecha y tiempo estructurada con valores separados para los diferentes elementos de un sistema calendario-reloj. El sistema de referencia temporal está fijado al calendario gregoriano, y el rango de las propiedades año, mes, día restringidas a los correspondientes tipos del XML Schema xsd:gYear, xsd:gMonth y xsd:gDay respectivamente."@es ,
+                                     "Description of date and time structured with separate values for the various elements of a calendar-clock system. The temporal reference system is fixed to Gregorian Calendar, and the range of year, month, day properties restricted to corresponding XML Schema types xsd:gYear, xsd:gMonth and xsd:gDay, respectively."@en .
+
+
+###  http://www.w3.org/2006/time#DateTimeInterval
+:DateTimeInterval rdf:type owl:Class ;
+                  rdfs:subClassOf :ProperInterval ;
+                  rdfs:comment "'intervalo de fecha-hora' es una subclase de 'intervalo propio', definida utilizando el multi-elemento 'descripción de fecha-hora'."@es ,
+                               "DateTimeInterval is a subclass of ProperInterval, defined using the multi-element DateTimeDescription."@en ;
+                  rdfs:label "Date-time interval"@en ,
+                             "intervalo de fecha-hora"@es ;
+                  skos:definition "'intervalo de fecha-hora' es una subclase de 'intervalo propio', definida utilizando el multi-elemento 'descripción de fecha-hora'."@es ,
+                                  "DateTimeInterval is a subclass of ProperInterval, defined using the multi-element DateTimeDescription."@en ;
+                  skos:note "'intervalo de fecha-hora' se puede utilizar sólo para un intervalo cuyos límites coinciden con un elemento de fecha-hora alineados con el calendario y la zona horaria indicados. Por ejemplo, aunque ambos tienen una duración de un día, el intervalo de 24 horas que empieza en la media noche del comienzo del 8 mayo en Europa Central se puede expresar como un 'intervalo de fecha-hora', el intervalo de 24 horas que empieza a las 1:30pm no."@es ,
+                            ":DateTimeInterval can only be used for an interval whose limits coincide with a date-time element aligned to the calendar and timezone indicated. For example, while both have a duration of one day, the 24-hour interval beginning at midnight at the beginning of 8 May in Central Europe can be expressed as a :DateTimeInterval, but the 24-hour interval starting at 1:30pm cannot."@en .
+
+
+###  http://www.w3.org/2006/time#DayOfWeek
+:DayOfWeek rdf:type owl:Class ;
+           rdfs:subClassOf owl:Thing ;
+           rdfs:comment "El día de la semana"@es ,
+                        "The day of week"@en ;
+           rdfs:label "Day of week"@en ,
+                      "día de la semana"@es ;
+           skos:changeNote """Remove enumeration from definition, in order to allow other days to be used when required in other calendars. 
+NOTE: existing days are still present as members of the class, but the class membership is now open. 
+
+In the original OWL-Time the following constraint appeared: 
+  owl:oneOf (
+      time:Monday
+      time:Tuesday
+      time:Wednesday
+      time:Thursday
+      time:Friday
+      time:Saturday
+      time:Sunday
+    ) ;"""@en ;
+           skos:definition "El día de la semana"@es ,
+                           "The day of week"@en ;
+           skos:note "La pertenencia a la clase 'día de la semana' está abierta, para permitir longitudes de semana alternativas y diferentes nombres de días."@es ,
+                     "Membership of the class :DayOfWeek is open, to allow for alternative week lengths and different day names."@en .
+
+
+###  http://www.w3.org/2006/time#Duration
+:Duration rdf:type owl:Class ;
+          rdfs:subClassOf :TemporalDuration ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :unitType ;
+                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :numericDuration ;
+                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                          ] ;
+          rdfs:comment "Duración de una extensión temporal expresada como un número escalado por una unidad temporal."@es ,
+                       "Duration of a temporal extent expressed as a number scaled by a temporal unit"@en ;
+          rdfs:label "Time duration"@en ,
+                     "enduración de tiempo" ;
+          skos:definition "Duración de una extensión temporal expresada como un número escalado por una unidad temporal."@es ,
+                          "Duration of a temporal extent expressed as a number scaled by a temporal unit"@en ;
+          skos:note "Alternativa a 'descripción de tiempo' para proporcionar descripción soporte a una duración temporal diferente a utilizar un sistema de calendario/reloj."@es ,
+                    "Alternative to time:DurationDescription to support description of a temporal duration other than using a calendar/clock system."@en .
+
+
+###  http://www.w3.org/2006/time#DurationDescription
+:DurationDescription rdf:type owl:Class ;
+                     rdfs:subClassOf :GeneralDurationDescription ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasTRS ;
+                                       owl:hasValue <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian>
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :days ;
+                                       owl:allValuesFrom xsd:decimal
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hours ;
+                                       owl:allValuesFrom xsd:decimal
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :minutes ;
+                                       owl:allValuesFrom xsd:decimal
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :months ;
+                                       owl:allValuesFrom xsd:decimal
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :seconds ;
+                                       owl:allValuesFrom xsd:decimal
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :weeks ;
+                                       owl:allValuesFrom xsd:decimal
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :years ;
+                                       owl:allValuesFrom xsd:decimal
+                                     ] ;
+                     rdfs:comment "Descripción de extensión temporal estructurada con valores separados para los distintos elementos de un sistema de horario-calendario. El sistema de referencia temporal se fija al calendario gregoriano, y el intervalo de cada una de las propiedades numéricas se restringe a xsd:decimal."@es ,
+                                  "Description of temporal extent structured with separate values for the various elements of a calendar-clock system. The temporal reference system is fixed to Gregorian Calendar, and the range of each of the numeric properties is restricted to xsd:decimal"@en ;
+                     rdfs:label "Duration description"@en ,
+                                "descripción de duración"@es ;
+                     skos:definition "Descripción de extensión temporal estructurada con valores separados para los distintos elementos de un sistema de horario-calendario. El sistema de referencia temporal se fija al calendario gregoriano, y el intervalo de cada una de las propiedades numéricas se restringe a xsd:decimal."@es ,
+                                     "Description of temporal extent structured with separate values for the various elements of a calendar-clock system. The temporal reference system is fixed to Gregorian Calendar, and the range of each of the numeric properties is restricted to xsd:decimal"@en ;
+                     skos:note "En el calendario gregoriano la longitud de los meses no es fija. Por lo tanto, un valor como \"2,5 meses\" no se puede comparar exactamente con una duración similar expresada en términos de semanas o días."@es ,
+                               "In the Gregorian calendar the length of the month is not fixed. Therefore, a value like \"2.5 months\" cannot be exactly compared with a similar duration expressed in terms of weeks or days."@en .
+
+
+###  http://www.w3.org/2006/time#GeneralDateTimeDescription
+:GeneralDateTimeDescription rdf:type owl:Class ;
+                            rdfs:subClassOf :TemporalPosition ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :unitType ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :dayOfWeek ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :monthOfYear ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :timeZone ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :day ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :dayOfYear ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :hour ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :minute ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :month ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :second ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :week ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :year ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ;
+                            rdfs:comment "Descripción de fecha y hora estructurada con valores separados para los distintos elementos de un sistema calendario-reloj."@es ,
+                                         "Description of date and time structured with separate values for the various elements of a calendar-clock system"@en ;
+                            rdfs:label "Generalized date-time description"@en ,
+                                       "descripción de fecha-hora generalizada"@es ;
+                            skos:definition "Description of date and time structured with separate values for the various elements of a calendar-clock system"@en ,
+                                            "enDescripción de fecha y hora estructurada con valores separados para los distintos elementos de un sistema calendario-reloj." ;
+                            skos:note "Algunas combinaciones de propiedades son redundantes - por ejemplo, dentro de un 'año' especificado si se proporciona 'día del año' entonces 'día' y 'mes' se pueden computar, y viceversa. Los valores individuales deberían ser consistentes entre ellos y con el calendario, indicado a través del valor de la propiedad 'tiene TRS'."@es ,
+                                      "esSome combinations of properties are redundant - for example, within a specified :year if :dayOfYear is provided then :day and :month can be computed, and vice versa. Individual values should be consistent with each other and the calendar, indicated through the value of the :hasTRS property." .
+
+
+###  http://www.w3.org/2006/time#GeneralDurationDescription
+:GeneralDurationDescription rdf:type owl:Class ;
+                            rdfs:subClassOf :TemporalDuration ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :hasTRS ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :days ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :hours ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :minutes ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :months ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :seconds ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :weeks ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :years ;
+                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                            ] ;
+                            rdfs:comment "Descripción de extensión temporal estructurada con valores separados para los distintos elementos de un sistema de horario-calendario."@es ,
+                                         "Description of temporal extent structured with separate values for the various elements of a calendar-clock system."@en ;
+                            rdfs:label "Generalized duration description"@en ,
+                                       "descripción de duración generalizada"@es ;
+                            skos:definition "Descripción de extensión temporal estructurada con valores separados para los distintos elementos de un sistema de horario-calendario."@es ,
+                                            "Description of temporal extent structured with separate values for the various elements of a calendar-clock system."@en ;
+                            skos:note "La extensión de una duración de tiempo expresada como una 'descripción de duración general' depende del Sistema de Referencia Temporal. En algunos calendarios la longitud de la semana o del mes no es constante a lo largo del año. Por tanto, un valor como \"25 meses\" puede no ser necesariamente ser comparado con un duración similar expresada en términos de semanas o días. Cuando se consideran calendarios que no están basados en el movimiento de la Tierra, se deben tomar incluso más precauciones en la comparación de duraciones."@es ,
+                                      "The extent of a time duration expressed as a GeneralDurationDescription depends on the Temporal Reference System. In some calendars the length of the week or month is not constant within the year. Therefore, a value like \"2.5 months\" may not necessarily be exactly compared with a similar duration expressed in terms of weeks or days. When non-earth-based calendars are considered even more care must be taken in comparing durations."@en .
+
+
+###  http://www.w3.org/2006/time#Instant
+:Instant rdf:type owl:Class ;
+         rdfs:subClassOf :TemporalEntity ;
+         owl:disjointWith :ProperInterval ;
+         rdfs:comment "A temporal entity with zero extent or duration"@en ,
+                      "Una entidad temporal con una extensión o duración cero."@es ;
+         rdfs:label "Time instant"@en ,
+                    "instante de tiempo."@es ;
+         skos:definition "A temporal entity with zero extent or duration"@en ,
+                         "Una entidad temporal con una extensión o duración cero."@es .
+
+
+###  http://www.w3.org/2006/time#Interval
+:Interval rdf:type owl:Class ;
+          rdfs:subClassOf :TemporalEntity ;
+          rdfs:comment "A temporal entity with an extent or duration"@en ,
+                       "Una entidad temporal con una extensión o duración."@es ;
+          rdfs:label "Time interval"@en ,
+                     "intervalo de tiempo"@es ;
+          skos:definition "A temporal entity with an extent or duration"@en ,
+                          "Una entidad temporal con una extensión o duración."@es .
+
+
+###  http://www.w3.org/2006/time#January
+:January rdf:type owl:Class ;
+         rdfs:subClassOf :DateTimeDescription ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :unitType ;
+                           owl:hasValue :unitMonth
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :month ;
+                           owl:hasValue "--01"
+                         ] ;
+         rdfs:label "January" ;
+         owl:deprecated "true"^^xsd:boolean ;
+         skos:historyNote "This class was present in the 2006 version of OWL-Time. It was presented as an example of how DateTimeDescription could be specialized, but does not belong in the revised ontology. " .
+
+
+###  http://www.w3.org/2006/time#MonthOfYear
+:MonthOfYear rdf:type owl:Class ;
+             rdfs:subClassOf :DateTimeDescription ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :unitType ;
+                               owl:hasValue :unitMonth
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :day ;
+                               owl:cardinality "0"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hour ;
+                               owl:cardinality "0"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :minute ;
+                               owl:cardinality "0"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :month ;
+                               owl:cardinality "1"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :second ;
+                               owl:cardinality "0"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :week ;
+                               owl:cardinality "0"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :year ;
+                               owl:cardinality "0"^^xsd:nonNegativeInteger
+                             ] ;
+             rdfs:comment "El mes del año."@es ,
+                          "The month of the year"@en ;
+             rdfs:label "Month of year"@en ,
+                        "mes del año"@es ;
+             skos:definition "El mes del año."@es ,
+                             "The month of the year"@en ;
+             skos:editorialNote "Característica en riesgo - añadida en la revisión de 2017, y no utilizada todavía de forma amplia."@es ,
+                                "Feature at risk - added in 2017 revision, and not yet widely used. "@en ;
+             skos:note "La pertenencia a la clase 'mes del año' está abierta, a permitir calendarios anuales alternativos y diferentes nombres de meses."@es ,
+                       "Membership of the class :MonthOfYear is open, to allow for alternative annual calendars and different month names."@en .
+
+
+###  http://www.w3.org/2006/time#ProperInterval
+:ProperInterval rdf:type owl:Class ;
+                rdfs:subClassOf :Interval ;
+                rdfs:comment "A temporal entity with non-zero extent or duration, i.e. for which the value of the beginning and end are different"@en ,
+                             "Una entidad temporal con extensión o duración distinta de cero, es decir, para la cual los valores de principio y fin del intervalo son diferentes."@es ;
+                rdfs:label "Proper interval"@en ,
+                           "intervalo propio"@es ;
+                skos:definition "A temporal entity with non-zero extent or duration, i.e. for which the value of the beginning and end are different"@en ,
+                                "Una entidad temporal con extensión o duración distinta de cero, es decir, para la cual los valores de principio y fin del intervalo son diferentes."@es .
+
+
+###  http://www.w3.org/2006/time#TRS
+:TRS rdf:type owl:Class ;
+     rdfs:comment """A temporal reference system, such as a temporal coordinate system (with an origin, direction, and scale), a calendar-clock combination, or a (possibly hierarchical) ordinal system. 
+
+This is a stub class, representing the set of all temporal reference systems."""@en ,
+                  """Un sistema de referencia temporal, tal como un sistema de coordenadas temporales (con un origen, una dirección y una escala), una combinación calendario-reloj, o un sistema ordinal (posiblemente jerárquico).
+        Esta clase comodín representa el conjunto de todos los sistemas de referencia temporal."""@es ;
+     rdfs:label "Temporal Reference System"@en ,
+                "sistema de referencia temporal"@es ;
+     skos:definition """A temporal reference system, such as a temporal coordinate system (with an origin, direction, and scale), a calendar-clock combination, or a (possibly hierarchical) ordinal system. 
+
+This is a stub class, representing the set of all temporal reference systems."""@en ,
+                     """Un sistema de referencia temporal, tal como un sistema de coordenadas temporales (con un origen, una dirección y una escala), una combinación calendario-reloj, o un sistema ordinal (posiblemente jerárquico).
+    Esta clase comodín representa el conjunto de todos los sistemas de referencia temporal."""@es ;
+     skos:note "A taxonomy of temporal reference systems is provided in ISO 19108:2002 [ISO19108], including (a) calendar + clock systems; (b) temporal coordinate systems (i.e. numeric offset from an epoch); (c) temporal ordinal reference systems (i.e. ordered sequence of named intervals, not necessarily of equal duration)."@en ,
+               "En el ISO 19108:2002 [ISO19108] se proporciona una taxonomía de sistemas de referencia temporal, incluyendo (a) sistemas de calendario + reloj; (b) sistemas de coordenadas temporales (es decir, desplazamiento numérico a partir de una época); (c) sistemas de referencia ordinales temporales (es decir, secuencia ordenada de intervalos nombrados, no necesariamente de igual duración)."@es .
+
+
+###  http://www.w3.org/2006/time#TemporalDuration
+:TemporalDuration rdf:type owl:Class ;
+                  rdfs:comment "Extensión de tiempo; duración de un intervalo de tiempo independiente de su posición de inicio particular."@es ,
+                               "Time extent; duration of a time interval separate from its particular start position"@en ;
+                  rdfs:label "Temporal duration"@en ,
+                             "duración temporal"@es ;
+                  skos:definition "Extensión de tiempo; duración de un intervalo de tiempo independiente de su posición de inicio particular."@es ,
+                                  "Time extent; duration of a time interval separate from its particular start position"@en .
+
+
+###  http://www.w3.org/2006/time#TemporalEntity
+:TemporalEntity rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Class ;
+                                      owl:unionOf ( :Instant
+                                                    :Interval
+                                                  )
+                                    ] ;
+                rdfs:subClassOf owl:Thing ;
+                rdfs:comment "A temporal interval or instant."@en ,
+                             "Un intervalo temporal o un instante."@es ;
+                rdfs:label "Temporal entity"@en ,
+                           "entidad temporal"@es ;
+                skos:definition "A temporal interval or instant."@en ,
+                                "Un intervalo temporal o un instante."@es .
+
+
+###  http://www.w3.org/2006/time#TemporalPosition
+:TemporalPosition rdf:type owl:Class ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTRS ;
+                                    owl:cardinality "1"^^xsd:nonNegativeInteger
+                                  ] ;
+                  rdfs:comment "A position on a time-line"@en ,
+                               "Una posición sobre una línea de tiempo."@es ;
+                  rdfs:label "Temporal position"@en ,
+                             "posición temporal"@es ;
+                  skos:definition "A position on a time-line"@en ,
+                                  "Una posición sobre una línea de tiempo."@es .
+
+
+###  http://www.w3.org/2006/time#TemporalUnit
+:TemporalUnit rdf:type owl:Class ;
+              rdfs:subClassOf :TemporalDuration ;
+              rdfs:comment "A standard duration, which provides a scale factor for a time extent, or the granularity or precision for a time position."@en ,
+                           "Una duración estándar, que proporciona un factor de escala para una extensión de tiempo, o la granularidad o precisión para una posición de tiempo."@es ;
+              rdfs:label "Temporal unit"@en ,
+                         "unidad de tiempo"@es ;
+              skos:changeNote """Remove enumeration from definition, in order to allow other units to be used when required in other coordinate systems. 
+NOTE: existing units are still present as members of the class, but the class membership is now open. 
+
+In the original OWL-Time the following constraint appeared: 
+  owl:oneOf (
+      time:unitSecond
+      time:unitMinute
+      time:unitHour
+      time:unitDay
+      time:unitWeek
+      time:unitMonth
+      time:unitYear
+    ) ;"""@en ;
+              skos:definition "A standard duration, which provides a scale factor for a time extent, or the granularity or precision for a time position."@en ,
+                              "Una duración estándar, que proporciona un factor de escala para una extensión de tiempo, o la granularidad o precisión para una posición de tiempo."@es ;
+              skos:note "La pertenencia de la clase 'unidad de tiempo' está abierta, para permitir otras unidades de tiempo utilizadas en algunas aplicaciones técnicas (por ejemplo, millones de años o el mes Baha'i)."@es ,
+                        "Membership of the class TemporalUnit is open, to allow for other temporal units used in some technical applications (e.g. millions of years, Baha'i month)."@en .
+
+
+###  http://www.w3.org/2006/time#TimePosition
+:TimePosition rdf:type owl:Class ;
+              rdfs:subClassOf :TemporalPosition ,
+                              [ rdf:type owl:Class ;
+                                owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                owl:onProperty :nominalPosition ;
+                                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                                              ]
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :numericPosition ;
+                                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                                              ]
+                                            )
+                              ] ;
+              rdfs:comment "A temporal position described using either a (nominal) value from an ordinal reference system, or a (numeric) value in a temporal coordinate system. "@en ,
+                           "Una posición temporal descrita utilizando bien un valor (nominal) de un sistema de referencia ordinal, o un valor (numérico) en un sistema de coordenadas temporales."@es ;
+              rdfs:label "Time position"@en ,
+                         "posición de tiempo"@es ;
+              skos:definition "A temporal position described using either a (nominal) value from an ordinal reference system, or a (numeric) value in a temporal coordinate system. "@en ,
+                              "Una posición temporal descrita utilizando bien un valor (nominal) de un sistema de referencia ordinal, o un valor (numérico) en un sistema de coordenadas temporales."@es .
+
+
+###  http://www.w3.org/2006/time#TimeZone
+:TimeZone rdf:type owl:Class ;
+          rdfs:comment """A Time Zone specifies the amount by which the local time is offset from UTC. 
+	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
+The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ,
+                       """Un huso horario especifica la cantidad en que la hora local está desplazada con respecto a UTC.
+        Un huso horario normalmente se denota geográficamente (p.ej. el horario de verano del este de Australia), con un valor constante en una región dada.
+        La región donde aplica y el desplazamiento desde UTC las especifica una autoridad gubernamental localmente reconocida."""@es ;
+          rdfs:label "Time Zone"@en ,
+                     "huso horario"@es ;
+          skos:definition """A Time Zone specifies the amount by which the local time is offset from UTC. 
+	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
+The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ,
+                          """Un huso horario especifica la cantidad en que la hora local está desplazada con respecto a UTC.
+    Un huso horario normalmente se denota geográficamente (p.ej. el horario de verano del este de Australia), con un valor constante en una región dada.
+    La región donde aplica y el desplazamiento desde UTC las especifica una autoridad gubernamental localmente reconocida."""@es ;
+          skos:historyNote """En la versión original de OWL-Time de 2006, se definió, en un espacio de nombres diferente \"http://www.w3.org/2006/timezone#\", la clase 'huso horario', con varias propiedades específicas correspondientes a un modelo específico de huso horario.
+    En la versión actual hay una clase con el mismo nombre local en el espacio de nombres de OWL-Time, eliminando la dependencia del espacio de nombres externo.
+    Un axioma de alineación permite que los datos codificados de acuerdo con la versión anterior sean consistentes con la ontología actualizada."""@es ,
+                           """esIn the original 2006 version of OWL-Time, the TimeZone class, with several properties corresponding to a specific model of time-zones, was defined in a separate namespace \"http://www.w3.org/2006/timezone#\". 
+
+In the current version a class with same local name is put into the main OWL-Time namespace, removing the dependency on the external namespace. 
+
+An alignment axiom 
+	tzont:TimeZone rdfs:subClassOf time:TimeZone . 
+allows data encoded according to the previous version to be consistent with the updated ontology. """ ;
+          skos:note """A designated timezone is associated with a geographic region. However, for a particular region the offset from UTC often varies seasonally, and the dates of the changes may vary from year to year. The timezone designation usually changes for the different seasons (e.g. Australian Eastern Standard Time vs. Australian Eastern Daylight Time). Furthermore, the offset for a timezone may change over longer timescales, though its designation might not.  
+
+Detailed guidance about working with time zones is given in http://www.w3.org/TR/timezone/ ."""@en ,
+                    "An ontology for time zone descriptions was described in [owl-time-20060927] and provided as RDF in a separate namespace tzont:. However, that ontology was incomplete in scope, and the example datasets were selective. Furthermore, since the use of a class from an external ontology as the range of an ObjectProperty in OWL-Time creates a dependency, reference to the time zone class has been replaced with the 'stub' class in the normative part of this version of OWL-Time."@en ,
+                    """Un huso horario designado está asociado con una región geográfica. Sin embargo, para una región particular el desplazamiento desde UTC a menudo varía según las estaciones, y las fechas de los cambios pueden variar de un año a otro. La designación de huso horario  normalmente cambia de una estación a otra (por ejemplo, el horario estándar frente al horario de verano ambos del este de Australia). Además, del desplazamiento para un huso horario puede cambiar sobre escalas de tiempo mayores, aunque su designación no lo haga.
+    Se puede encontrar una guía detallada sobre el funcionamiento de husos horarios en http://www.w3.org/TR/timezone/.\"@es , \"En [owl-time-20060927] se describió una ontología para descripciones de husos horarios, y se proporcionó en un espacio de nombres separado tzont:. Sin embargo, dicha ontología estaba incompleta en su alcance, y el ejemplo de conjuntos de datos (datasets) era selectivo. Además, puesto que el uso de una clase de una ontología externa como el rango de una propiedad de objeto en OWL-Time crea una dependencia, la referencia a la clase huso horario se ha reemplazado por una clase que viene a ser un \"cajón de sastre\" en la en la parte normativa de esta versión de OWL-Time."""@es ;
+          skos:scopeNote "En esta implementación 'huso horario' no tiene definidas propiedades. Se debería pensar como una superclase \"abstracta\" de todas las implementaciones de huso horario específicas."@es ,
+                         "esIn this implementation TimeZone has no properties defined. It should be thought of as an 'abstract' superclass of all specific timezone implementations." .
+
+
+###  http://www.w3.org/2006/time#Year
+:Year rdf:type owl:Class ;
+      rdfs:subClassOf :DurationDescription ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :days ;
+                        owl:cardinality "0"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hours ;
+                        owl:cardinality "0"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :minutes ;
+                        owl:cardinality "0"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :months ;
+                        owl:cardinality "0"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :seconds ;
+                        owl:cardinality "0"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :weeks ;
+                        owl:cardinality "0"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :years ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ;
+      rdfs:comment "Year duration" ;
+      rdfs:label "Year"@en ;
+      owl:deprecated "true"^^xsd:boolean ;
+      skos:definition "Year duration" ;
+      skos:historyNote """Year was proposed in the 2006 version of OWL-Time as an example of how DurationDescription could be specialized to allow for a duration to be restricted to a number of years. 
+
+It is deprecated in this edition of OWL-Time. """ ;
+      skos:prefLabel "Anno"@it ,
+                     "Année (calendrier)"@fr ,
+                     "Ano"@pt ,
+                     "Año"@es ,
+                     "Jaar"@nl ,
+                     "Jahr"@de ,
+                     "Rok"@pl ,
+                     "Year"@en ,
+                     "Год"@ru ,
+                     "سنة"@ar ,
+                     "年"@ja ,
+                     "年"@zh .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.opengis.net/def/uom/ISO-8601/0/Gregorian
+<http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> rdf:type owl:NamedIndividual .
+
+
+###  http://www.w3.org/2006/time#American_Civil_War
+:American_Civil_War rdf:type owl:NamedIndividual ;
+                    :hasBeginning :April_12_1861 ;
+                    :hasEnd :May_26_1865 .
+
+
+###  http://www.w3.org/2006/time#April_12_1861
+:April_12_1861 rdf:type owl:NamedIndividual ;
+               :inXSDDateTimeStamp "1861-04-12T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#August_7_1945
+:August_7_1945 rdf:type owl:NamedIndividual ;
+               :inXSDDateTimeStamp "1945-08-07T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#Battle_of_Gettysburg
+:Battle_of_Gettysburg rdf:type owl:NamedIndividual ;
+                      :hasBeginning :July_1_1863 ;
+                      :hasEnd :July_3_1863 .
+
+
+###  http://www.w3.org/2006/time#Friday
+:Friday rdf:type owl:NamedIndividual ,
+                 :DayOfWeek ;
+        rdfs:label "Friday"@en ;
+        skos:prefLabel "Freitag"@de ,
+                       "Friday"@en ,
+                       "Piątek"@pl ,
+                       "Sexta-feira"@pt ,
+                       "Vendredi"@fr ,
+                       "Venerdì"@it ,
+                       "Viernes"@es ,
+                       "Vrijdag"@nl ,
+                       "Пятница"@ru ,
+                       "الجمعة"@ar ,
+                       "星期五"@zh ,
+                       "金曜日"@ja .
+
+
+###  http://www.w3.org/2006/time#German_Invasion_of_France
+:German_Invasion_of_France rdf:type owl:NamedIndividual ;
+                           :hasBeginning :May_10_1940 ;
+                           :hasEnd :June_25_1940 .
+
+
+###  http://www.w3.org/2006/time#Invasion_of_Poland
+:Invasion_of_Poland rdf:type owl:NamedIndividual ;
+                    :hasBeginning :September_1_1939 ;
+                    :hasEnd :October_6_1939 .
+
+
+###  http://www.w3.org/2006/time#July_1_1863
+:July_1_1863 rdf:type owl:NamedIndividual ;
+             :inXSDDateTimeStamp "1863-07-01T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#July_3_1863
+:July_3_1863 rdf:type owl:NamedIndividual ;
+             :inXSDDateTimeStamp "1863-07-03T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#July_4_1946
+:July_4_1946 rdf:type owl:NamedIndividual ;
+             :inXSDDateTimeStamp "1946-07-04T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#June_25_1940
+:June_25_1940 rdf:type owl:NamedIndividual ;
+              :inXSDDateTimeStamp "1940-06-25T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#May_10_1940
+:May_10_1940 rdf:type owl:NamedIndividual ;
+             :inXSDDateTimeStamp "1940-05-10T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#May_26_1865
+:May_26_1865 rdf:type owl:NamedIndividual ;
+             :inXSDDateTimeStamp "1865-05-26T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#Monday
+:Monday rdf:type owl:NamedIndividual ,
+                 :DayOfWeek ;
+        rdfs:label "Monday"@en ;
+        skos:prefLabel "Lundi"@fr ,
+                       "Lunedì"@it ,
+                       "Lunes"@es ,
+                       "Maandag"@nl ,
+                       "Monday"@en ,
+                       "Montag"@de ,
+                       "Poniedziałek"@pl ,
+                       "Segunda-feira"@pt ,
+                       "Понедельник"@ru ,
+                       "الاثنين"@ar ,
+                       "星期一"@zh ,
+                       "月曜日"@ja .
+
+
+###  http://www.w3.org/2006/time#October_28_1944
+:October_28_1944 rdf:type owl:NamedIndividual ;
+                 :inXSDDateTimeStamp "1944-08-28T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#October_6_1939
+:October_6_1939 rdf:type owl:NamedIndividual ;
+                :inXSDDateTimeStamp "1939-10-06T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#Saturday
+:Saturday rdf:type owl:NamedIndividual ,
+                   :DayOfWeek ;
+          rdfs:label "Saturday"@en ;
+          skos:prefLabel "Sabato"@it ,
+                         "Samedi"@fr ,
+                         "Samstag"@de ,
+                         "Saturday"@en ,
+                         "Sobota"@pl ,
+                         "Sábado"@es ,
+                         "Sábado"@pt ,
+                         "Zaterdag"@nl ,
+                         "Суббота"@ru ,
+                         "السبت"@ar ,
+                         "土曜日"@ja ,
+                         "星期六"@zh .
+
+
+###  http://www.w3.org/2006/time#September_1_1939
+:September_1_1939 rdf:type owl:NamedIndividual ;
+                  :inXSDDateTimeStamp "1939-09-01T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#September_2_1945
+:September_2_1945 rdf:type owl:NamedIndividual ;
+                  :inXSDDateTimeStamp "1945-09-02T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://www.w3.org/2006/time#Soviet-Japanese_War_WWII
+:Soviet-Japanese_War_WWII rdf:type owl:NamedIndividual ;
+                          :hasBeginning :August_7_1945 ;
+                          :hasEnd :September_2_1945 .
+
+
+###  http://www.w3.org/2006/time#Sunday
+:Sunday rdf:type owl:NamedIndividual ,
+                 :DayOfWeek ;
+        rdfs:label "Sunday"@en ;
+        skos:prefLabel "Dimanche"@fr ,
+                       "Domenica"@it ,
+                       "Domingo"@es ,
+                       "Domingo"@pt ,
+                       "Niedziela"@pl ,
+                       "Sonntag"@de ,
+                       "Sunday"@en ,
+                       "Zondag"@nl ,
+                       "Воскресенье"@ru ,
+                       "الأحد (يوم)"@ar ,
+                       "日曜日"@ja ,
+                       "星期日"@zh .
+
+
+###  http://www.w3.org/2006/time#The_Phony_War
+:The_Phony_War rdf:type owl:NamedIndividual ;
+               :hasBeginning :September_1_1939 ;
+               :hasEnd :May_10_1940 .
+
+
+###  http://www.w3.org/2006/time#Thursday
+:Thursday rdf:type owl:NamedIndividual ,
+                   :DayOfWeek ;
+          rdfs:label "Thursday"@en ;
+          skos:prefLabel "Czwartek"@pl ,
+                         "Donderdag"@nl ,
+                         "Donnerstag"@de ,
+                         "Giovedì"@it ,
+                         "Jeudi"@fr ,
+                         "Jueves"@es ,
+                         "Quinta-feira"@pt ,
+                         "Thursday"@en ,
+                         "Четверг"@ru ,
+                         "الخميس"@ar ,
+                         "星期四"@zh ,
+                         "木曜日"@ja .
+
+
+###  http://www.w3.org/2006/time#Tuesday
+:Tuesday rdf:type owl:NamedIndividual ,
+                  :DayOfWeek ;
+         rdfs:label "Tuesday"@en ;
+         skos:prefLabel "Dienstag"@de ,
+                        "Dinsdag"@nl ,
+                        "Mardi"@fr ,
+                        "Martedì"@it ,
+                        "Martes"@es ,
+                        "Terça-feira"@pt ,
+                        "Tuesday"@en ,
+                        "Wtorek"@pl ,
+                        "Вторник"@ru ,
+                        "الثلاثاء"@ar ,
+                        "星期二"@zh ,
+                        "火曜日"@ja .
+
+
+###  http://www.w3.org/2006/time#UK_Participation_in_WWII
+:UK_Participation_in_WWII rdf:type owl:NamedIndividual ;
+                          :hasBeginning :September_1_1939 ;
+                          :hasEnd :July_4_1946 .
+
+
+###  http://www.w3.org/2006/time#Wednesday
+:Wednesday rdf:type owl:NamedIndividual ,
+                    :DayOfWeek ;
+           rdfs:label "Wednesday"@en ;
+           skos:prefLabel "Mercoledì"@it ,
+                          "Mercredi"@fr ,
+                          "Mittwoch"@de ,
+                          "Miércoles"@es ,
+                          "Quarta-feira"@pt ,
+                          "Wednesday"@en ,
+                          "Woensdag"@nl ,
+                          "Środa"@pl ,
+                          "Среда"@ru ,
+                          "الأربعاء"@ar ,
+                          "星期三"@zh ,
+                          "水曜日"@ja .
+
+
+###  http://www.w3.org/2006/time#unitDay
+:unitDay rdf:type owl:NamedIndividual ,
+                  :TemporalUnit ;
+         :days 1 ;
+         :hours 0 ;
+         :minutes 0 ;
+         :months 0 ;
+         :seconds 0 ;
+         :weeks 0 ;
+         :years 0 ;
+         rdfs:label "Day (unit of temporal duration)"@en ;
+         skos:prefLabel "Tag"@de ,
+                        "dag"@nl ,
+                        "day"@en ,
+                        "dia"@pt ,
+                        "doba"@pl ,
+                        "día"@es ,
+                        "giorno"@it ,
+                        "jour"@fr ,
+                        "يوماً ما"@ar ,
+                        "ある日"@jp ,
+                        "一天"@zh ,
+                        "언젠가"@kr .
+
+
+###  http://www.w3.org/2006/time#unitHour
+:unitHour rdf:type owl:NamedIndividual ,
+                   :TemporalUnit ;
+          :days 0 ;
+          :hours 1 ;
+          :minutes 0 ;
+          :months 0 ;
+          :seconds 0 ;
+          :weeks 0 ;
+          :years 0 ;
+          rdfs:label "Hour (unit of temporal duration)"@en ;
+          skos:prefLabel "Stunde"@de ,
+                         "godzina"@pl ,
+                         "heure"@fr ,
+                         "hora"@es ,
+                         "hora"@pt ,
+                         "hour"@en ,
+                         "ora"@it ,
+                         "uur"@nl ,
+                         "ساعة واحدة"@ar ,
+                         "一小時"@zh ,
+                         "一時間"@jp ,
+                         "한 시간"@kr ,
+                         "krодин час\"@ru" .
+
+
+###  http://www.w3.org/2006/time#unitMinute
+:unitMinute rdf:type owl:NamedIndividual ,
+                     :TemporalUnit ;
+            :days 0 ;
+            :hours 0 ;
+            :minutes 1 ;
+            :months 0 ;
+            :seconds 0 ;
+            :weeks 0 ;
+            :years 0 ;
+            rdfs:label "Minute (unit of temporal duration)"@en ;
+            skos:prefLabel "Minute"@de ,
+                           "minuta"@pl ,
+                           "minute"@en ,
+                           "minute"@fr ,
+                           "minuto"@es ,
+                           "minuto"@it ,
+                           "minuto"@pt ,
+                           "minuut"@nl ,
+                           "одна минута"@ru ,
+                           "دقيقة واحدة"@ar ,
+                           "一分"@jp ,
+                           "等一下"@zh ,
+                           "분"@kr .
+
+
+###  http://www.w3.org/2006/time#unitMonth
+:unitMonth rdf:type owl:NamedIndividual ,
+                    :TemporalUnit ;
+           :days 0 ;
+           :hours 0 ;
+           :minutes 0 ;
+           :months 1 ;
+           :seconds 0 ;
+           :weeks 0 ;
+           :years 0 ;
+           rdfs:label "Month (unit of temporal duration)"@en ;
+           skos:prefLabel "Monat"@de ,
+                          "maand"@nl ,
+                          "mes"@es ,
+                          "mese"@it ,
+                          "miesiąc"@pl ,
+                          "mois"@fr ,
+                          "month"@en ,
+                          "один месяц"@ru ,
+                          "شهر واحد"@ar ,
+                          "一か月"@jp ,
+                          "一個月"@zh ,
+                          "한달"@kr .
+
+
+###  http://www.w3.org/2006/time#unitSecond
+:unitSecond rdf:type owl:NamedIndividual ,
+                     :TemporalUnit ;
+            :days 0 ;
+            :hours 0 ;
+            :minutes 0 ;
+            :months 0 ;
+            :seconds 1 ;
+            :weeks 0 ;
+            :years 0 ;
+            rdfs:label "Second (unit of temporal duration)"@en ;
+            skos:prefLabel "Sekunde"@de ,
+                           "Sekundę"@pl ,
+                           "second"@en ,
+                           "seconde"@fr ,
+                           "seconde"@nl ,
+                           "secondo"@it ,
+                           "segundo"@es ,
+                           "segundo"@pt ,
+                           "ثانية واحدة"@ar ,
+                           "一秒"@jp ,
+                           "一秒"@zh ,
+                           "일초"@kr .
+
+
+###  http://www.w3.org/2006/time#unitWeek
+:unitWeek rdf:type owl:NamedIndividual ,
+                   :TemporalUnit ;
+          :days 0 ;
+          :hours 0 ;
+          :minutes 0 ;
+          :months 0 ;
+          :seconds 0 ;
+          :weeks 1 ;
+          :years 0 ;
+          rdfs:label "Week (unit of temporal duration)"@en ;
+          skos:prefLabel "Woche"@de ,
+                         "semaine"@fr ,
+                         "semana"@es ,
+                         "semana"@pt ,
+                         "settimana"@it ,
+                         "tydzień"@pl ,
+                         "week"@en ,
+                         "week"@nl ,
+                         "одна неделя"@ru ,
+                         "سبوع واحد"@ar ,
+                         "一周"@zh ,
+                         "一週間"@jp ,
+                         "일주일"@kr .
+
+
+###  http://www.w3.org/2006/time#unitYear
+:unitYear rdf:type owl:NamedIndividual ,
+                   :TemporalUnit ;
+          :days 0 ;
+          :hours 0 ;
+          :minutes 0 ;
+          :months 0 ;
+          :seconds 0 ;
+          :weeks 0 ;
+          :years 1 ;
+          rdfs:label "Year (unit of temporal duration)"@en ;
+          skos:prefLabel "1 년"@kr ,
+                         "1年"@jp ,
+                         "Jahr"@de ,
+                         "an"@fr ,
+                         "anno"@it ,
+                         "ano"@pt ,
+                         "jaar"@nl ,
+                         "rok"@pl ,
+                         "un año"@es ,
+                         "year"@en ,
+                         "один год"@ru ,
+                         "سنة واحدة"@ar ,
+                         "一年"@zh .
+
+
+[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+] .
+
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+ ] .
+
+[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+ ] .
+
+#################################################################
+#    Rules
+#################################################################
+
+<urn:swrl:var#t2fi> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#t1li> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#t1fi> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#tInterval2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#t2li> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#tInterval1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#ti1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#dt1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#ti2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#dt2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2fi>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1li>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#t1li> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2fi>
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#tInterval2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#t1li> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2li>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1fi>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1fi>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2li>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1li>
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :intervalStarts ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#tInterval2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1fi>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1fi>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1li>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1li>
+                                                                                      ] ;
+                                                                            rdf:rest rdf:nil
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :intervalEquals ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#tInterval1>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2fi>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2fi>
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :intervalMeets ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#tInterval2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :inXSDDateTimeStamp ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#ti1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#dt1>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :inXSDDateTimeStamp ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#ti2> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#dt2>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> ( <urn:swrl:var#dt2>
+                                                                                                                          <urn:swrl:var#dt1>
+                                                                                                                        )
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#ti1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#ti2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#t2fi> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1li>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#t1fi> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2fi>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2fi>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#t1li> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2li>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1fi>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2li>
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1li>
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :intervalOverlaps ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#tInterval2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1fi>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBeginning ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2fi>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval2> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2li>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEnd ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1li>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#t1fi> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t2fi>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :before ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#t2li> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#t1li>
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :intervalContains ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#tInterval1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#tInterval2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
