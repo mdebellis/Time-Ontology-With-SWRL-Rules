@@ -15,7 +15,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix keyword: <http://franz.com/ns/keyword#> .
-@base <http://www.w3.org/2006/time> .
+@base <http://www.w3.org/2006/time#> .
 
 <http://www.w3.org/2006/time> rdf:type owl:Ontology ;
                                owl:versionIRI <http://www.w3.org/2006/time#2016> ;
@@ -42,7 +42,10 @@
                                                "2017-04-06 - hasTime, hasXSDDuration added; Number removed; all duration elements changed to xsd:decimal" ;
                                skos:historyNote """Update of OWL-Time ontology, extended to support general temporal reference systems. 
 
-Ontology engineering by Simon J D Cox"""@en .
+Ontology engineering by Simon J D Cox"""@en ,
+                                                """2023-09-12  Added SWRL rules and some test cases to implement the logic of the various operators. 
+
+Michael DeBellis mdebellissf@gmail.com""" .
 
 #################################################################
 #    Annotation properties
