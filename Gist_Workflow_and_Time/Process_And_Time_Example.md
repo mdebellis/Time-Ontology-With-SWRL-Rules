@@ -26,8 +26,6 @@ The ontology IRI is `https://www.in2use.com/In2Use_Process_And_Time_Ontology`.
 
 The working ontology is `Process_And_Time.ttl`. It contains the merged ontologies, the SWRL rules, and the asserted example data. An inference export supplies the derived statements used in the temporal graph. The ontology also retains earlier temporal test data; the queries below select the onboarding example.
 
-To render the figures on GitHub, place this Markdown file in the same directory as `GistGraph1.png`, `GistGraph2.png`, and `GistGraph3.png`. The image links are relative to this file.
-
 ## 1. Define the reusable process
 
 `ipt:EmployeeOnboardingTemplate` is an individual of `gist:TaskTemplate`. Seven additional task-template individuals describe its component activities. Each component is connected to the overall template by `gist:isPartOf`.
