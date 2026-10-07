@@ -1588,7 +1588,7 @@ time:Monday rdf:type owl:NamedIndividual ,
 
 ###  http://www.w3.org/2006/time#October_28_1944
 time:October_28_1944 rdf:type owl:NamedIndividual ;
-                     time:inXSDDateTimeStamp "1944-08-28T00:00:00Z"^^xsd:dateTimeStamp .
+                     time:inXSDDateTimeStamp "1944-10-28T00:00:00Z"^^xsd:dateTimeStamp .
 
 
 ###  http://www.w3.org/2006/time#October_6_1939
@@ -1893,13 +1893,13 @@ time:unitYear rdf:type owl:NamedIndividual ,
                              "一年"@zh .
 
 
-[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
 ] .
 
 [ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 #################################################################
@@ -1908,15 +1908,240 @@ time:unitYear rdf:type owl:NamedIndividual ,
 
 time:a rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-time:endA rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-time:endDateA rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+time:start rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 time:b rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+time:end rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+time:endA rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+time:endB rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+time:endDateA rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+time:endDateB rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+time:startA rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 time:startB rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+time:startDateA rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 time:startDateB rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+time:boundary rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "IntervalContains_DirectDates" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:startA
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> time:endA
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> time:startB
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> time:endB
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> time:startA ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> time:startDateA
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> time:endA ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> time:endDateA
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> time:startB ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> time:startDateB
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> time:endB ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> time:endDateB
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#arguments> ( time:startDateB
+                                                                                                                                                                                            time:startDateA
+                                                                                                                                                                                          )
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#arguments> ( time:endDateA
+                                                                                                                                                                                                       time:endDateB
+                                                                                                                                                                                                     )
+                                                                                                                                                        ] ;
+                                                                                                                                              rdf:rest rdf:nil
+                                                                                                                                            ]
+                                                                                                                                 ]
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:intervalContains ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:b
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "IntervalOverlaps_DirectDates" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:startA
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> time:endA
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> time:startB
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> time:endB
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> time:startA ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> time:startDateA
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> time:endA ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> time:endDateA
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> time:startB ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> time:startDateB
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> time:endB ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> time:endDateB
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#arguments> ( time:startDateB
+                                                                                                                                                                                            time:startDateA
+                                                                                                                                                                                          )
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#arguments> ( time:endDateA
+                                                                                                                                                                                                       time:startDateB
+                                                                                                                                                                                                     )
+                                                                                                                                                        ] ;
+                                                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#arguments> ( time:endDateB
+                                                                                                                                                                                                                  time:endDateA
+                                                                                                                                                                                                                )
+                                                                                                                                                                   ] ;
+                                                                                                                                                         rdf:rest rdf:nil
+                                                                                                                                                       ]
+                                                                                                                                            ]
+                                                                                                                                 ]
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:intervalOverlaps ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:b
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "IntervalMeets" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:boundary
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> time:boundary
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:intervalMeets ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:b
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "" ;
@@ -1962,6 +2187,114 @@ time:startDateB rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> time:before ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:b
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "IntervalEquals" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:start
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> time:start
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> time:end
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> time:end
+                                                                                      ] ;
+                                                                            rdf:rest rdf:nil
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:intervalEquals ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:b
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "IntervalStarts_DirectDates" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> time:start
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasBeginning ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> time:start
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> time:a ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> time:endA
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> time:hasEnd ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> time:b ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> time:endB
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> time:endA ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> time:endDateA
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> time:inXSDDateTimeStamp ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> time:endB ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> time:endDateB
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#arguments> ( time:endDateB
+                                                                                                                                                                      time:endDateA
+                                                                                                                                                                    )
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> time:intervalStarts ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> time:a ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> time:b
                                                      ] ;
