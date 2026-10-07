@@ -34,8 +34,7 @@ To render the figures on GitHub, place this Markdown file in the same directory 
 
 The templates use `gist:precedes` to specify a partial ordering. Several activities can occupy the same stage of the process; they do not have to be arranged in one linear sequence.
 
-<img width="3192" height="1302" alt="GistGraph1" src="https://github.com/user-attachments/assets/1f64ccc9-6518-4a47-8d8d-2d16155dc153" /><img width="2562" height="2379" alt="GistGraph2" src="https://github.com/user-attachments/assets/f6ca27f1-b3b2-4e47-9190-7c7ec0141470" />
-<img width="2562" height="2379" alt="GistGraph2" src="https://github.com/user-attachments/assets/5ac0b73e-b4a2-4c46-b257-97db6397b79a" />
+ <img width="3192" height="1302" alt="GistGraph1" src="https://github.com/user-attachments/assets/1f64ccc9-6518-4a47-8d8d-2d16155dc153" /> 
 
 *Figure 1. A view of the reusable onboarding process. All seven activity nodes are task-template individuals.*
 
@@ -83,7 +82,7 @@ ipt:AlexOnboardingProject
     gist:isBasedOn ipt:EmployeeOnboardingTemplate .
 ```
 
-<img width="2562" height="2379" alt="GistGraph2" src="https://github.com/user-attachments/assets/218b6ce7-8404-4553-bb00-6366dcf74c4f" />
+ <img width="2562" height="2379" alt="GistGraph2" src="https://github.com/user-attachments/assets/218b6ce7-8404-4553-bb00-6366dcf74c4f" /> 
 *Figure 2. The project, its component tasks, and the reusable templates on which they are based.*
 
 The concrete tasks appear in green under Gruff's **Historical Event** legend. They remain tasks; their actual-end timestamps also support the inferred `gist:HistoricalEvent` classification. The project is displayed in cyan, and the templates in purple. These are display choices for individuals that can have several RDF types.
@@ -134,7 +133,7 @@ gist:Event rdfs:subClassOf time:ProperInterval .
 This experiment-specific alignment lets temporal properties apply directly to the task and project individuals. The source also explicitly states `gist:Event rdfs:subClassOf owl:Thing` for the author's preferred Protégé presentation; that assertion is semantically redundant and does not remove the OWL-Time superclass relationship.
 
 The SWRL rules compare timestamped instants, establish their ordering, and use the intervals' boundaries to derive temporal relationships. OWL inverse-property axioms provide corresponding inverse relationships. Figure 3 selects five relationship types to keep the result readable.
-<img width="3480" height="1659" alt="GistGraph3" src="https://github.com/user-attachments/assets/7d225cb5-133d-45a5-a3fd-106af59d28d1" />
+ <img width="3480" height="1659" alt="GistGraph3" src="https://github.com/user-attachments/assets/7d225cb5-133d-45a5-a3fd-106af59d28d1" /> 
 *Figure 3. Selected temporal relationships visible in AllegroGraph after the inferred axioms were exported from Protégé and loaded into the repository.*
 
 | Example relationship | Explanation from the schedule |
