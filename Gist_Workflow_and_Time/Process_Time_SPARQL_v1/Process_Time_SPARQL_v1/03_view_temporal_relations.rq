@@ -1,0 +1,26 @@
+PREFIX gist:  <https://w3id.org/semanticarts/ns/ontology/gist/>
+PREFIX ipt:   <https://www.in2use.com/process-time/>
+PREFIX graph: <https://www.in2use.com/process-time/graph/>
+PREFIX time:  <http://www.w3.org/2006/time#>
+PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+# Same temporal view as Figure 3, with explicit named-graph selection.
+# The path includes the project and its seven tasks.
+CONSTRUCT { ?a ?relation ?b . }
+FROM graph:source
+FROM graph:generated-tasks
+FROM graph:generated-time
+WHERE {
+  ?a gist:isPartOf* ipt:AlexOnboardingProject .
+  ?b gist:isPartOf* ipt:AlexOnboardingProject .
+  VALUES ?relation {
+    time:intervalMeets time:intervalOverlaps time:intervalStarts
+    time:intervalDuring time:intervalEquals
+  }
+  ?a ?relation ?b .
+  FILTER(?a != ?b)
+  FILTER(?relation != time:intervalEquals || STR(?a) < STR(?b))
+}

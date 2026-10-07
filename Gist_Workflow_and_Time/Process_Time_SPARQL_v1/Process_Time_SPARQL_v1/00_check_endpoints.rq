@@ -1,0 +1,56 @@
+PREFIX gist:  <https://w3id.org/semanticarts/ns/ontology/gist/>
+PREFIX ipt:   <https://www.in2use.com/process-time/>
+PREFIX graph: <https://www.in2use.com/process-time/graph/>
+PREFIX time:  <http://www.w3.org/2006/time#>
+PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+# Report unsuitable endpoint data before relying on generated time relations.
+# Expected result for onboarding_demo.trig: zero rows.
+# This query checks dates/endpoints, not every task-generator precondition.
+SELECT DISTINCT ?interval ?issue
+FROM graph:source
+WHERE {
+  {
+    ?interval time:hasBeginning|time:hasEnd ?anyEndpoint .
+    FILTER NOT EXISTS { ?interval time:hasBeginning ?start . }
+    BIND("Missing beginning" AS ?issue)
+  } UNION {
+    ?interval time:hasBeginning|time:hasEnd ?anyEndpoint .
+    FILTER NOT EXISTS { ?interval time:hasEnd ?end . }
+    BIND("Missing end" AS ?issue)
+  } UNION {
+    ?interval ?p ?endpoint .
+    VALUES ?p { time:hasBeginning time:hasEnd }
+    FILTER NOT EXISTS { ?endpoint time:inXSDDateTimeStamp ?value . }
+    BIND("Endpoint has no timestamp" AS ?issue)
+  } UNION {
+    ?interval ?p ?x, ?y .
+    VALUES ?p { time:hasBeginning time:hasEnd }
+    FILTER(!sameTerm(?x, ?y))
+    BIND("Multiple endpoint nodes" AS ?issue)
+  } UNION {
+    ?interval time:hasBeginning|time:hasEnd ?endpoint .
+    ?endpoint time:inXSDDateTimeStamp ?x, ?y .
+    FILTER(!sameTerm(?x, ?y))
+    BIND("Multiple timestamp literals" AS ?issue)
+  } UNION {
+    ?interval time:hasBeginning|time:hasEnd ?endpoint .
+    ?endpoint time:inXSDDateTimeStamp ?literal .
+    BIND(xsd:dateTime(STR(?literal)) AS ?date)
+    FILTER(!isLiteral(?literal) ||
+           DATATYPE(?literal) NOT IN (xsd:dateTime, xsd:dateTimeStamp) ||
+           !BOUND(?date) || TZ(?date) = "")
+    BIND("Invalid/unsupported timestamp or missing UTC offset" AS ?issue)
+  } UNION {
+    ?interval time:hasBeginning/time:inXSDDateTimeStamp ?startLiteral ;
+              time:hasEnd/time:inXSDDateTimeStamp ?endLiteral .
+    BIND(xsd:dateTime(STR(?startLiteral)) AS ?start)
+    BIND(xsd:dateTime(STR(?endLiteral)) AS ?end)
+    FILTER(?start >= ?end)
+    BIND("Beginning is not earlier than end" AS ?issue)
+  }
+}
+ORDER BY ?interval ?issue
