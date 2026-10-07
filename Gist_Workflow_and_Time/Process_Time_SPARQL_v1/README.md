@@ -22,13 +22,15 @@ ontology is needed to execute this demonstration: matching uses explicit
 triples, and the outputs needed here are inserted directly.
 
 For a local check, install RDFLib and run `python verify_demo.py`. The files
-were executed with RDFLib 7.6.0. They have **not yet been run against
+were executed with RDFLib 7.6.0. They have not yet been run against
 AllegroGraph, so this is a locally verified first version for
 testing there, not a claim about AllegroGraph performance.
 
 After Step 5, if you are working in Gruff and do Visualize Graph, you should see something like the following:
 
 <img width="1093" height="995" alt="SPARQL_Time_Process_Test" src="https://github.com/user-attachments/assets/e6f3470a-4656-4eee-a8f3-f798947a7205" />
+
+*Figure 1. Gruff Visualization of SPARQL after runing `03_view_temporal_relations.rq` as a CONSTRUCT query.* 
 
 ## Graph ownership
 
