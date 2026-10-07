@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        code, pre {
+            font-family: monospace;
+        }
+        h1 code,
+        h2 code,
+        h3 code,
+        h4 code,
+        h5 code,
+        h6 code {
+            font-size: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>Major Version Migration <!-- omit in toc --></h1>
+
+<ul>
+<li><a href="#migrating-rdf-data-in-local-files">Migrating RDF Data in Local Files</a></li>
+<li><a href="#migrating-data-in-a-triple-store">Migrating Data in a Triple Store</a></li>
+</ul>
+
+<p>When non-backward compatible changes are introduced into <code>gist</code> during major upgrades,
+the release package will include queries to facilitate the migration of existing RDF, including ontologies, taxonomies, data, and SHACL, to conform to the new version of <code>gist</code>. Note that these queries do <em>not</em> operate on SPARQL and other non-RDF files.</p>
+
+<p>For changes that are not amenable to automatic migration, queries will be provided that
+report the use of deleted or modified classes and properties so that mitigation measures
+can be initiated. For example, some releases may require manual intervention when a property is being replaced by its inverse (in class expressions, restrictions, and definitions of subproperties).</p>
+
+<p>Every major version of <code>gist</code> (starting with 10.0.0) will add a sub-directory under the
+<code>migration</code> directory containing the queries and two migration scripts:</p>
+
+<ol>
+<li><code>migrate_local.yaml</code>, intended to apply changes to locally stored RDF data, and</li>
+<li><code>migrate_endpoint.yaml</code>, which is used to modify RDF data in a triple store</li>
+</ol>
+
+<p>The migration scripts rely on the <a href="https://pypi.org/project/onto-tool/">Ontology Toolkit</a>, which is a
+Python-based open source tool provided by Semantic Arts. It requires Python version 3.8 or greater
+to be installed.</p>
+
+<h2>Migrating RDF Data in Local Files</h2>
+
+<p>Once you have the Ontology Toolkit installed, issue the following command from the directory where
+you <a href="https://github.com/semanticarts/gist">cloned</a> or downloaded gist:</p>
+
+<pre><code>onto_tool bundle -v input INPUT-DIR 
+                -v output OUTPUT-DIR
+                -v report REPORT-DIR migration/v10.0/migrate_local.yaml
+</code></pre>
+
+<p>where <em>INPUT-DIR</em> is the directory in which your RDF data is located, <em>OUTPUT-DIR</em> is the directory where
+updated RDF should be written, and REPORT-DIR is a directory where reports regarding any issues found
+during migration are stored. The tool will also list the issues during execution. Output and report
+directories will be created as needed, but any existing files in them will be overwritten.</p>
+
+<p>Note that only <code>.ttl</code> (Turtle) and <code>.owl</code> (RDF/XML) files in the <em>INPUT-DIR</em> are transformed - no
+subdirectories are traversed, and those would require additional tool invocations.</p>
+
+<h2>Migrating Data in a Triple Store</h2>
+
+<p>Once you have the Ontology Toolkit installed, issue the following command from the directory where
+you <a href="https://github.com/semanticarts/gist">cloned</a> or downloaded gist:</p>
+
+<pre><code>onto_tool bundle -v user USER -v password PWD 
+                -v endpoint ENDPOINT-URI 
+                [ -v update_endpoint UPDATE-URI ] 
+                -v report REPORT-DIR migration/v10.0/migrate_endpoint.yaml
+</code></pre>
+
+<p>where <em>ENDPOINT-URI</em> is the address of your SPARQL endpoint, and <em>USER</em> and <em>PWD</em> are the credentials
+required to access it. Only Basic HTTP authentication is handled at this time. If your triple store has
+a separate endpoint for UPDATE queries (e.g. Stardog), provide it as <em>UPDATE-URI</em>. Reports regarding any
+issues found during migration are stored in <em>REPORT-DIR</em>. Report directory will be created as needed,
+but any existing files in it will be overwritten.</p>
+
+</div>
+</body>
+</html>

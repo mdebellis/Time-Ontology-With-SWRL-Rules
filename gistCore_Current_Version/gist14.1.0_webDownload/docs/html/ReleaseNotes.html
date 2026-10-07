@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        code, pre {
+            font-family: monospace;
+        }
+        h1 code,
+        h2 code,
+        h3 code,
+        h4 code,
+        h5 code,
+        h6 code {
+            font-size: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>gist Release Notes</h1>
+
+<h2>Release 14.1.0</h2>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Deprecated classes <code>gist:Building</code>, <code>gist:Landmark</code>, <code>gist:Language</code>, and <code>gist:SchemaMetaData</code>. Issues <a href="https://github.com/semanticarts/gist/issues/1205">#1205</a>, <a href="https://github.com/semanticarts/gist/issues/1379">#1379</a>, and <a href="https://gitHub.com/gist/issues/1382">#1382</a>.</li>
+<li>Deprecated <code>gist:prevents</code> and added <code>gist:prohibits</code>, which will replace it in the next major version. Issue <a href="https://github.com/semanticarts/gist/issues/1305">#1305</a>.</li>
+<li>Added media types <code>media-img:jpg</code> and <code>media-img:png</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1130">#1130</a>.</li>
+<li>Added <code>gist:rangeIncludes</code> annotation to <code>gist:isUnderJurisdictionOf</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1236">#1236</a>.</li>
+<li>Simplified syntax of class restrictions on property <code>gist:hasMagnitude</code>. There is no change to formal semantics. Issue <a href="https://github.com/semanticarts/gist/issues/1209">#1209</a>.</li>
+<li>Rewrote <code>gist:Event</code> disjointness assertions so that subject is alphabetically prior to object per prior practice. Issue <a href="https://github.com/semanticarts/gist/issues/1364">#1364</a>.</li>
+<li>Changed text definition, example, and scope note of <code>gist:Specification</code> to explicitly specify common ways of using the class and to distinguish from <code>gist:KnowledgeConcept</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1404">#1404</a>.</li>
+<li>Changed text definition of <code>gist:Text</code> to specify that text is a written sequence of characters. Changed negative example to clarify that images of text are not text. Added scope note. Issue <a href="https://github.com/semanticarts/gist/issues/1019">#1019</a>.</li>
+<li>Changed text definition of <code>gist:System</code> to remove reference to goals. Added scope note that states <code>gist:System</code> may be used for either natural or man-made systems. Issue <a href="https://github.com/semanticarts/gist/issues/1288">#1288</a>.</li>
+<li>Added examples of <code>gist:Aspect</code> with varying degrees of specificity. Added scope note clarifying intended levels of specificity. Issue <a href="https://github.com/semanticarts/gist/issues/1393">#1393</a>.</li>
+<li>Updated annotations on <code>gist:Content</code>, <code>gist:ContentExpression</code>, <code>gist:FormattedContent</code>, <code>gist:RenderedContent</code>, <code>gist:GeoVolume</code>, <code>gist:PhysicalIdentifiableItem</code>, <code>gist:ProductSpecification</code>, <code>gist:containedText</code>, <code>gist:contributesTo</code>, and <code>gist:sequence</code> for increased clarity. Issues <a href="https://github.com/semanticarts/gist/issues/1312">#1312</a>, <a href="https://github.com/semanticarts/gist/issues/1025">#1025</a>, <a href="https://github.com/semanticarts/gist/issues/1341">#1341</a>, <a href="https://github.com/semanticarts/gist/issues/1205">#1205</a>, <a href="https://github.com/semanticarts/gist/issues/1344">#1344</a>, <a href="https://github.com/semanticarts/gist/issues/1043">#1043</a>, <a href="https://github.com/semanticarts/gist/issues/572">#572</a>, and <a href="https://github.com/semanticarts/gist/issues/1268">#1268</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Updated annotations to uniformly use double quotes for outer quotes and single quotes for inner quotes. Issue <a href="https://github.com/semanticarts/gist/issues/1246">#1246</a>.</li>
+<li>Fixed incorrect date format in <code>xsd:dateTime</code> examples for <code>skos:example</code> annotations. Issue <a href="https://github.com/semanticarts/gist/issues/1352">#1352</a>.</li>
+<li>Fixed typos in annotations. Issues <a href="https://github.com/semanticarts/gist/issues/1342">#1342</a>, <a href="https://github.com/semanticarts/gist/issues/1315">#1343</a>, <a href="https://github.com/semanticarts/gist/issues/1415">#1415</a>, <a href="https://github.com/semanticarts/gist/issues/1426">#1426</a>, <a href="https://github.com/semanticarts/gist/issues/1432">#1432</a>, and <a href="https://github.com/semanticarts/gist/issues/1365">#1365</a>.</li>
+</ul>
+
+<h3>Documentation Updates</h3>
+
+<ul>
+<li>Expanded <code>README.md</code> to provide additional information about gist and its design features. Issue <a href="https://github.com/semanticarts/gist/issues/1349">#1349</a>.</li>
+<li>Updated numbers of gist classes and properties in <code>Namespace.md</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1348">1348</a>.</li>
+<li>Revised documentation of versions and release schedule in <code>ChangeAndReleaseManagement.md</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1350">#1350</a>.</li>
+</ul>
+
+<h3>Infrastructure Updates</h3>
+
+<ul>
+<li>Updated the bundling process to split ontology and documentation files into format-specific directories in the release package. Issue <a href="https://github.com/semanticarts/gist/issues/1347">#1347</a>.</li>
+<li>Removed line in <code>setup.cmd</code> that prevented tracking of the execuable flag. Issues <a href="https://github.com/semanticarts/gist/issues/1383">#1383</a>, <a href="https://github.com/semanticarts/gist/issues/1345">#1345</a>.</li>
+<li>Refactored the git pre-commit to make sure the latest version is always used. Issues <a href="https://github.com/semanticarts/gist/issues/891">#891</a>, <a href="https://github.com/semanticarts/gist/issues/1425">#1425</a>.
+<ul>
+<li>Renamed <code>tools/pre-commit</code> to <code>tools/pre-commit-code</code>.</li>
+<li>Added new file <code>tools/pre-commit-hook</code> which just calls <code>./tools/pre-commit-code</code>.</li>
+<li>Updated <code>setup.cmd</code> to install <code>tools/pre-commit-hook</code> as <code>.git/hooks/pre-commit</code>.</li>
+</ul></li>
+<li>Added a script to the git pre-commit hook to remove default PREFIX declarations from ontology files that are in the commit.
+Issue <a href="https://github.com/semanticarts/gist/issues/898">#898</a>.</li>
+<li>Updated <code>materialize_subclass_inferences.py</code> to stream the ontology to <code>owlready2</code> for reasoning rather than using a temp file. Issue <a href="https://github.com/semanticarts/gist/issues/1318">#1318</a>.</li>
+</ul>
+
+<h2>Release 14.0.0</h2>
+
+<p>This is a major release that includes several changes which break compatibility with previous versions of gist. See the <a href="./MajorVersionMigration.html">migration guide</a> for documentation on updating existing gist-based ontologies and instance data. <a href="../../migration/v14.0">Migration scripts and documentation</a> are provided to facilitate the upgrade process.</p>
+
+<h3>Major Updates</h3>
+
+<ul>
+<li>Removed class <code>gist:Artifact</code>. Issue <a href="https://github.com/semanticarts/gist/issues/385">#385</a>.
+<ul>
+<li><code>gist:Content</code>, <code>gist:Component</code>, and <code>gist:IntellectualProperty</code> are now top-level classes.</li>
+<li><code>gist:Building</code> and <code>gist:Equipment</code> remain within the <code>gist:PhysicalIdentifiableItem</code> hierarchy.</li>
+</ul></li>
+<li>Changes to <code>gist:Commitment</code>, <code>gist:Agreement</code>, and <code>gist:Obligation</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1188">#1188</a>.
+<ul>
+<li>Deleted class <code>gist:Obligation</code>.</li>
+<li>Changed the definition of <code>gist:Agreement</code> to reference <code>gist:Commitment</code> rather than <code>gist:Obligation</code>.</li>
+<li>Changed definition of <code>gist:Commitment</code> to a unilateral commitment. Thus, <code>gist:Agreement</code> is no longer a subclass of <code>gist:Commitment</code>.</li>
+<li><code>gist:Agreement</code> and <code>gist:Commitment</code> are now direct subclasses of <code>gist:Intention</code>.</li>
+</ul></li>
+<li>Removed class <code>gist:Taxonomy</code> and updated <code>gist:ControlledVocabulary</code> annotations to indicate that it can be used for taxonomies. Issue <a href="https://github.com/semanticarts/gist/issues/1235">#1235</a>.</li>
+<li>Changed classes related to geographic location.
+<ul>
+<li>Renamed <code>gist:Place</code> to <code>gist:GeoLocation</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1197">#1197</a>.</li>
+<li>Updated annotations for <code>gist:GeoLocation</code> and its subclasses. Issues <a href="https://github.com/semanticarts/gist/issues/939">#939</a>, <a href="https://github.com/semanticarts/gist/issues/1197">#1197</a>.</li>
+<li>Used terms like "geographic area" instead of "geo-area". Issue <a href="https://github.com/semanticarts/gist/issues/1084">#1084</a>.</li>
+<li><code>gist:GeoRoute</code> is now a subclass of <code>gist:OrderedCollection</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1197">#1197</a>.</li>
+<li><code>gist:Landmark</code> is now a subclass only of <code>gist:PhysicalIdentifiableItem</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1197">#1197</a>.</li>
+<li>Changed class expression in definition of <code>gist:Landmark</code> from an equivalence to a subclass. Issue <a href="https://github.com/semanticarts/gist/issues/1197">#1197</a>.</li>
+<li>Removed class <code>gist:GeoSegment</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1182">#1182</a>.</li>
+</ul></li>
+<li>Replaced <code>gist:produces</code> with its logical inverse, <code>gist:isProducedBy</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1163">1163</a>.</li>
+<li>Removed property <code>gist:accepts</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1247">#1247</a>.</li>
+<li>Redesigned composites and components. Issue <a href="https://github.com/semanticarts/gist/issues/1194">#1194</a>.
+<ul>
+<li>Added abstract class <code>gist:Composite</code> as the superclass of existing classes <code>gist:Collection</code>, <code>gist:Network</code>, and <code>gist:System</code>.</li>
+<li>Made <code>gist:NetworkLink</code>, <code>gist:NetworkNode</code>, and <code>gist:OrderedMember</code> subclasses of <code>gist:Component</code>.</li>
+<li>Updated formal definitions and annotations of some of the existing classes.</li>
+</ul></li>
+<li>Updated <code>gist:Offer</code> so it supports offers to buy and swap as well as offers to sell. Issue <a href="https://github.com/semanticarts/gist/issues/1177">#1177</a>.
+<ul>
+<li>Replaced <code>gist:offers</code> with <code>gist:offersToProvide</code> and <code>gist:offersToReceive</code>.</li>
+<li>Updated restrictions and annotations.</li>
+</ul></li>
+<li>Added disjointness axioms for <code>gist:Event</code>, making it formally disjoint with six other top-level classes. Issue <a href="https://github.com/semanticarts/gist/issues/1212">#1212</a>.</li>
+<li>Changed <code>gist:Text</code> to be a subclass of <code>gist:ContentExpression</code> rather than <code>gist:Content</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1186">1186</a>.</li>
+<li>Changed the formal definition of <code>gist:Tag</code> to prevent unwanted inferences. Issue <a href="https://github.com/semanticarts/gist/issues/1227">#1227</a>.</li>
+<li>Removed restriction from <code>gist:ContentExpression</code> and updated the definition. Issue <a href="https://github.com/semanticarts/gist/issues/1154">#1154</a>.</li>
+<li>Changed the range of <code>gist:license</code> to <code>xsd:anyURI</code>. Issue <a href="https://github.com/semanticarts/gist/issues/977">#977</a>.</li>
+<li>Removed <code>rdfs:range xsd:string</code> from gist datatype properties <code>gist:containedText</code>, <code>gist:encryptedText</code>, <code>gist:name</code>, <code>gist:symbol</code>, and <code>gist:uniqueText</code> to allow for <code>rdfs:langString</code> values. Issue <a href="https://github.com/semanticarts/gist/issues/1300">#1300</a>.</li>
+<li>Updated OWL restrictions to align with Semantic Arts best practices. <a href="https://github.com/semanticarts/gist/issues/1062">#1062</a>.</li>
+</ul>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Added <code>gist:KnowledgeConcept</code> class. Issue <a href="https://github.com/semanticarts/gist/issues/1198">#1198</a>.</li>
+<li>Added <code>gist:Assignment</code> class and associated object properties <code>gist:isAssignmentOf</code> and <code>gist:isAssignmentTo</code>. Issues <a href="https://github.com/semanticarts/gist/issues/1191">#1191</a>, <a href="https://github.com/semanticarts/gist/issues/1223">#1223</a>.</li>
+<li>Removed disjointness axiom between <code>gist:IntellectualProperty</code> and <code>gist:Intention</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1251">#1251</a>.</li>
+<li>Explicitly defined <code>gist:RenderedContent</code> to be a subclass of <code>gist:FormattedContent</code>. (This is not a major change, since reasoners would already infer this.) Issue <a href="https://github.com/semanticarts/gist/issues/1228">#1228</a>.</li>
+<li>Simplified formal definitions of <code>gist:GeoRegion</code> and <code>gist:UnitGroup</code>. Changes are purely syntactic and do not change inferencing. Issue <a href="https://github.com/semanticarts/gist/issues/1225">#1225</a>.</li>
+<li>Changed the values of <code>rdfs:isDefinedBy</code> from the unversioned to the versioned gist IRI; e.g., to <code>https://w3id.org/semanticarts/ontology/gistCore14.0.0</code>. Issue <a href="https://github.com/semanticarts/gist/issues/383">#383</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Added missing stubs for SKOS annotations to preserve OWL 2 DL compliance. Issue <a href="https://github.com/semanticarts/gist/issues/1151">#1151</a>.</li>
+<li>Updated several annotations for accuracy, clarity, and grammar. Issues <a href="https://github.com/semanticarts/gist/issues/1183">#1183</a>, <a href="https://github.com/semanticarts/gist/issues/1198">#1198</a>, <a href="https://github.com/semanticarts/gist/issues/1139">#1139</a>, <a href="https://github.com/semanticarts/gist/issues/1234">#1234</a>, <a href="https://github.com/semanticarts/gist/issues/1146">#1146</a>, <a href="https://github.com/semanticarts/gist/issues/1162">#1162</a>, <a href="https://github.com/semanticarts/gist/issues/1172">#1172</a>, <a href="https://github.com/semanticarts/gist/issues/1192">#1192</a>, <a href="https://github.com/semanticarts/gist/issues/1229">#1229</a>, <a href="https://github.com/semanticarts/gist/issues/1239">#1239</a>, <a href="https://github.com/semanticarts/gist/issues/1188">#1188</a>, and <a href="https://github.com/semanticarts/gist/issues/1024">#1024</a>.</li>
+</ul>
+
+<h3>Documentation Updates</h3>
+
+<ul>
+<li>Modified migration documentation to describe manual work needed when a property is being replaced by its inverse. Issue <a href="https://github.com/semanticarts/gist/issues/1140">#1140</a>.</li>
+<li>Updated documentation for contributing to gist. Issues <a href="https://github.com/semanticarts/gist/issues/1244">#1244</a>, <a href="https://github.com/semanticarts/gist/issues/1258">#1258</a>, <a href="https://github.com/semanticarts/gist/issues/1280">#1280</a>, and <a href="https://github.com/semanticarts/gist/issues/1285">#1285</a>.
+<ul>
+<li>Added a contributor quick reference guide.</li>
+<li>Added instructions to the <code>README</code> on setting up a local gist repository.</li>
+<li>Updated contributing guidelines.</li>
+<li>Created guidelines for pull request reviewers (<em>ReviewerGuidelines</em>).</li>
+</ul></li>
+<li>Added a summary of best practices for the use of OWL restrictions to the gist style guide. Issue <a href="https://github.com/semanticarts/gist/issues/1257">#1257</a>.</li>
+<li>Added a release note template. Issue <a href="https://github.com/semanticarts/gist/issues/1280">#1280</a>.</li>
+<li>Fixed broken links in documentation files. Issues <a href="https://github.com/semanticarts/gist/issues/1295">#1295</a>, <a href="https://github.com/semanticarts/gist/issues/1272">#1272</a>, and <a href="https://github.com/semanticarts/gist/issues/1184">#1184</a>.</li>
+</ul>
+
+<h3>Infrastructure Updates</h3>
+
+<ul>
+<li>Made changes to the pre-commit hook. Issue <a href="https://github.com/semanticarts/gist/issues/1214">#1214</a>.
+<ul>
+<li>Prefer RDF<em>TOOLKIT</em>JAVA<em>HOME over JAVA</em>HOME, since it is the more specific name.</li>
+<li>If neither of those work, use a Java executable if one is available in the PATH.</li>
+</ul></li>
+</ul>
+
+<h2>Release 13.0.0</h2>
+
+<p>This is a major release that includes several changes which break compatibility with previous versions of gist, most notably an entirely rearchitected model of units of measure and magnitudes and a new address model. See the <a href="./MajorVersionMigration.html">migration guide</a> for documentation on updating existing gist-based ontologies and instance data. <a href="../../migration/v13.0">Migration scripts and documentation</a> are provided to facilitate the upgrade process.</p>
+
+<h3>New Model of Units and Magnitudes</h3>
+
+<p>Issue <a href="https://github.com/semanticarts/gist/issues/1033">#1033</a>.</p>
+
+<ul>
+<li>Deleted all subclasses of <code>gist:Magnitude</code> except <code>gist:ReferenceValue</code>:
+<ul>
+<li><code>gist:Area</code></li>
+<li><code>gist:Balance</code></li>
+<li><code>gist:Count</code></li>
+<li><code>gist:Duration</code></li>
+<li><code>gist:ElectricCurrent</code></li>
+<li><code>gist:Extent</code></li>
+<li><code>gist:InformationQuantity</code></li>
+<li><code>gist:LuminousIntensity</code></li>
+<li><code>gist:Mass</code></li>
+<li><code>gist:MolarQuantity</code></li>
+<li><code>gist:Monetary</code></li>
+<li><code>gist:MonetaryPerDuration</code></li>
+<li><code>gist:ProductMagnitude</code></li>
+<li><code>gist:RatioMagnitude</code></li>
+<li><code>gist:Temperature</code></li>
+<li><code>gist:Volume</code></li>
+</ul></li>
+<li>Deleted all subclasses of <code>gist:UnitOfMeasure</code>:
+<ul>
+<li><code>gist:AreaUnit</code></li>
+<li><code>gist:BaseUnit</code></li>
+<li><code>gist:CoherentRatioUnit</code></li>
+<li><code>gist:CoherentProductUnit</code></li>
+<li><code>gist:CountingUnit</code></li>
+<li><code>gist:CurrencyPerDurationUnit</code></li>
+<li><code>gist:CurrencyUnit</code></li>
+<li><code>gist:DataSizeUnit</code></li>
+<li><code>gist:DistanceUnit</code></li>
+<li><code>gist:ElectricalCurrentUnit</code></li>
+<li><code>gist:LuminousIntensityUnit</code></li>
+<li><code>gist:MassUnit</code></li>
+<li><code>gist:MoleUnit</code></li>
+<li><code>gist:ProductUnit</code></li>
+<li><code>gist:RatioUnit</code></li>
+<li><code>gist:SimpleUnitOfMeasure</code></li>
+<li><code>gist:TemperatureUnit</code></li>
+<li><code>gist:VolumeUnit</code></li>
+</ul></li>
+<li>Deleted the following predicates:
+<ul>
+<li><code>gist:hasAltitude</code></li>
+<li><code>gist:hasDenominator</code></li>
+<li><code>gist:hasMultiplicand</code></li>
+<li><code>gist:hasNumerator</code></li>
+<li><code>gist:hasPrecision</code></li>
+<li><code>gist:hasStandardUnit</code></li>
+<li><code>gist:isAspectOf</code></li>
+<li><code>gist:unitSymbol</code></li>
+<li><code>gist:unitSymbolHtml</code></li>
+<li><code>gist:unitSymbolUnicode</code></li>
+</ul></li>
+<li>Deleted all unit of measure instances:
+<ul>
+<li><code>gist:_ampere</code></li>
+<li><code>gist:_bit</code></li>
+<li><code>gist:_candela</code></li>
+<li><code>gist:_day</code></li>
+<li><code>gist:_each</code></li>
+<li><code>gist:_kelvin</code></li>
+<li><code>gist:_kilogram</code></li>
+<li><code>gist:_meter</code></li>
+<li><code>gist:_millisecond</code></li>
+<li><code>gist:_minute</code></li>
+<li><code>gist:_mole</code></li>
+<li><code>gist:_percent</code></li>
+<li><code>gist:_second</code></li>
+<li><code>gist:_USDollar</code></li>
+</ul></li>
+<li>Added classes and predicates:
+<ul>
+<li><code>gist:Discipline</code></li>
+<li><code>gist:UnitGroup</code></li>
+<li><code>gist:hasAccuracy</code></li>
+<li><code>gist:hasAddend</code></li>
+<li><code>gist:hasAspect</code></li>
+<li><code>gist:hasBroader</code></li>
+<li><code>gist:hasDivisor</code></li>
+<li><code>gist:hasSubtrahend</code></li>
+<li><code>gist:hasUnitGroup</code></li>
+<li><code>gist:exponentOfAmpere</code></li>
+<li><code>gist:exponentOfBit</code></li>
+<li><code>gist:exponentOfCandela</code></li>
+<li><code>gist:exponentOfKelvin</code></li>
+<li><code>gist:exponentOfKilogram</code></li>
+<li><code>gist:exponentOfMeter</code></li>
+<li><code>gist:exponentOfMole</code></li>
+<li><code>gist:exponentOfNumber</code></li>
+<li><code>gist:exponentOfOther</code></li>
+<li><code>gist:exponentOfRadian</code></li>
+<li><code>gist:exponentOfSecond</code></li>
+<li><code>gist:exponentOfSteradian</code></li>
+<li><code>gist:exponentOfUSDollar</code></li>
+<li><code>gist:symbol</code></li>
+</ul></li>
+<li>Added aspect instances. Note the new <code>gistd:</code> namespace <code>&lt;https://w3id.org/semanticarts/ns/data/gist/&gt;</code>.
+<ul>
+<li><code>gistd:_Aspect_altitude</code></li>
+<li><code>gistd:_Aspect_area</code></li>
+<li><code>gistd:_Aspect_balance</code></li>
+<li><code>gistd:_Aspect_mass</code></li>
+<li><code>gistd:_Aspect_probability</code></li>
+<li><code>gistd:_Aspect_volume</code></li>
+</ul></li>
+<li>Modified the class expression restrictions of:
+<ul>
+<li><code>gist:Account</code></li>
+<li><code>gist:ContingentEvent</code></li>
+<li><code>gist:GeoPoint</code></li>
+<li><code>gist:GeoRegion</code></li>
+<li><code>gist:Offer</code></li>
+<li><code>gist:PhysicalIdentifiableItem</code></li>
+<li><code>gist:PhysicalSubstance</code></li>
+</ul></li>
+<li>Modified the following classes and predicates:
+<ul>
+<li><code>gist:Aspect</code></li>
+<li><code>gist:Magnitude</code></li>
+<li><code>gist:UnitOfMeasure</code></li>
+<li><code>gist:hasMagnitude</code></li>
+<li><code>gist:hasMultiplier</code></li>
+<li><code>gist:hasPrecision</code></li>
+<li><code>gist:conversionFactor</code></li>
+<li><code>gist:conversionOffset</code></li>
+</ul></li>
+<li>Added <a href="../../migration/v13.0/queries/uom_queries">scripts</a> for the migration of existing client ontologies and instance data.</li>
+<li>Added <a href="./models/UnitOfMeasureModel.html">complete documentation</a> on understanding and implementing the new model.</li>
+</ul>
+
+<h3>New Address Model</h3>
+
+<p>Issue <a href="https://github.com/semanticarts/gist/issues/1060">#1060</a>.</p>
+
+<ul>
+<li>Removed classes and properties:
+<ul>
+<li><code>gist:ElectronicMessageAddress</code></li>
+<li><code>gist:EmailAddress</code></li>
+<li><code>gist:PostalAddress</code></li>
+<li><code>gist:StreetAddress</code></li>
+<li><code>gist:TelephoneNumber</code></li>
+<li><code>gist:hasCommunicationAddress</code></li>
+</ul></li>
+<li>Added subclasses of <code>gist:Address</code>:
+<ul>
+<li><code>gist:ElectronicAddress</code></li>
+<li><code>gist:PhysicalAddress</code></li>
+</ul></li>
+<li>Added subclasses of <code>gist:Category</code> for characterizing new addresses:
+<ul>
+<li><code>gist:AddressUsageType</code></li>
+<li><code>gist:ElectronicAddressType</code></li>
+<li><code>gist:PhysicalAddressType</code></li>
+</ul></li>
+<li>Added the object property <code>gist:refersTo</code>.</li>
+</ul>
+
+<h3>Other Major Updates</h3>
+
+<ul>
+<li><code>gist:hasSuperCategory</code> and subproperties. Issue <a href="https://github.com/semanticarts/gist/issues/1115">#1115</a>.
+<ul>
+<li>Removed <code>gist:hasSuperCategory</code>, <code>gist:hasDirectSuperCategory</code> and <code>gist:hasUniqueSuperCategory</code>.</li>
+<li><code>gist:hasSuperCategory</code> is replaced by <code>gist:hasBroader</code>.</li>
+<li><code>gist:hasDirectSuperCategory</code> is replaced by <code>gist:hasDirectBroader</code>.</li>
+<li><code>gist:hasUniqueSuperCategory</code> is replaced by <code>gist:hasUniqueBroader</code>.</li>
+</ul></li>
+<li><p>Replaced the following predicates with their semantic inverses. Issue <a href="https://github.com/semanticarts/gist/issues/1070">#1070</a>.</p>
+
+<table>
+<thead>
+<tr>
+  <th>gist 12</th>
+  <th>gist 13</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>hasDirectPart</code></td>
+  <td><code>isDirectPartOf</code></td>
+</tr>
+<tr>
+  <td><code>hasFirstMember</code></td>
+  <td><code>isFirstMemberOf</code></td>
+</tr>
+<tr>
+  <td><code>hasMember</code></td>
+  <td><code>isMemberOf</code></td>
+</tr>
+<tr>
+  <td><code>hasPart</code></td>
+  <td><code>isPartOf</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Removed <code>gist:endDateTime</code> restriction from the formal definition of <code>gist:TemporalRelation</code>. Issue <a href="https://github.com/semanticarts/gist/issues/878">#878</a>.</p></li>
+<li>Added <code>gist:startDateTime</code>, <code>gist:endDateTime</code>, and duration restrictions to the formal definition of <code>gist:TimeInterval</code>. Modified annotations for <code>gist:startDateTime</code> and <code>gist:endDateTime</code> to clarify usage. Issues <a href="https://github.com/semanticarts/gist/issues/925">#925</a> and <a href="https://github.com/semanticarts/gist/issues/1112">#1112</a>.</li>
+<li>Removed sensor-related classes and properties. Issue <a href="https://github.com/semanticarts/gist/issues/462">#462</a>.
+<ul>
+<li>Classes removed:
+<ul>
+<li><code>gist:Actuator</code></li>
+<li><code>gist:Controller</code></li>
+<li><code>gist:ControllerType</code></li>
+<li><code>gist:MessageDefinition</code></li>
+<li><code>gist:PhenomenaType</code></li>
+<li><code>gist:Sensor</code></li>
+</ul></li>
+<li>Predicates removed:
+<ul>
+<li><code>gist:directs</code></li>
+<li><code>gist:hasViableRange</code></li>
+<li><code>gist:respondsTo</code></li>
+</ul></li>
+</ul></li>
+<li>Updated <code>gist:MediaType</code> and <code>gist:uniqueText</code>. Issue <a href="https://github.com/semanticarts/gist/issues/633">633</a>.
+<ul>
+<li>Added <code>gist:uniqueText</code> restriction to <code>gist:MediaType</code>.</li>
+<li>Added example and scope note annotations to <code>gist:MediaType</code>.</li>
+<li>Added <code>gist:MediaType</code> to <code>gist:domainIncludes</code> for <code>gist:uniqueText</code>.</li>
+</ul></li>
+<li>Made <code>gist:Specification</code> a direct subclass of <code>gist:Intention</code>. Issue <a href="https://github.com/semanticarts/gist/issues/831">#831</a>.</li>
+<li>Removed domain and range from <code>gist:isGovernedBy</code>. Issue <a href="https://github.com/semanticarts/gist/issues/899">#899</a>.</li>
+<li>Ordered collections and ordered members:
+<ul>
+<li>Added <code>gist:providesOrderFor</code> restriction to <code>gist:OrderedMember</code>. Issue <a href="https://github.com/semanticarts/gist/issues/944">#944</a>.</li>
+<li>Changed filter class for <code>gist:isFirstMemberOf</code> (formerly <code>gist:hasFirstMember</code>) restriction on <code>gist:OrderedCollection</code> from <code>owl:Thing</code> to <code>gist:OrderedMember</code>. Issue <a href="https://github.com/semanticarts/gist/issues/944">#944</a>.</li>
+<li>Updated <code>skos:scopeNote</code> on <code>gist:isFirstMemberOf</code> (formerly <code>gist:hasFirstMember</code>) to reflect that strict orderings <em>are</em> allowed.  Issue <a href="https://github.com/semanticarts/gist/issues/944">#944</a>.</li>
+</ul></li>
+<li>Upgraded gist license to Creative Commons 4.0 International License. Issue <a href="https://github.com/semanticarts/gist/issues/244">244</a>.</li>
+<li>Made changes to <code>gist:Offer</code>. Issue <a href="https://github.com/semanticarts/gist/issues/528">#528</a>.
+<ul>
+<li>Added <code>gist:offers</code> predicate.</li>
+<li>Modified restriction on <code>gist:Offer</code> to refer to <code>gist:offers</code>.</li>
+</ul></li>
+<li>Removed <code>gist:occupiesGeographically</code> and <code>gist:occupiesGeographicallyPermanently</code> and replaced with <code>gist:hasPhysicalLocation</code> in class restriction. Issue <a href="https://github.com/semanticarts/gist/issues/809">#809</a>.</li>
+<li>Shortened local name of <code>gist:isGeographicallyContainedIn</code> to <code>isGeoContainedIn</code>. Issue <a href="https://github.com/semanticarts/gist/issues/812">#812</a>.</li>
+<li>Removed classes and properties deprecated since the last major release and made corresponding updates to axioms referencing those terms. Issue <a href="https://github.com/semanticarts/gist/issues/947">#947</a>.
+<ul>
+<li>Removed <code>gist:isCharacterizedAs</code> and associated axiom on <code>gist:Event</code>. (Original issue: <a href="https://github.com/semanticarts/gist/issues/820">#820</a>.)</li>
+<li>Removed <code>gist:isRecognizedDirectlyBy</code>.</li>
+<li>Changes to contained text properties. (Original issue: <a href="https://github.com/semanticarts/gist/issues/372">#372</a>.)
+<ul>
+<li>Removed property <code>gist:tagText</code>.</li>
+<li>Changed restriction on <code>gist:Tag</code> to reference <code>gist:containedText</code> rather than <code>gist:tagText</code>.</li>
+<li>Made <code>gist:uniqueText</code> a subproperty of <code>gist:containedText</code>.</li>
+</ul></li>
+<li>Removed <code>gist:unitSymbol</code>, <code>gist:unitSymbolHtml</code>, and <code>gist:UnitSymbolUnicode</code>. The first is replaced with <code>gist:symbol</code> and the latter two are removed with no replacement. (Original issue: <a href="https://github.com/semanticarts/gist/issues/531">#531</a>.)</li>
+</ul></li>
+<li>Removed domain and range constraints from <code>gist:allows</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1063">#1063</a>.</li>
+</ul>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Added <code>gist:Determination</code> as a subclass of <code>gist:Event</code>. Issue <a href="https://github.com/semanticarts/gist/issues/317">317</a>.</li>
+<li>Requirements and Specifications:
+<ul>
+<li>Updated definition of <code>gist:Requirement</code>. Issue <a href="https://github.com/semanticarts/gist/issues/831">#831</a>.</li>
+<li>Added class <code>gist:EventSpecification</code>. Issue <a href="https://github.com/semanticarts/gist/issues/831">#831</a>.</li>
+<li>Added and updated annotations for <code>gist:Specification</code>. Issue <a href="https://github.com/semanticarts/gist/issues/831">#831</a>.</li>
+</ul></li>
+<li>Added a <code>skos:historyNote</code> to document the dates of the most recent gist releases. Issue <a href="https://github.com/semanticarts/gist/issues/1017">#1017</a>.</li>
+</ul>
+
+<h3>Documentation Updates</h3>
+
+<ul>
+<li>Added section to <a href="./gistStyleGuide.html">gist Style Guide</a> on use of <code>gist:nonConformingLabel</code> annotation.</li>
+<li>Updated <a href="./gistStyleGuide.html">gist Style Guide</a> to define best practices for:
+<ul>
+<li>Negative examples in <code>skos:example</code>. Issue <a href="https://github.com/semanticarts/gist/issues/511">#511</a>.</li>
+<li>Use of ontology terms in annotations. Issue <a href="https://github.com/semanticarts/gist/issues/966">#966</a></li>
+<li>Inverse properties. Issue <a href="https://github.com/semanticarts/gist/issues/1086">#1086</a>.</li>
+</ul></li>
+<li>Modified definition of a patch release to fully comply with <a href="https://semver.org/spec/v2.0.0.html">Semver</a>. Issue <a href="https://github.com/semanticarts/gist/issues/973">#973</a>.</li>
+<li>Changed name of documentation directory in release package from <code>Documentation</code> to <code>docs</code>. Added <code>models</code> subdirectory for documentation of specific models.</li>
+</ul>
+
+<h3>Infrastructure Updates</h3>
+
+<ul>
+<li>Updated build configuration to materialize subclass inferences during bundling. Issue <a href="https://github.com/semanticarts/gist/issues/1051">#1051</a>.</li>
+<li>Combined two bundle actions into one. Issue <a href="https://github.com/semanticarts/gist/issues/1058">#1058</a>.</li>
+<li>Updated to latest version of EDM Council serializer (version 2.0 of rdf-toolkit.jar). Issue <a href="https://github.com/semanticarts/gist/issues/1082">#1082</a>.</li>
+<li>Changed filename of generated RDFS annotations from <code>rdfsAnnotations</code> to <code>gistRdfsAnnotations</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1041">#1041</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://w3id.org/semanticarts/ontology/gistCore13.0.0">https://w3id.org/semanticarts/ontology/gistCore13.0.0</a>.</p>
+
+<h2>Release 12.1.0</h2>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Deprecated the following properties:
+<ul>
+<li><code>gist:isCharacterizedAs</code>. Issue <a href="https://github.com/semanticarts/gist/issues/820">#820</a>.</li>
+<li><code>gist:isRecognizedDirectlyBy</code>. Issue <a href="https://github.com/semanticarts/gist/issues/607">#607</a>.</li>
+<li><code>gist:occupiesGeographically</code> and <code>gist:occupiesGeographicallyPermanently</code>. Issue <a href="https://github.com/semanticarts/gist/issues/809">#809</a>.</li>
+<li><code>gist:tagText</code> (to be replaced by the existing <code>gist:containedText</code>). Issue <a href="https://github.com/semanticarts/gist/issues/372">#372</a>.</li>
+</ul></li>
+<li>Extended the utility of symbol predicates. Issue <a href="https://github.com/semanticarts/gist/issues/531">#531</a>.
+<ul>
+<li>Deprecated <code>gist:unitSymbol</code>, <code>gist:unitSymbolHtml</code>, and <code>gist:unitSymbolUnicode</code>.</li>
+<li>Added predicate <code>gist:symbol</code>.</li>
+<li>Added <code>gist:symbol</code> triples for existing units, anticipating the removal of <code>gist:unitSymbol</code>.</li>
+</ul></li>
+<li>Added datatype property <code>gist:idText</code>. Issue <a href="https://github.com/semanticarts/gist/issues/874">#874</a>.</li>
+<li>Changed <code>gistCore</code> import in <code>gistSubClassAssertions</code> to use a versioned IRI, and added its version IRI. Issue <a href="https://github.com/semanticarts/gist/issues/897">#897</a>.</li>
+<li>Added skeletal definitions for SKOS terms. Issue <a href="https://github.com/semanticarts/gist/issues/934">#934</a>.</li>
+<li>Updated annotations (<code>skos:definition</code>, <code>skos:scopeNote</code>, and <code>skos:example</code>) of the following terms:
+<ul>
+<li><code>gist:Event</code>. Issue <a href="https://github.com/semanticarts/gist/issues/950">#950</a>.</li>
+<li><code>gist:Category</code>. Issue <a href="https://github.com/semanticarts/gist/issues/968">#968</a>.</li>
+<li><code>gist:Magnitude</code>. Issue <a href="https://github.com/semanticarts/gist/issues/965">#965</a>.</li>
+<li><code>gist:Message</code>. Issue <a href="https://github.com/semanticarts/gist/issues/396">#396</a>.</li>
+<li><code>gist:MonetaryPerDuration</code>. Issue <a href="https://github.com/semanticarts/gist/issues/912">#912</a>.</li>
+<li><code>gist:Specification</code>. Issue <a href="https://github.com/semanticarts/gist/issues/431">#431</a>.</li>
+<li><code>gist:Transaction</code>. Issue <a href="https://github.com/semanticarts/gist/issues/521">#521</a>.</li>
+<li><code>gist:containedText</code>, <code>gist:Tag</code>, and <code>gist:Text</code>. Issue <a href="https://github.com/semanticarts/gist/issues/372">#372</a>.</li>
+<li><code>gist:description</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1015">#1015</a>.</li>
+<li><code>gist:hasMember</code>. Issue <a href="https://github.com/semanticarts/gist/issues/439">#439</a>.</li>
+<li><code>gist:hasNumerator</code>, <code>gist:hasDenominator</code>, <code>gist:hasMultiplier</code>, and <code>gist:hasMultiplicand</code>. Issue <a href="https://github.com/semanticarts/gist/issues/821">#821</a>.</li>
+<li><code>gist:hasParticipant</code>. Issue <a href="https://github.com/semanticarts/gist/issues/787">#787</a>.</li>
+<li><code>gist:hasPhysicalLocation</code>. Issue <a href="https://github.com/semanticarts/gist/issues/809">#809</a>.</li>
+<li><code>gist:isRecognizedBy</code>. Issue <a href="https://github.com/semanticarts/gist/issues/607">#607</a>.</li>
+<li><code>gist:uniqueText</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1004">#1004</a>.</li>
+</ul></li>
+<li>Moved SHACL prefix declarations from <code>gistCore</code> to <code>gistPrefixDeclarations</code>. Issue <a href="https://github.com/semanticarts/gist/issues/1001">#1001</a>.</li>
+<li>Changed the <code>owl:minCardinality 1</code> restriction on <code>gist:LivingThing</code> to the logically equivalent <code>owl:someValuesFrom</code>. Issue <a href="https://github.com/semanticarts/gist/issues/806">#806</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Fixed typo in the <code>skos:scopeNote</code> of <code>gist:_percent</code>. Issue <a href="https://github.com/semanticarts/gist/issues/961">#961</a>.</li>
+<li>Documentation updates:
+<ul>
+<li>Minor updates to documentation of <a href="https://github.com/semanticarts/gist/blob/main/docs/ChangeAndReleaseManagement.md">gist change and release management</a> and <a href="https://github.com/semanticarts/gist/blob/main/docs/Contributing.md">contributing to gist</a>. Issues <a href="https://github.com/semanticarts/gist/issues/918">#918</a>, <a href="https://github.com/semanticarts/gist/issues/918">#993</a>.</li>
+<li>Added detail to the <a href="https://github.com/semanticarts/gist/blob/main/docs/DeprecationAndDeletionPolicy.md">gist deprecation and deletion policy</a>.</li>
+<li>Updated all Markdown files in the repository to use <code>ATX</code> rather than <code>SETEXT</code> header style. Issue <a href="https://github.com/semanticarts/gist/issues/901">#901</a>.</li>
+</ul></li>
+<li>Infrastructure updates:
+<ul>
+<li>Renamed branch <code>master</code> to <code>main</code>. Issue <a href="https://github.com/semanticarts/gist/issues/865">#865</a>.</li>
+<li>Updated <code>bundle.yaml</code> to use <code>onto_tool excludes</code> option. <a href="https://github.com/semanticarts/gist/issues/962">Issue #962</a>.</li>
+<li>Updated <code>tools/setup.cmd</code> to configure git to ignore changes to executable flags on files.</li>
+<li>Moved ontology files into a root-level <code>ontologies</code> folder. <a href="https://github.com/semanticarts/gist/issues/904">Issue #904</a>.</li>
+<li>Serializer <code>pre-commit</code> hook:
+<ul>
+<li>Fixed permissions problem on MacOS. Issue <a href="https://github.com/semanticarts/gist/issues/1007">#1007</a>.</li>
+<li>Prevent corruption of binary files. Issue <a href="https://github.com/semanticarts/gist/issues/1010">#1010</a>. Also related to issue <a href="https://github.com/semanticarts/gist/issues/934">#934</a>.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Import URL: <a href="https://w3id.org/semanticarts/ontology/gistCore12.1.0">https://w3id.org/semanticarts/ontology/gistCore12.1.0</a>.</p>
+
+<h2>Release 12.0.1</h2>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Added missing <code>owl:Thing</code> assertions to gist instances to ensure that <code>rdfs:isDefinedBy</code> assertions are generated during the release bundling process. Issue <a href="https://github.com/semanticarts/gist/issues/775">#775</a>.</li>
+<li>Updated description of gist Forum in README. Issue <a href="https://github.com/semanticarts/gist/issues/917">#917</a>.</li>
+<li>Changed smart single quotes to straight quotes for the apostrophes in <code>docs/Namespace.md</code>. Issue <a href="https://github.com/semanticarts/gist/issues/919">#919</a>.</li>
+<li>Updated <code>bundle.yaml</code> to exclude the <code>gistValidationAnnotations</code> ontology from the release package. Issue <a href="https://github.com/semanticarts/gist/issues/922">#922</a>.</li>
+<li>Updated the Python HTML renderer to fix errors in display of gist documentation in the browser. Issue <a href="https://github.com/semanticarts/gist/issues/923">#923</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://w3id.org/semanticarts/ontology/gistCore12.0.1">https://w3id.org/semanticarts/ontology/gistCore12.0.1</a>.</p>
+
+<h2>Release 12.0.0</h2>
+
+<p>This is a major release which includes several changes which break compatibility with previous versions of gist. See the <a href="./MajorVersionMigration.html">migration guide</a> for documentation on updating existing gist-based ontologies and instance data. Migration scripts are included to facilitate the upgrade process.</p>
+
+<h3>Major Updates</h3>
+
+<ul>
+<li>Changed the gist ontology IRIs and namespace IRI to the <code>w3id</code> domain. Issues <a href="https://github.com/semanticarts/gist/issues/683">#683</a>, <a href="https://github.com/semanticarts/gist/issues/853">#853</a>, <a href="https://github.com/semanticarts/gist/issues/859">#859</a>.
+<ul>
+<li>The gist ontology IRIs have changed from <code>https://ontologies.semanticarts.com/o/&lt;ontology-name&gt;</code> to <code>https://w3id.org/semanticarts/ontology/&lt;ontology-name&gt;</code>. For example, <code>https://ontologies.semanticarts.com/o/gistCore</code> is now <code>https://w3id.org/semanticarts/ontology/gistCore</code>.</li>
+<li>The gist namespace has changed from <code>https://ontologies.semanticarts.com/gist/</code> to <code>https://w3id.org/semanticarts/ns/ontology/gist/</code>.</li>
+</ul></li>
+<li><p>Deleted all inverse properties. Issue <a href="https://github.com/semanticarts/gist/issues/506">#506</a>.</p>
+
+<ul>
+<li>For each pair of inverses, the property deemed clearest, simplest, and/or most useful was retained.</li>
+<li>Axioms referring to the deleted properties were reformulated using <code>owl:inverseOf</code>.</li>
+<li><p>Breakdown:</p>
+
+<table>
+<thead>
+<tr>
+  <th>Properties retained in gist</th>
+  <th>Inverse properties removed from gist</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>hasDirectPart</code></td>
+  <td><code>isDirectPartOf</code></td>
+</tr>
+<tr>
+  <td><code>hasDirectSubTask</code></td>
+  <td><code>isDirectSubTaskOf</code></td>
+</tr>
+<tr>
+  <td><code>hasDirectSuperCategory</code></td>
+  <td><code>hasDirectSubCategory</code></td>
+</tr>
+<tr>
+  <td><code>hasMember</code></td>
+  <td><code>isMemberOf</code></td>
+</tr>
+<tr>
+  <td><code>hasNavigationalParent</code></td>
+  <td><code>hasNavigationalChild</code></td>
+</tr>
+<tr>
+  <td><code>hasPart</code></td>
+  <td><code>isPartOf</code></td>
+</tr>
+<tr>
+  <td><code>hasSubTask</code></td>
+  <td><code>isSubTaskOf</code></td>
+</tr>
+<tr>
+  <td><code>hasSuperCategory</code></td>
+  <td><code>hasSubCategory</code></td>
+</tr>
+<tr>
+  <td><code>isAbout</code></td>
+  <td><code>isDescribedIn</code></td>
+</tr>
+<tr>
+  <td><code>isAffectedBy</code></td>
+  <td><code>affects</code></td>
+</tr>
+<tr>
+  <td><code>isBasedOn</code></td>
+  <td><code>isBasisFor</code></td>
+</tr>
+<tr>
+  <td><code>isGeographicallyContainedIn</code></td>
+  <td><code>containsGeographically</code></td>
+</tr>
+<tr>
+  <td><code>isGovernedBy</code></td>
+  <td><code>governs</code></td>
+</tr>
+<tr>
+  <td><code>isIdentifiedBy</code></td>
+  <td><code>identifies</code></td>
+</tr>
+<tr>
+  <td><code>isRecognizedBy</code></td>
+  <td><code>recognizes</code></td>
+</tr>
+<tr>
+  <td><code>occupiesGeographically</code></td>
+  <td><code>isGeographicallyOccupiedBy</code></td>
+</tr>
+<tr>
+  <td><code>occupiesGeographicallyPermanently</code></td>
+  <td><code>isGeographicallyPermanentlyOccupiedBy</code></td>
+</tr>
+<tr>
+  <td><code>precedes</code></td>
+  <td><code>follows</code></td>
+</tr>
+<tr>
+  <td><code>precedesDirectly</code></td>
+  <td><code>followsDirectly</code></td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+<li><p>Changes related to tasks, projects, and events. Issue <a href="https://github.com/semanticarts/gist/issues/760">#760</a>.</p>
+
+<ul>
+<li>Renamed <code>gist:TaskExecution</code>, <code>gist:ScheduledTaskExecution</code>, and <code>gist:ProjectExecution</code> to <code>gist:Task</code>, <code>gist:ScheduledTask</code>, and <code>gist:Project</code>, respectively.</li>
+<li>These classes are no longer limited to the execution of a task or project, but include proposed and planned events as well.</li>
+<li>Removed datetime restrictions on <code>gist:Event</code>.</li>
+<li>Replaced <code>gist:PlannedEvent</code> with <code>gist:ScheduledEvent</code>.</li>
+<li>Added <code>skos:scopeNote</code>s and <code>skos:example</code>s to clarify meaning and usage.</li>
+<li>Added <code>skos:prefLabel</code> to <code>gist:ScheduledEvent</code>. Issue <a href="https://github.com/semanticarts/gist/issues/844">#844</a>.</li>
+<li>Updated formal definition of <code>gist:ContingentEvent</code>. Issue <a href="https://github.com/semanticarts/gist/issues/776">#776</a>.</li>
+<li>Removed datetime restrictions from <code>gist:ContingentEvent</code> and added a restriction on property <code>gist:isTriggeredBy</code>.</li>
+</ul></li>
+<li>Deleted classes and properties related to time zones. Issue <a href="https://github.com/semanticarts/gist/issues/650">#650</a>. Terms removed:
+<ul>
+<li><code>gist:TimeZone</code></li>
+<li><code>gist:TimeZoneStandard</code></li>
+<li><code>gist:hasOffsetToUniversal</code></li>
+<li><code>gist:usesTimeZoneStandard</code></li>
+</ul></li>
+<li>Deleted properties <code>gist:hasSubTask</code> and <code>gist:hasDirectSubTask</code>; <code>gist:hasPart</code> and <code>gist:hasDirectPart</code>, respectively, to be used instead. Issue <a href="https://github.com/semanticarts/gist/issues/733">#733</a>.</li>
+<li>Deleted class <code>gist:Percentage</code>. Issue <a href="https://github.com/semanticarts/gist/issues/785">#785</a>.</li>
+<li>Deleted class <code>gist:TreatyOrganization</code>. Issue <a href="https://github.com/semanticarts/gist/issues/756">#766</a>.</li>
+</ul>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Added unit of measure for percents. Issue <a href="https://github.com/semanticarts/gist/issues/785">#785</a>.</li>
+<li>Broadened definition of <code>gist:isAllocatedBy</code> to include entities other than IDs, and added clarifying annotations. Issue <a href="https://github.com/semanticarts/gist/issues/530">#530</a>.</li>
+<li>Added <code>gist:TimeInterval</code> class. Issue <a href="https://github.com/semanticarts/gist/issues/786">#786</a>.</li>
+<li>Added the <code>gistSubClassAssertions</code> ontology containing explicit subclass axioms that are logically entailed but not inferred by some reasoners. Issue <a href="https://github.com/semanticarts/gist/issues/714">#714</a>.
+<ul>
+<li>Added <code>materialize_subclass_inferences.py</code> script to generate these assertions. Issue <a href="https://github.com/semanticarts/gist/issues/819">#819</a>.</li>
+<li>Amended <code>bundle.yaml</code> file to include <code>gistSubClassAssertions</code> ontology files in the release package. Issue <a href="https://github.com/semanticarts/gist/issues/714">#714</a>.</li>
+</ul></li>
+<li>Added <code>MonetaryPerDuration</code> and <code>CurrencyPerDurationUnit</code> classes. Issue <a href="https://github.com/semanticarts/gist/issues/846">#846</a>.</li>
+<li>Updated definition and corrected label of <code>gist:IntergovernmentalOrganization</code>. Issues <a href="https://github.com/semanticarts/gist/issues/756">#756</a>, <a href="https://github.com/semanticarts/gist/issues/766">#766</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Deleted the <code>gistDeprecated</code> ontology based on <a href="DeprecationAndDeletionPolicy.md">updated deprecation and deletion policy</a>. Issues <a href="https://github.com/semanticarts/gist/issues/817">#817</a>, <a href="https://github.com/semanticarts/gist/issues/835">#835</a>.
+<ul>
+<li>Moving forward, terms deprecated in minor releases will be retained in <code>gistCore</code>.</li>
+<li>Added annotation property <code>gist:isSupersededBy</code> to link a deprecated term to its replacement, if there is one.</li>
+</ul></li>
+<li>Upgraded to version <code>1.14.2</code> of the <a href="https://github.com/edmcouncil/rdf-toolkit">EDM RDF serializer</a> which is applied in a pre-commit hook during development. Issue <a href="https://github.com/semanticarts/gist/issues/774">#774</a>.
+<ul>
+<li>The new <code>-sni</code> option is used to remove <code>owl:NamedIndividual</code> assertions on instances defined by gist, such as <code>gist:_second</code>.</li>
+</ul></li>
+<li>Modifications to pre-commit hook. Issues <a href="https://github.com/semanticarts/gist/issues/794">#794</a>, <a href="https://github.com/semanticarts/gist/issues/794">#794</a>, <a href="https://github.com/semanticarts/gist/issues/797">#797</a>,<a href="https://github.com/semanticarts/gist/issues/823">#823</a>.
+<ul>
+<li>Modified the serialize pre-commit hook so it:
+<ul>
+<li>Makes sure the script starts in the root directory of the repository.</li>
+<li>Adds file to the commit after the sed command.</li>
+<li>Preserves file permissions during processing steps.</li>
+<li>Ignores, rather than errors on, files that have been deleted.</li>
+</ul></li>
+<li>Added new "root" pre-commit hook which:
+<ul>
+<li>Prevents commits to these branches: develop, main, master.</li>
+<li>Then runs the serializer pre-commit hook.</li>
+</ul></li>
+<li>Added a <code>setup.cmd</code> file to install the pre-commit hook into the <code>.git/hooks</code> directory. This script will work on Mac, Linux, and Windows.</li>
+<li>Updated user documentation to reflect these changes.</li>
+</ul></li>
+<li>Fixed broken links to gist logo in <code>docs/README.*</code>. Issue <a href="https://github.com/semanticarts/gist/issues/750">#750</a>.</li>
+<li>Added scripts to migrate from <code>11.x.x</code> versions to version <code>12.0.0</code>. Issue <a href="https://github.com/semanticarts/gist/issues/816">#816</a>.</li>
+<li>Documentation updates. Issues <a href="https://github.com/semanticarts/gist/issues/567">#567</a>, <a href="https://github.com/semanticarts/gist/issues/576">#576</a>, <a href="https://github.com/semanticarts/gist/issues/734">#734</a>, <a href="https://github.com/semanticarts/gist/issues/736">#736</a>, <a href="https://github.com/semanticarts/gist/issues/758">#758</a>, <a href="https://github.com/semanticarts/gist/issues/801">#801</a>, <a href="https://github.com/semanticarts/gist/issues/802">#802</a>, <a href="https://github.com/semanticarts/gist/issues/810">#810</a>.</li>
+<li>Miscellaneous non-semantic annotation updates. Issues <a href="https://github.com/semanticarts/gist/issues/734">#734</a>,<a href="https://github.com/semanticarts/gist/issues/753">#753</a>, <a href="https://github.com/semanticarts/gist/issues/758">#758</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://w3id.org/semanticarts/ontology/gistCore12.0.0">https://w3id.org/semanticarts/ontology/gistCore12.0.0</a>.</p>
+
+<h2>Release 11.1.0</h2>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Renamed <code>gist:Task</code>, <code>gist:ScheduledTask</code> and <code>gist:Project</code> to <code>gist:TaskExecution</code>, <code>gist:ScheduledTaskExecution</code> and  <code>gist:ProjectExecution</code>, respectively. Issue <a href="https://github.com/semanticarts/gist/issues/590">#590</a>.</li>
+<li>Updated class <code>gist:Collection</code> to allow for empty collections. Issue <a href="https://github.com/semanticarts/gist/issues/570">#570</a>.</li>
+<li>Deprecated <code>gist:Group</code>. Issue <a href="https://github.com/semanticarts/gist/issues/663">#663</a>.</li>
+<li>Deprecated <code>gist:_greenwichTimeZone</code>, <code>gist:_one_day</code>, <code>gist:_one_millisecond</code>, and <code>gist:_one_minute</code>. Issue <a href="https://github.com/semanticarts/gist/issues/692">#692</a>.</li>
+<li>Fixed bug: <code>gist:isRecordedAt</code> is now a subproperty of <code>gist:atDateTime</code> instead of <code>gist:actualEndDateTime</code>. Issue <a href="https://github.com/semanticarts/gist/issues/726">#726</a>.</li>
+<li>Added new property <code>gist:hasFirstMember</code>. Issue <a href="https://github.com/semanticarts/gist/issues/549">#549</a>.</li>
+<li>Updates related to <code>gist:isConnectedTo</code>:
+<ul>
+<li>Made the property symmetric. Issue <a href="https://github.com/semanticarts/gist/issues/699">#699</a>.</li>
+<li>Replaced it in the restriction on <code>gist:TemporalRelation</code> with <code>gist:hasParticipant</code>. Issue <a href="https://github.com/semanticarts/gist/issues/706">#706</a>.</li>
+</ul></li>
+<li>Replaced <code>rdfs:range</code> on <code>gist:conformsTo</code> with <code>gist:rangeIncludes</code>. Issue <a href="https://github.com/semanticarts/gist/issues/700">#700</a>.</li>
+<li>Added the inadvertently omitted predicate <code>gist:follows</code>. Issue <a href="https://github.com/semanticarts/gist/issues/300">#300</a>.</li>
+<li>Changed superproperty <code>gist:startDateTime</code> to <code>gist:actualStartDateTime</code> in formal definition of <code>gist:ContemporaryEvent</code>. Issue <a href="https://github.com/semanticarts/gist/issues/696">#696</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Added <code>gist:domainIncludes gist:Text</code> to <code>gist:uniqueText</code>.</li>
+<li>Improved the clarity and accuracy of annotations on several terms, including definitions, examples, and scope notes:
+<ul>
+<li><code>gist:Building</code>: Issue <a href="https://github.com/semanticarts/gist/issues/482">#482</a>.</li>
+<li><code>gist:PhysicalSubstance</code> and <code>gist:PhysicalIdentifiableItem</code>: Issue <a href="https://github.com/semanticarts/gist/issues/644">#644</a>.</li>
+<li><code>gist:uniqueText</code>: Issue<a href="https://github.com/semanticarts/gist/issues/577">#577</a>.</li>
+<li><code>gist:precedes</code>, <code>gist:precedesDirectly</code>, and <code>gist:followsDirectly</code> These predicates no longer apply to objects at the same position. Issue <a href="https://github.com/semanticarts/gist/issues/300">#300</a>.</li>
+<li><code>gist:Template</code> <a href="https://github.com/semanticarts/gist/issues/408">#408</a>.</li>
+</ul></li>
+<li>Added SHACL <code>PrefixDeclaration</code>s for prefixes used in the gist ontology. The declaration for <code>gist:</code> is in the gist core ontology, and additional prefixes are included in a separate ontology file. Issue <a href="https://github.com/semanticarts/gist/issues/684">#684</a>.</li>
+<li>Fixed text definition of <code>gist:actualStartDateTime</code>. <a href="https://github.com/semanticarts/gist/issues/689">#689</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore11.1.0">https://ontologies.semanticarts.com/o/gistCore11.1.0</a>.</p>
+
+<h2>Release 11.0.0</h2>
+
+<h3>Major Updates</h3>
+
+<ul>
+<li>Implemented new time model based on datatype properties rather than <code>TimeInstant</code>. Issues <a href="https://github.com/semanticarts/gist/issues/499">#499</a>, <a href="https://github.com/semanticarts/gist/issues/388">#388</a>. Sample triples are provided in the release package.
+<ul>
+<li>Deleted class <code>TimeInstant</code> and its subclasses. This class was previously used to materialize a point in time with different precisions (day, minute, system time), a time zone, a local and UTC value, and so on. Object properties were used to connect something to an instance of <code>TimeInstant</code>, specifying different relationships such as start and end, planned vs actual.</li>
+<li>Defined a top-level datatype property <code>atDateTime</code>, neutral as to start/end, planned/actual, and precision (year, day, minute, microsecond).</li>
+<li>Replaced existing object properties with a hierarchy of subproperties of <code>atDateTime</code>, retaining distinctions between start and end, planned vs actual, and precisions.</li>
+<li>Added new predicates with year precision alongside the existing day, minute, and milli-/microsecond precisions.</li>
+</ul></li>
+<li>Renamed <code>ContemporaneousEvent</code> to <code>ContemporaryEvent</code>.</li>
+<li>Removed property  <code>gist:hasOrderedMember</code>. <code>gist:hasMember</code> should be used instead. Issue <a href="https://github.com/semanticarts/gist/issues/540">#540</a>.</li>
+<li>Distinguished governments from governed geo-regions, as per issue <a href="https://github.com/semanticarts/gist/issues/215">#215</a>. Changes include:
+<ul>
+<li>Added classes <code>SubCountryGovernment</code>, <code>IntergovernmentalOrganization</code>, and <code>TreatyOrganization</code> as subclasses of <code>Organization</code>.</li>
+<li>Added classes <code>GovernedGeoRegion</code>, <code>CountryGeoRegion</code> as subclasses of <code>GeoRegion</code>.</li>
+<li>Removed restriction on <code>CountryGovernment</code> requiring it to be recognized by some other country government, and stipulate its sovereignty.</li>
+<li>Removed <code>GeoPoliticalRegion</code> (roughly replaced by <code>GovernedGeoRegion</code>).</li>
+</ul></li>
+<li>Removed domain and range constraints from <code>gist:requires</code>. Issue <a href="https://github.com/semanticarts/gist/issues/183">#183</a>.</li>
+<li>Removed domain and range constraints from <code>gist:hasNumerator</code>, <code>gist:hasDenominator</code>, <code>gist:hasMultiplier</code>, and <code>gist:hasMultiplicand</code>. Issue <a href="https://github.com/semanticarts/gist/issues/160">#160</a>.</li>
+<li>Removed predicate <code>hasBiologicalOffspring</code>, added domain and range to <code>hasBiologicalParent</code>, and modified related restrictions on class <code>LivingThing</code>. Issue <a href="https://github.com/semanticarts/gist/issues/638">#638</a>.</li>
+<li>Combined <code>standardConversionFactor</code> and <code>baseConversionFactor</code> into <code>conversionFactor</code>. Issue <a href="https://github.com/semanticarts/gist/issues/624">#624</a>.</li>
+</ul>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Added unit symbols for unit instances instances per issue <a href="https://github.com/semanticarts/gist/issues/579">#579</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Added labels to gist instances, per issue <a href="https://github.com/semanticarts/gist/issues/370">#370</a>.</li>
+<li>Added definitions for unit of measure instances per issue <a href="https://github.com/semanticarts/gist/issues/526">#526</a>.</li>
+<li>Improved definitions of 'navigational' predicates, per issue <a href="https://github.com/semanticarts/gist/issues/523">#523</a>.</li>
+<li>Modified <code>skos:definition</code> of <code>gist:Message</code> to match formal definitions, per issue <a href="https://github.com/semanticarts/gist/issues/194">#194</a>.</li>
+<li>Removed min cardinality of zero restriction on <code>ProductUnit</code>, per issue <a href="https://github.com/semanticarts/gist/issues/582">#582</a>.</li>
+<li>Improved textual definition of <code>gist:Task</code>, per issue <a href="https://github.com/semanticarts/gist/issues/625">#625</a>.</li>
+<li>Change predicate <code>hasJurisdictionOver</code> to <code>isUnderJurisdictionOf</code> (bug fix). Issue <a href="https://github.com/semanticarts/gist/issues/637">#637</a>.</li>
+<li>Clarified restrictions on <code>gist:OrderedMember</code>. Issue <a href="https://github.com/semanticarts/gist/issues/574">#574</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore11.0.0">https://ontologies.semanticarts.com/o/gistCore11.0.0</a>.</p>
+
+<h2>Release 10.0.0</h2>
+
+<p>This is a major release, which includes several changes which break compatibility with previous versions
+of <code>gist</code>. See the <a href="./MajorVersionMigration.html">migration guide</a> for documentation on updating existing
+<code>gist</code>-based ontologies and instance data.</p>
+
+<h3>Major Updates</h3>
+
+<ul>
+<li>Renamed 62 object and datatype properties to reflect newly-established conventions. Includes corresponding updates to the <a href="https://github.com/semanticarts/gist/blob/master/docs/gistStyleGuide.md">gist style guide</a>. Issues <a href="https://github.com/semanticarts/gist/issues/188">188</a>, <a href="https://github.com/semanticarts/gist/issues/507">507</a>.</li>
+<li>Renamed <code>MimeType</code> to <code>MediaType</code> to be consistent with <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">IANA guidelines</a>.
+and <a href="https://tools.ietf.org/html/rfc6838">RFC6838</a>. Issue <a href="https://github.com/semanticarts/gist/issues/434">#434</a>.</li>
+<li>Renamed <code>gist:decimalValue</code> to <code>gist:numericValue</code> and expanded property range to include all numeric data types.
+supported by OWL.  Issue <a href="https://github.com/semanticarts/gist/issues/171">#171</a>.</li>
+<li>Refactored ordered collection model. Issues <a href="https://github.com/semanticarts/gist/issues/112">#112</a>, <a href="https://github.com/semanticarts/gist/issues/540">#540</a>.
+<ul>
+<li>Added predicate <code>gist:providesOrderFor</code>.</li>
+<li>Deleted classes <code>gist:OrdinalCollection</code> and <code>gist:OrdinalMember</code>.</li>
+</ul></li>
+<li>Changes to and affecting <code>gist:Person</code>, as per issue <a href="https://github.com/semanticarts/gist/issues/136">#136</a>:
+<ul>
+<li>Removed <code>owl:someValuesFrom gist:name</code> restriction from <code>gist:Person</code>.</li>
+<li>Made <code>gist:hasBirthDate</code> a subproperty of <code>gist:hasStart</code> rather than <code>gist:hasActualStart</code>.</li>
+</ul></li>
+<li>Refactored the way network connections are modeled per issue <a href="https://github.com/semanticarts/gist/issues/126">#126</a>:
+<ul>
+<li><code>networkConnection</code>, <code>hasFromNode</code> and <code>hasToNode</code> have been renamed to <code>links</code>, <code>linksFrom</code> and <code>linksTo</code>, respectively.</li>
+<li>Added a restriction on <code>NetworkLink</code> that it must have exactly 2 links.</li>
+<li>Added restrictions on <code>NetworkLink</code> and <code>NetworkNode</code> that they must be <code>isMemberOf</code> a <code>Network</code>.</li>
+</ul></li>
+<li>Extended the range of <code>comesFromPlace</code>/<code>goesToPlace</code> to include <code>gist:Address</code> in addition to <code>gist:Place</code>.
+Issue <a href="https://github.com/semanticarts/gist/issues/392">#392</a>.</li>
+<li>Modified classes and properties related to street addresses as per issue <a href="https://github.com/semanticarts/gist/issues/483">#483</a>:
+<ul>
+<li>Removed <code>BuildingAddress</code>.</li>
+<li>Added <code>StreetAddress</code> as subclass of <code>PostalAddress</code>.</li>
+<li>Replaced <code>hasStreetAddress</code> with the more general <code>hasAddress</code>. Removed <code>streetAddressOf</code>.</li>
+<li>Removed <code>communicationAddressOf</code> in a general effort to trim unused inverse properties.</li>
+<li>Clarified the definition of <code>hasCommunicationAddress</code> (now a subproperty of <code>hasAddress</code>),
+added domain (<code>Person U Organization</code>).</li>
+</ul></li>
+</ul>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Added annotation properties which provide usage guidance for properties without the constraints imposed by <code>rdfs:range</code> and <code>rdfs:domain</code>: Issue <a href="https://github.com/semanticarts/gist/issues/389">#389</a>.
+<ul>
+<li><code>domainIncludes</code></li>
+<li><code>rangeIncludes</code></li>
+</ul></li>
+<li>Created a <code>gistMediaTypes</code> ontology to declare <code>MediaType</code> instances relevant to semantic applications.
+Issue <a href="https://github.com/semanticarts/gist/issues/463">#463</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Updated annotations for <code>isBasedOn</code> and <code>isBasisFor</code> properties. Issue <a href="https://github.com/semanticarts/gist/issues/139">#139</a></li>
+<li><code>hasDirectSubCategory</code> is now a subproperty of <code>hasSubCategory</code>, as it was always supposed to be.  Issue <a href="https://github.com/semanticarts/gist/issues/481">#481</a>.</li>
+<li>Clarified the definition of <code>ContemporaneousEvent</code>. Issue <a href="https://github.com/semanticarts/gist/issues/174">#174</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore10.0.0">https://ontologies.semanticarts.com/o/gistCore10.0.0</a>.</p>
+
+<h2>Release 9.7.0</h2>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Deprecated <code>gist:Room</code>. Issue <a href="https://github.com/semanticarts/gist/issues/102">#102</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Updated annotations for the following properties regarding the hasDirectX/hasX pattern. Issue <a href="https://github.com/semanticarts/gist/issues/115">#115</a>
+<ul>
+<li><code>geoContains</code>, <code>geoContainedIn</code></li>
+<li><code>directPartOf</code>,<code>hasDirectPart</code></li>
+<li><code>directlyPrecededBy</code>, <code>directlyPrecedes</code></li>
+</ul></li>
+<li>Declare <code>gist:identifies</code> as <code>owl:FunctionalProperty</code> rather than <code>owl:InverseFunctionalProperty</code> (bug fix). Issue <a href="https://github.com/semanticarts/gist/issues/180">#180</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore9.7.0">https://ontologies.semanticarts.com/o/gistCore9.7.0</a>.</p>
+
+<h2>Release 9.6.0</h2>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Added datatype property <code>gist:description</code> for describing instance data. Issue <a href="https://github.com/semanticarts/gist/issues/425">#425</a>.</li>
+<li>Refactored <code>hasParty</code>, <code>giver</code> and <code>getter</code>. Issue <a href="https://github.com/semanticarts/gist/issues/133">#133</a>.
+<ul>
+<li><code>giver</code> and <code>getter</code>
+<ul>
+<li>Renamed to <code>hasGiver</code> and <code>hasGetter</code></li>
+<li>The newly named versions are no longer sub-properties of <code>hasParty</code></li>
+<li>Deprecated <code>giver</code> and <code>getter</code></li>
+</ul></li>
+<li>New property: <code>hasParticipant</code>
+<ul>
+<li>No domain or range</li>
+<li>Has sub-properties: <code>hasGiver</code>, <code>hasGetter</code>, <code>hasParty</code>, <code>fromAgent</code> and <code>toAgent</code></li>
+</ul></li>
+<li>Added a <code>skos:scopeNote</code> to <code>fromAgent</code></li>
+<li>Added a <code>skos:example</code> to <code>hasParty</code></li>
+<li>Updated <code>skos:definition</code>s for <code>toAgent</code> and <code>fromAgent</code></li>
+</ul></li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Updated all <code>skos:prefLabel</code> values based on a newly-adopted convention. See the convention specification in
+the section on Labels in the <a href="https://github.com/semanticarts/gist/blob/v9.5.0/docs/gistStyleGuide.md#Labels">gist style guide</a>.
+Added <code>skos:prefLabel</code> validation to build process for classes and properties.
+Issues <a href="https://github.com/semanticarts/gist/issues/227">#227</a> and
+<a href="https://github.com/semanticarts/gist/issues/421">#421</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore9.6.0">https://ontologies.semanticarts.com/o/gistCore9.6.0</a>.</p>
+
+<h2>Release 9.5.0</h2>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Converted RDFS annotations to SKOS annotations. See <a href="https://github.com/semanticarts/gist/blob/v9.5.0/docs/gistStyleGuide.md">gist style guide</a> for usage details. A file containing legacy RDFS annotations is included in the release package for those who wish to continue using them for existing terms. Issues <a href="https://github.com/semanticarts/gist/issues/351">#351</a>, <a href="https://github.com/semanticarts/gist/issues/379">#379</a>.</li>
+<li>Deprecated <code>gist:geoDirectlyContains</code> and <code>gist:geoDirectlyContainedIn</code>. Issue <a href="https://github.com/semanticarts/gist/issues/328">#328</a>.</li>
+<li>Removed <code>gist:Address</code> from range of <code>gist:toAgent</code> and <code>gist:fromAgent</code>. Issue <a href="https://github.com/semanticarts/gist/issues/391">#391</a>.</li>
+<li>Added label validation rules for classes and properties. Created <code>gist:nonConformingLabel</code> annotation property to tag exceptions to the rule. Issue <a href="https://github.com/semanticarts/gist/issues/227">#227</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Modified build to create JSON-LD ontology files with <code>.jsonld</code> extension. Issue <a href="https://github.com/semanticarts/gist/issues/365">#365</a>.</li>
+<li>Documentation:
+<ul>
+<li>Documented policy change on submission of PRs by external contributors (PRs from external contributors are now accepted for review if submitted with an issue). Issue <a href="https://github.com/semanticarts/gist/issues/382">#382</a>.</li>
+<li>Documented new, condensed release notes format (reverted release note format introduced in 9.4.0). Issue <a href="https://github.com/semanticarts/gist/issues/401">#401</a>.</li>
+</ul></li>
+<li>Added a standard <code>pre-commit</code> hook which applies uniform formatting to RDF files using <code>tools/rdf-toolkit.jar</code>. Issue <a href="https://github.com/semanticarts/gist/issues/228">#228</a>.</li>
+<li>Conformed definition of <code>gist:_second</code> to other <code>gist:BaseUnit</code> individuals. Issue <a href="https://github.com/semanticarts/gist/issues/92">#92</a>.</li>
+<li>Fixed label of TaskTemplate. Issue <a href="https://github.com/semanticarts/gist/issues/407">#407</a>.</li>
+<li>Corrected all class and property labels to be compliant with validation rules documented in the <a href="https://github.com/semanticarts/gist/blob/v9.5.0/docs/gistStyleGuide.md">gist style guide</a>. Issue <a href="https://github.com/semanticarts/gist/issues/227">#227</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore9.5.0">https://ontologies.semanticarts.com/o/gistCore9.5.0</a>.</p>
+
+<h2>Release 9.4.0</h2>
+
+<h3>Minor Updates</h3>
+
+<ul>
+<li>Replaced the union class equivalences in the definitions of <code>gist:Artifact</code> and <code>gist:Place</code> with subclass assertions from each of the union class members. Issues <a href="https://github.com/semanticarts/gist/issues/110">#110</a>, <a href="https://github.com/semanticarts/gist/issues/343">#343</a>.</li>
+<li>Made changes to <code>Category</code> predicates: added intransitive properties <code>gist:hasDirectSubCategory</code> and <code>gist:hasDirectSuperCategory</code> as sub-properties of <code>gist:hasSubCategory</code> and <code>gist:hasSuperCategory</code>, respectively, and made the latter transitive. Issues <a href="https://github.com/semanticarts/gist/issues/104">#104</a>, <a href="https://github.com/semanticarts/gist/issues/107">#107</a>.</li>
+<li>Replaced <code>gist:Weight</code> with <code>gist:Mass</code> in all contexts. Issue <a href="https://github.com/semanticarts/gist/issues/105">#105</a>.</li>
+</ul>
+
+<h3>Patch Updates</h3>
+
+<ul>
+<li>Made <code>gist:hasPhysicalLocation</code> transitive. Issue <a href="https://github.com/semanticarts/gist/issues/109">#109</a>.</li>
+<li>Deprecated <code>gist:_unitedNations</code>. Issue <a href="https://github.com/semanticarts/gist/issues/207">#207</a>.</li>
+<li>Made trivial corrections to axioms in the definition of some geo terms. Issues <a href="https://github.com/semanticarts/gist/issues/64">#64</a>, <a href="https://github.com/semanticarts/gist/issues/334">#334</a>, <a href="https://github.com/semanticarts/gist/issues/361">#361</a>.</li>
+<li>Changed ontology edit format from RDF/XML (.owl) to Turtle (.ttl). Issues <a href="https://github.com/semanticarts/gist/issues/223">#223</a>, <a href="https://github.com/semanticarts/gist/issues/319">#319</a>.</li>
+<li>Added release notes template. Issue <a href="https://github.com/semanticarts/gist/issues/338">#338</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore9.4.0">https://ontologies.semanticarts.com/o/gistCore9.4.0</a>.</p>
+
+<h2>Release 9.3.0</h2>
+
+<ul>
+<li>Merged into a single module/file all of gist except the gistDeprecated module.  Fixes issue <a href="https://github.com/semanticarts/gist/issues/292">#292</a>.</li>
+<li>Removed import diagram generation and catalog files from bundling. Fixes issue <a href="https://github.com/semanticarts/gist/issues/309">#309</a>.</li>
+<li>Amended bundle.yaml to add rdfs:isDefinedBy to all ontology terms during release bundling process. Fixes issue <a href="https://github.com/semanticarts/gist/issues/266">#266</a>.</li>
+<li>Added gist:EmailAddress as a subclass of gist:ElectronicMessageAddress. Fixes issue <a href="https://github.com/semanticarts/gist/issues/99">#99</a>.</li>
+<li>Changed gist:orderedMemberOf from Inverse Functional to Functional. Fixes issue <a href="https://github.com/semanticarts/gist/issues/262">#262</a>.</li>
+<li>Added gist:Collection as the range, instead of domain, of gist:memberOf. Fixes issue <a href="https://github.com/semanticarts/gist/issues/142">#142</a>.</li>
+<li>Removed redundant disjoints. Fixes issue <a href="https://github.com/semanticarts/gist/issues/254">#254</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore9.3.0">https://ontologies.semanticarts.com/o/gistCore9.3.0</a>.</p>
+
+<h2>Release 9.2.0</h2>
+
+<ul>
+<li>Replaced all "xs" namespace prefixes for XML Schema with "xsd". Corrects issue <a href="https://github.com/semanticarts/gist/issues/158">#158</a>.</li>
+<li>Corrected gist:convertToBase value for gist:_minute from 1.0 to 60.0. Fixes issue <a href="https://github.com/semanticarts/gist/issues/82">#82</a>.</li>
+<li>Added initial draft of in-progress gist style guide. Fixes issue <a href="https://github.com/semanticarts/gist/issues/163">#163</a>.</li>
+<li>Added documentation of change and release management process. Fixes issue <a href="https://github.com/semanticarts/gist/issues/233">#233</a>.</li>
+<li>Added guidelines for submission of GitHub issues and pull requests. Fixes issue <a href="https://github.com/semanticarts/gist/issues/190">#190</a>.</li>
+<li>Remove defunct tools and documentation. Fixes issue <a href="https://github.com/semanticarts/gist/issues/193">#193</a>.</li>
+<li>Include direct imports of all gist modules in gistCore. Fixes issue <a href="https://github.com/semanticarts/gist/issues/80">#80</a>.</li>
+<li>Corrected all typos and misspellings in annotations. Fixes issue <a href="https://github.com/semanticarts/gist/issues/210">#210</a>.</li>
+<li>Added cardinality restrictions and disjoints to various gist unit classes. Fixes <a href="https://github.com/semanticarts/gist/issues/69">#69</a>.</li>
+<li>Removed defunct owl:versionInfo from all ontology files. Fixes issue <a href="https://github.com/semanticarts/gist/issues/212">#212</a>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore9.2.0">https://ontologies.semanticarts.com/o/gistCore9.2.0</a>.</p>
+
+<h2>Release 9.1.0</h2>
+
+<ul>
+<li>Reformatted all files to match uniform serialization.</li>
+<li>Corrected restriction for <code>gist:Collection</code>.</li>
+<li>Provided missing labels for classes and properties.</li>
+<li>Corrects issues <a href="https://github.com/semanticarts/gist/issues/72">#72</a>, <a href="https://github.com/semanticarts/gist/issues/91">#91</a>, <a href="https://github.com/semanticarts/gist/issues/95">#95</a>, <a href="https://github.com/semanticarts/gist/issues/96">#96</a>, <a href="https://github.com/semanticarts/gist/issues/97">#97</a>, <a href="https://github.com/semanticarts/gist/issues/98">#98</a>, <a href="https://github.com/semanticarts/gist/issues/101">#101</a>, <a href="https://github.com/semanticarts/gist/issues/122">#122</a>, and <a href="https://github.com/semanticarts/gist/issues/145">#145</a>.</li>
+<li>Removed outdated Visio and PDF files, documentation is now auto-generated as part of the release process.</li>
+<li>gistWiki has been removed.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore9.1.0">https://ontologies.semanticarts.com/o/gistCore9.1.0</a>.</p>
+
+<h2>Release 9.0</h2>
+
+<h3>Miscellaneous</h3>
+
+<ul>
+<li>The <code>gist</code> namespace has been modified from <code>http:</code> to <code>https:</code>.</li>
+<li>Added comments to ontologies.</li>
+<li>Added labels and comments to many properties and classes.</li>
+<li><code>SocialBeing</code> has been removed.</li>
+<li>The property <code>gist:party</code> has been renamed to <code>gist:hasParty</code>.</li>
+</ul>
+
+<p>Import URL: <a href="https://ontologies.semanticarts.com/o/gistCore9.0.0">https://ontologies.semanticarts.com/o/gistCore9.0.0</a>.</p>
+
+<h3>Agreement</h3>
+
+<ul>
+<li><code>SocialBeing</code> has been removed. A few restrictions that used <code>SocialBeing</code> as a filter class now use the expression <code>(Person or Organization)</code>.</li>
+<li>Added <code>Contract</code>.</li>
+<li>The property <code>gist:party</code> was renamed to <code>gist:hasParty</code>.</li>
+</ul>
+
+<h3>Category</h3>
+
+<ul>
+<li>New property: <code>hasTag</code>.</li>
+<li>A <code>gist:Category</code> now uses <code>gist:hasTag</code> instead of <code>gist:containedText</code>.</li>
+<li>The definition of <code>Taxonomy</code> was corrected. It used to be a controlled vocabulary that had a super category or a navigational parent. But it is not the taxonomy that is part of a hierarchy, it is the elements of the taxonomy that are part of the hierarchy.  The definition for <code>gist:Taxonomy</code> now says it is a controlled vocabulary and has a member that has either  a sub category or super category.  The notion of navigational parent is no longer included in the definition.</li>
+<li>The object property <code>gist:hasPreferredTerm</code> that pointed to a <code>gist:Text</code> property was removed. Use the annotation <code>skos:prefLabel</code> instead.</li>
+</ul>
+
+<h3>Event</h3>
+
+<ul>
+<li>Renamed <code>occurredAt</code> to <code>occursAt</code>.</li>
+<li>Changed restriction on <code>gist:Event</code> to be <code>(occursAt gist:Place)</code> rather than <code>(occurredAt gist:GeoRegion)</code>.</li>
+<li>Renamed <code>TemplateTask</code> to <code>TaskTemplate</code> because it is a template related to tasks, not a task related to templates.</li>
+<li>Moved <code>gist;characterizedAs</code> to gistTop.</li>
+<li>Removed <code>TimeInterval</code>. A number of restrictions with filter class <code>(TimeInstant or TimeInterval)</code> changed to be just <code>TimeInstant</code>.</li>
+</ul>
+
+<h3>Intention</h3>
+
+<ul>
+<li>A <code>ServiceSpecification</code> no longer produced a behavior. Rather, it is the basis for an <code>Event</code> (replaced a restriction)</li>
+<li>New property: <code>basisFor</code>, inverse of <code>basedOn</code> which is defined in gistTop.</li>
+</ul>
+
+<h3>IoT</h3>
+
+<p>Entirely new ontology for modeling Internet of Things concepts.</p>
+
+<h3>Measure</h3>
+
+<ul>
+<li>Slight clarification of the meaning of OrdinalCollection.  Mathematically, it is more than just a total order, it is a strict total order.</li>
+<li><code>directlyPrecedes</code>      replaces <code>strictlyPrecedes</code>.</li>
+<li><code>directlyPrecededBy</code> replaces <code>strictlyPrecededBy</code></li>
+<li><code>PhysicalThing</code> removed, was  a vestige from the past.</li>
+</ul>
+
+<h3>Network</h3>
+
+<ul>
+<li>Entirely new ontology covering concepts for a virtual or actual network.</li>
+</ul>
+
+<h3>Organization</h3>
+
+<ul>
+<li>New Class:  <code>GeoPoliticalRegion</code>, a collection of <code>gist:GeoRegion</code> administered by a <code>GovernmentOrganization</code>.</li>
+</ul>
+
+<h3>Place</h3>
+
+<ul>
+<li>The range of the property <code>geoOccupies</code> changed to <code>gist:Place</code>. It had been the union of <code>GeoRegion</code> and <code>GeoVolume</code>.</li>
+</ul>
+
+<h3>TemporalRelation</h3>
+
+<ul>
+<li><code>TemporalRelation</code> no longer a subclass of <code>TimeInterval</code> (which has been removed).</li>
+</ul>
+
+<h3>Time</h3>
+
+<ul>
+<li>Just a few new labels and comments.</li>
+</ul>
+
+<h3>Top</h3>
+
+<ul>
+<li>References to <code>TimeInterval</code> removed.</li>
+<li><code>Event</code> is no longer a subclass of <code>TimeInterval</code>. Instead, it has a start and end time.</li>
+<li><code>gist:Content</code> is no longer disjoint with <code>Intention</code>.</li>
+<li><code>gist:Magnitude</code> is no longer <code>gist:of</code> something.   We used to think of magnitude of say 180 pounds as necessarily being a value associated with something, e.g. a person.  <code>gist:of</code> was the inverse of <code>gist:hasA</code> which no longer exists.</li>
+</ul>
+
+<h3>Unit</h3>
+
+<ul>
+<li><code>RatioUnit</code> used to have exactly 1 <code>UnitOfMeasure</code> as a numerator, now it can have more than one.</li>
+</ul>
+
+<h3>Deprecated</h3>
+
+<p>Added to the list of deprecated things:</p>
+
+<ol>
+<li>Renamed
+<ul>
+<li><code>gist:TemplateTask</code> (renamed to <code>TaskTemplate</code>)</li>
+<li><code>gist:party</code> (use <code>hasParty</code> instead)</li>
+</ul></li>
+<li>Removed
+<ul>
+<li><code>gist:SocialBeing</code>  - use <code>(Person or Organization)</code> instead</li>
+<li><code>gist:of</code> (a vestige of the past)</li>
+<li><code>gist:sameOrderAs</code> (was adding unnecessary mathematical precision)</li>
+<li><code>gist:TimeInterval</code> (the idea of a time interval is captured by assigning it a start and end time, e.g. an event)</li>
+<li><code>gist:dateTime</code></li>
+</ul></li>
+<li>Replaced by a variation
+<ul>
+<li><code>gist:strictlyPrecededBy</code> (using <code>directlyPrecededBy</code> instead)</li>
+<li><code>gist:strictlyPrecedes</code> (using <code>directlyPrecedes</code> instead)</li>
+</ul></li>
+</ol>
+
+<h2>Release 8.0</h2>
+
+<p>This major version primarily changed all concept URIs to use <code>/</code> instead of <code>#</code>
+Additionally, gistWiki is no longer included by gistCore.</p>
+
+<p>Import URL: <a href="http://ontologies.semanticarts.com/o/gistCore8.0.0">http://ontologies.semanticarts.com/o/gistCore8.0.0</a>.</p>
+
+<h2>Release 7.5</h2>
+
+<p>This version focused on making the import structure simpler and flatter, in order to make it easier for people to use subsets of gist if they want to.  Because all of gist is in one name space this was relatively easy to do and will have very little impact on anyone who is using gist 7.* (see the change log there were a few changes that you may want to review).</p>
+
+<p>Import URL: <a href="http://ontologies.semanticarts.com/o/gistCore7.5.owl">http://ontologies.semanticarts.com/o/gistCore7.5.owl</a>.</p>
+
+<h2>Release 7.4</h2>
+
+<p>Gist 7.4 was an internal release.</p>
+
+<h2>Release 7.3</h2>
+
+<ul>
+<li>An additional supplementary ontology was added for Units of Measure which introduces the concept of a Coherent Unit. This allows for conversions between units of the same dimension to be done using just SPARQL, as opposed to relying on rules.</li>
+<li>There are new and/or improved annotations (definitions, notes, examples, negative examples, etc.) on all Classes.</li>
+<li>The Category ontology added properties for true sub/super type relationship, including having a unique superType (parent).</li>
+<li>Other minor changes:</li>
+<li>removal of redundant imports and redundant classes already defined in another ontology</li>
+<li>relaxed the domain on gist:start and gist:end</li>
+<li>expanded the range of gist:fromAgent and gist:toAgent</li>
+<li>added to the Units of Measure ontology and corrected an erroneously named class</li>
+</ul>
+
+<p>See ChangeLog in pdf file for full details of changes.</p>
+
+<p>Import URL: <a href="http://ontologies.semanticarts.com/o/gistCore7.3.owl">http://ontologies.semanticarts.com/o/gistCore7.3.owl</a>.</p>
+
+<h2>Release 7.2</h2>
+
+<ul>
+<li>Add wiki and rdfshape capability</li>
+<li>Removed some redundant assertions, and moved some comments to the ontology where the concept was first introduced.</li>
+<li>Removed <code>currencyValue</code> in favor of <code>decimalValue</code></li>
+<li>Upgrades domains on some date properties and <code>hasCommunicationAddress</code></li>
+<li>Deprecated a lot of the measurement stuff that wasn't being used (as far as we know)</li>
+</ul>
+
+<p>Import URL: <a href="http://ontologies.semanticarts.com/o/gistCore7.2.owl">http://ontologies.semanticarts.com/o/gistCore7.2.owl</a>.</p>
+
+<h2>Release 7.1.1</h2>
+
+<ul>
+<li>Fix an erroneous disjoint statement on the class gist:Magnitude.
+If you previously downloaded gist 7.1 you may have experienced an inference error if you attempted to run inference using Hermit.
+The gist 7.1.1 release has eliminated the cause of this error.</li>
+<li>In addition to using the OWL files locally, you can import these files via URL directly into your ontology editor of choice(Protégé, TopBraid, etc.) The import will take care of the dependencies.</li>
+</ul>
+
+<p>Import URL: <a href="http://ontologies.semanticarts.com/o/gistCore7.1.1.owl">http://ontologies.semanticarts.com/o/gistCore7.1.1.owl</a>.</p>
+
+<h2>Release 7.1</h2>
+
+<p>Primarily fixes minor errors like typos in our gist 7.0 release.</p>
+
+<p>Below is a brief summary of the changes that have semantic import from an inference perspective (axiom added, removed, changed, etc.) or that are backward incompatible.</p>
+
+<ul>
+<li>Made <code>gist:uniqueText</code> a subproperty of <code>gist:containedText</code>.</li>
+<li>Added <code>gist:Agreement</code> to range of <code>gist:governs</code>.</li>
+<li>Changed <code>gist:prevent</code>, <code>gist:allow</code> and <code>gist:require</code> to <code>gist:prevents</code>, <code>gist:allows</code>, and <code>gist:requires</code>.</li>
+<li>Changed restriction on <code>gist:Offer</code> to use <code>gist:hasDirectPart some gist:CatalogItem</code>.</li>
+<li>Removed property <code>gist:specifiedIn</code>, no longer needed.</li>
+<li>Changed property restriction on <code>gist:Account</code> from <code>gist:hasA some gist:Balance</code> to <code>gist:hasMagnitude some gist:Balance</code>.</li>
+<li>Corrected inverse property of <code>gist:hasDirectSubtask</code> to <code>gist:directSubtaskOf</code></li>
+<li>Added <code>gist:IntellectualProperty</code> and <code>gist:PhysicalThing</code> to the range of <code>gist:governs</code>.</li>
+<li>In the definition of <code>gist:Requirement</code>, removed <code>gist:Conformance</code> from the range of <code>gist:requires</code>.</li>
+</ul>
+
+<p>In addition to using the OWL files locally, you can import these files via URL directly into your ontology editor of choice(Protégé, TopBraid, etc.) The import will take care of the dependencies.</p>
+
+<p>Import URL: <a href="http://ontologies.semanticarts.com/o/gistCore7.1.owl">http://ontologies.semanticarts.com/o/gistCore7.1.owl</a>.</p>
+
+<h2>Release Notes gist 7.0</h2>
+
+<p>gist 7.0 is a major upgrade from our last released version (6.7.1). The main differences are:</p>
+
+<ul>
+<li>gist 7.0 is extremely modular. There are 18 modules that can be used collectively or in subsets if you don't need all the concepts in gist.</li>
+<li>gist 7.0 is more elegant than its predecessors. We have reduced the number of top level concepts that everything else derives from to 12. And these 12 concepts are not philosophical abstractions like endurants and perdurants, or qualia, there are normal terms whose definitions are quite close to what you already believe.</li>
+<li>gist 7.0 has more extensive and more-fine grained disjointness at the highest level. It turns out that in order for an upper ontology to help you avoid making logical errors in your derived enterprise or ontology, it needs to make use of disjointness. Without  disjointness, the reasoner does not find logic errors.</li>
+</ul>
+
+<p>For documentation and OWL files regarding terms that were deprecated when moving from version 6.7.1 to 7.0, please see the sub-folder called "Deprecated terms from gist6.7.1".</p>
+
+<p>In addition to using the OWL files locally, you can import these files via URL directly into your ontology editor of choice(Protégé, TopBraid, etc.) The import will take care of the dependencies.</p>
+
+<p>Import URL: <a href="http://ontologies.semanticarts.com/o/gistCore7.0.owl">http://ontologies.semanticarts.com/o/gistCore7.0.owl</a>.</p>
+
+</div>
+</body>
+</html>

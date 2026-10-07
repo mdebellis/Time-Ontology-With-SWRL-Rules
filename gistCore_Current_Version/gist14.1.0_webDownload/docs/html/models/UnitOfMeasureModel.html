@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        code, pre {
+            font-family: monospace;
+        }
+        h1 code,
+        h2 code,
+        h3 code,
+        h4 code,
+        h5 code,
+        h6 code {
+            font-size: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>New Magnitudes and Units of Measure in gist 13</h1>
+
+<h2>Overview</h2>
+
+<p>The following is an informal high-level description of changes to gist to better support magnitudes and units of measure.</p>
+
+<p>With gist 13, the ontology for magnitudes and units of measure has been revisited to provide:</p>
+
+<ul>
+<li>Simpler governance</li>
+<li>Support for financial metrics</li>
+<li>Simple standard ways to represent data involving units of measure</li>
+<li>Support for calculations involving units of measure</li>
+</ul>
+
+<p>The release includes scripts for converting data from gist 12 to gist 13, and Semantic Arts will also provide a rich set of reference data for units of measure that can be tapped going forward.</p>
+
+<h2>Simple example</h2>
+
+<p>To see how gist 13 accomplishes these goals, let’s start with a simple example and build on it.</p>
+
+<p>A patio has an area of 144 square feet.</p>
+
+<p>We can break this statement down as follows:</p>
+
+<ul>
+<li>The patio has a magnitude that represents its area</li>
+<li>The magnitude is for an area (a measurable characteristic, also called an aspect)</li>
+<li>The magnitude uses square feet to measure the area</li>
+<li>The magnitude has a numeric value of 144</li>
+</ul>
+
+<p>Each of these simpler statements can be represented as a triple; the gist properties involved are, respectively:</p>
+
+<ul>
+<li>has magnitude</li>
+<li>has aspect (new)</li>
+<li>has unit of measure</li>
+<li>numeric value</li>
+</ul>
+
+<h2>Main concepts</h2>
+
+<p>Building on this example, the new concepts for units of measure in gist 13 are:</p>
+
+<ul>
+<li>every magnitude is directly related to a measurable characteristic (called an aspect)</li>
+<li>aspects and units of measure are treated as reference data and are not part of the ontology</li>
+<li>groups of units can be established, where all the units in the group measure the same aspect (for example foot, meter and kilometer all measure distance)</li>
+<li>the units of measure in a group are all multiples of the same product of powers of base units, given as exponent of kilogram, exponent of meter, exponent of second, etc.</li>
+<li>as before, every unit of measure has a conversion factor and a conversion offset that can be used to convert from one unit of measure to another (e.g. from liters to gallons)</li>
+<li>there is a simple way to represent units of measure and aspects in terms of component parts, e.g. ‘profit = revenue – expenses’ or ‘watt hour per mile = watt x hour / mile’</li>
+<li>aspects can be categorized by discipline</li>
+</ul>
+
+<h2>What's new and different</h2>
+
+<p>To draw a comparison with gist 12:</p>
+
+<ul>
+<li>it is no longer necessary to change the ontology to add new aspects and units of measure, because they are treated as reference data instead of as classes</li>
+<li>it is no longer necessary to figure out if a unit is a coherent unit, a simple unit, a product unit, etc.</li>
+<li>because of the two items above, gist now has 25% fewer classes</li>
+<li>there is now one standard way to represent magnitudes and aspects</li>
+<li>there is now a simple way to validate that a unit of measure is applicable for measuring a given aspect (i.e. the unit of measure belongs to a unit group related to the aspect)</li>
+<li>calculations can now be done in SPARQL that would be far more complex in gist 12</li>
+</ul>
+
+<h2>Relationship to the International System of Units</h2>
+
+<p>Most units of measure can be related to the International System of Units as in the following example using base units kilogram, meter, and second:</p>
+
+<p>1 watt-hour = 3600 x kilogram meter squared per second squared</p>
+
+<p>In terms of the ontology:</p>
+
+<ul>
+<li>the conversion factor for watt-hour is 3600</li>
+<li>the exponent of kilogram is 1</li>
+<li>the exponent of meter is 2</li>
+<li>the exponent of second is -2</li>
+<li>all other exponents are zero</li>
+</ul>
+
+<p>Every member of a unit group containing watt-hour must be a multiple of kilogram meter squared per second squared.</p>
+
+<h2>Working with exponents</h2>
+
+<p>Calculations involving the exponents can be done as follows:</p>
+
+<p>2 meters squared x 3 meters
+= 2 x 3 (meter with exponent 2) x (meter with exponent 1)
+= 6 meter with exponent 3    [to get the product, add the exponents]</p>
+
+<p>Calculations involving exponents can be done in SPARQL queries. A more complex example is:
+1 watt = 1 kilogram meter squared per second cubed
+1 hour = 3600 seconds
+1 mile = 1609.34 meters</p>
+
+<p>Therefore:</p>
+
+<p>1 watt-hour per mile
+= 1 x watt x hour x mile^-1
+= (1 x kilogram x meter^2 x second^-3) x (3600 x second) x (1609.344 meter)^-1
+= (1 x 3600 x 1609.344^-1)  x kilogram x (meter^2 x meter^-1) x (second^-3 x second)
+= 2.237 x kilogram x meter x second^-2</p>
+
+<p>This calculation relates the unit ‘watt-hour per mile’ to the base units kilogram, meter, and second of the International System of Units, with a conversionFactor of 2.237.</p>
+
+<h2>References</h2>
+
+<p>For more information, see the following items in the gist ontology:</p>
+
+<h3>Classes</h3>
+
+<ul>
+<li>Aspect</li>
+<li>UnitGroup</li>
+<li>UnitOfMeasure</li>
+<li>Magnitude</li>
+</ul>
+
+<h3>Object properties</h3>
+
+<ul>
+<li>hasUnitGroup</li>
+<li>isMemberOf</li>
+<li>hasAccuracy</li>
+<li>hasAspect</li>
+<li>hasUnitOfMeasure</li>
+<li>hasMultiplier</li>
+<li>hasDivisor</li>
+<li>hasAddend</li>
+<li>hasSubtrahend</li>
+</ul>
+
+<h3>Datatype properties</h3>
+
+<ul>
+<li>numericValue</li>
+<li>conversionFactor</li>
+<li>conversionOffset</li>
+<li>hasExponentOfAmpere, hasExponentOfBit, etc.</li>
+</ul>
+
+<h3>Also see</h3>
+
+<ul>
+<li>Section 2.3.4 of the Brochure of the International System of Units at <a href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf">https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf</a>.</li>
+</ul>
+
+</div>
+</body>
+</html>

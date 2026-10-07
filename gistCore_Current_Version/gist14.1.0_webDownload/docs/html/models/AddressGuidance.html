@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        code, pre {
+            font-family: monospace;
+        }
+        h1 code,
+        h2 code,
+        h3 code,
+        h4 code,
+        h5 code,
+        h6 code {
+            font-size: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>New Patterns for Using gist:Address</h1>
+
+<p>In gist v13.0.0, we introduced a new paradigm for modeling addresses. The new model is both more accurate and more expressive.</p>
+
+<h2>Background</h2>
+
+<p>As recently as gist 12.1.0, we had five subclasses of gist:Address:</p>
+
+<ul>
+<li><code>gist:ElectronicMessageAddress</code></li>
+<li><code>gist:EmailAddress</code></li>
+<li><code>gist:PostalAddress</code></li>
+<li><code>gist:StreetAddress</code></li>
+<li><code>gist:TelephoneNumber</code></li>
+</ul>
+
+<p>And we had two properties specifically aimed at addresses:</p>
+
+<ul>
+<li><code>gist:hasAddress</code></li>
+<li><code>gist:hasCommunicationAddress</code></li>
+</ul>
+
+<p>But these classes and properties pre-dated our adoption of the "category" paradigm. Further, it is not always possible to know at the time of minting the instances what <em>kind</em> of address is being represented. Is it a postal address or a street address? If it is both, with what midfix should the IRI be minted?</p>
+
+<p>Upon analysis, we decided these classes were not semantically dissimilar enough to warrant their existence as classes.</p>
+
+<h2>The New Model</h2>
+
+<p>With gist v13.0.0, we reduced <code>gist:Address</code> down to two disjoint subclasses:</p>
+
+<ul>
+<li><code>gist:Address</code>
+<ul>
+<li><code>gist:ElectronicAddress</code></li>
+<li><code>gist:PhysicalAddress</code> .
+We removed <code>gist:hasCommunicationAddress</code> and added a new object property, <code>gist:refersTo</code>.</li>
+</ul></li>
+</ul>
+
+<p>The formal restriction definition for <code>gist:PhysicalAddress</code> is:</p>
+
+<ul>
+<li>"gist:Address and (gist:refersTo some gist:Place)".
+In other words, a physical address exists in the real, physical world. It is possible for someone to go there and touch the address's referent.</li>
+</ul>
+
+<p><code>gist:ElectronicAddress</code> is disjoint with <code>gist:PhysicalAddress</code> and therefore encompasses all addresses that do not have a physical referent. It is <em>"Content referring to a locatable virtual place not physically existing, as such, but made by software or electronics to appear to do so."</em></p>
+
+<h3>Using the new model</h3>
+
+<h4>Address triple patterns</h4>
+
+<p>Now, our address-related triples can all conform to three basic patterns:</p>
+
+<h5>Pattern 1: gist:hasAddress</h5>
+
+<table>
+<thead>
+<tr>
+  <th style="text-align:left;"><strong>subject class</strong></th>
+  <th style="text-align:left;"><strong>predicate</strong></th>
+  <th style="text-align:left;"><strong>object class</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left;"><code>owl:Thing</code></td>
+  <td style="text-align:left;"><code>gist:hasAddress</code></td>
+  <td style="text-align:left;"><code>gist:PhysicalAddress</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>owl:Thing</code></td>
+  <td style="text-align:left;"><code>gist:hasAddress</code></td>
+  <td style="text-align:left;"><code>gist:ElectronicAddress</code></td>
+</tr>
+</tbody>
+</table>
+
+<h5>Pattern 2: gist:containedText</h5>
+
+<table>
+<thead>
+<tr>
+  <th style="text-align:left;"><strong>subject class</strong></th>
+  <th style="text-align:left;"><strong>predicate</strong></th>
+  <th style="text-align:left;"><strong>object datatype</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left;"><code>gist:PhysicalAddress</code></td>
+  <td style="text-align:left;"><code>gist:containedText</code></td>
+  <td style="text-align:left;"><code>xsd:string</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>gist:ElectronicAddress</code></td>
+  <td style="text-align:left;"><code>gist:containedText</code></td>
+  <td style="text-align:left;"><code>xsd:string</code></td>
+</tr>
+</tbody>
+</table>
+
+<h5>Pattern 3: gist:refersTo</h5>
+
+<table>
+<thead>
+<tr>
+  <th style="text-align:left;"><strong>subject class</strong></th>
+  <th style="text-align:left;"><strong>predicate</strong></th>
+  <th style="text-align:left;"><strong>object class</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left;"><code>gist:PhysicalAddress</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>gist:Place</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>gist:PhysicalAddress</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>gist:GeoPoint</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>gist:PhysicalAddress</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>gist:GovernedGeoRegion</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>gist:PhysicalAddress</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>gist:CountryGeoRegion</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>gist:ElectronicAddress</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>rdf:Resource</code></td>
+</tr>
+</tbody>
+</table>
+
+<h4>Examples</h4>
+
+<h5>Pattern 1</h5>
+
+<table>
+<thead>
+<tr>
+  <th style="text-align:left;"><strong>subject</strong></th>
+  <th style="text-align:left;"><strong>predicate</strong></th>
+  <th style="text-align:left;"><strong>object</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left;"><code>ex:_Person_Jjones</code></td>
+  <td style="text-align:left;"><code>gist:hasAddress</code></td>
+  <td style="text-align:left;"><code>ex:_PhysicalAddress_11235</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_Person_Jjones</code></td>
+  <td style="text-align:left;"><code>gist:hasAddress</code></td>
+  <td style="text-align:left;"><code>ex:_ElectronicAddress_81321</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_Person_Jjones</code></td>
+  <td style="text-align:left;"><code>gist:hasAddress</code></td>
+  <td style="text-align:left;"><code>ex:_ElectronicAddress_jjones%40hotmail.com</code></td>
+</tr>
+</tbody>
+</table>
+
+<h5>Pattern 2</h5>
+
+<table>
+<thead>
+<tr>
+  <th style="text-align:left;"><strong>subject</strong></th>
+  <th style="text-align:left;"><strong>predicate</strong></th>
+  <th style="text-align:left;"><strong>object</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left;"><code>ex:_PhysicalAddress_11235</code></td>
+  <td style="text-align:left;"><code>gist:containedText</code></td>
+  <td style="text-align:left;">"1313 Mockingbird Ln, Munster, IN  46321"</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_ElectronicAddress_81321</code></td>
+  <td style="text-align:left;"><code>gist:containedText</code></td>
+  <td style="text-align:left;">"<a href="https://example.com/bigwebsite.html">https://example.com/bigwebsite.html</a>"</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_ElectronicAddress_jjones%40hotmail.com</code></td>
+  <td style="text-align:left;"><code>gist:containedText</code></td>
+  <td style="text-align:left;">"<a href="m&#x61;&#105;&#108;&#116;o&#58;&#106;&#106;o&#110;&#101;&#x73;&#64;&#x68;&#111;&#x74;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#106;&#106;o&#110;&#101;&#x73;&#64;&#x68;&#111;&#x74;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a>"</td>
+</tr>
+</tbody>
+</table>
+
+<h5>Pattern 3</h5>
+
+<table>
+<thead>
+<tr>
+  <th style="text-align:left;"><strong>subject</strong></th>
+  <th style="text-align:left;"><strong>predicate</strong></th>
+  <th style="text-align:left;"><strong>object</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left;"><code>ex:_PhysicalAddress_11235</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>ex:_GeoPoint_41.53281962240151_-87.49815865065672</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_PhysicalAddress_11235</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>ex:_GovernedGeoRegion_MunsterIN</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_PhysicalAddress_11235</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>ex:_GovernedGeoRegion_IN</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_PhysicalAddress_11235</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>ex:_PostalZone_US_436121</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_PhysicalAddress_11235</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>ex:_CountryGeoRegion_USA</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>ex:_ElectronicAddress_81321</code></td>
+  <td style="text-align:left;"><code>gist:refersTo</code></td>
+  <td style="text-align:left;"><code>&lt;https://example.com/bigwebsite.html&gt;</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>Especially in the case of electronic addresses, one should be careful not to confuse or conflate the <em>xsd:string</em> object used in the <code>gist:containedText</code> triple with the <em>rdf:resource</em> object used in the <code>gist:refersTo</code> triple.</p>
+
+<p>Beyond the physical/electronic distinction made by the classes, other important distinctions need to be made. One reasonably might ask, "Still, what <em>kind</em> of address are we talking about?" These additional distinctions are to be handled using categories (i.e., instances of <code>gist:Category</code>).</p>
+
+<h3>Address Categories &amp; Instances</h3>
+
+<p>gist v13.0.0 supplies three "starter" categories for distinguishing addresses.</p>
+
+<ul>
+<li><code>gist:AddressUsageType</code></li>
+<li><code>gist:ElectronicAddressType</code></li>
+<li><code>gist:PhysicalAddressType</code> .</li>
+</ul>
+
+<p>However, in keeping with our self-imposed rules around the <code>gistCore</code> ontology, we do not define member instances of those classes as part of the gist release. But fear not. This document will provide some concrete suggestions.</p>
+
+<p>Every user will need to evaluate how best to categorize their address instances to suit their context. In many cases, this may be influenced by legacy system data. Often, there are implicit distinctions made, based on column names. Too often, there are more distinctions than are truly necessary, based upon old usage. The choice of categories and instances to implement in the knowledge graph should be given careful consideration, and not be chained to outdated or inappropriate concepts.</p>
+
+<p>Below are some examples we recommend for consideration. (The instance IRIs should use the appropriate domain namespace, not <code>gist:</code> or <code>example:</code>.) But ultimately, the classes and instances must suit the user's particular context.</p>
+
+<p>In addition to the three classes provided within gistCore, we encourage adding <code>ex:PrecedenceType</code> to the domain ontology. An example use case would be if a user system needs to handle persons with multiple physical addresses (i.e., a person maintains multiple residences); one address may be designated as "primary", to indicate that the person prefers receiving mailings at that address over the others.</p>
+
+<p>In our experience, the combination of these four categories should cover most addresses.</p>
+
+<h4>gist:PhysicalAddressType</h4>
+
+<ul>
+<li><code>ex:_PhysicalAddressType_street</code></li>
+<li><code>ex:_PhysicalAddressType_postal_drop</code> (for PO Boxes, etc.)</li>
+<li><code>ex:_PhysicalAddressType_fuzzy</code> (e.g., "Corner of Main St &amp; First Ave")</li>
+</ul>
+
+<h4>gist:ElectronicAddressType</h4>
+
+<ul>
+<li><code>ex:_ElectronicAddressType_mobile_telephone</code></li>
+<li><code>ex:_ElectronicAddressType_stationary_telephone</code></li>
+<li><code>ex:_ElectronicAddressType_fax</code></li>
+<li><code>ex:_ElectronicAddressType_email</code></li>
+<li><code>ex:_ElectronicAddressType_web</code></li>
+<li><code>ex:_ElectronicAddressType_ip</code> (for Internet Protocol)</li>
+<li><code>ex:_ElectronicAddressType_mac</code> (for Medium Access Control)</li>
+</ul>
+
+<h4>gist:AddressUsageType</h4>
+
+<ul>
+<li><code>ex:_AddressUsageType_billing</code></li>
+<li><code>ex:_AddressUsageType_business</code></li>
+<li><code>ex:_AddressUsageType_personal</code></li>
+<li><code>ex:_AddressUsageType_postal</code></li>
+<li><code>ex:_AddressUsageType_residence</code></li>
+</ul>
+
+<h4>ex:PrecedenceType</h4>
+
+<ul>
+<li><code>ex:_PrecedenceType_primary</code></li>
+<li><code>ex:_PrecedenceType_secondary</code></li>
+<li><code>ex:_PrecedenceType_non_primary</code></li>
+</ul>
+
+<h2>Temporal Addresses</h2>
+
+<p>Rather than assigning an <code>Address</code> instance directly to a person or organization, it is often more useful to model addresses in a temporal relation with other things and assign the usage and precedence categories to the relationship instance. For example, a particular address might start out being used as <em>both</em> a residence and a postal address. But at some point, the addressee decides to rent a PO Box to use for their postal address instead. In other cases, one single address may be used as a billing address by one person, and as a residence address for another person.</p>
+
+<h2>Other Considerations</h2>
+
+<h3>Use of gist:refersTo</h3>
+
+<p>Because <code>gist:Address</code> and its subclasses are subclasses of <code>gist:Content</code>, it does not make semantic sense to say that an address "is contained in a geo-region". However, it does make sense to say that the address "refers to something." That "something" can be a geo-point (with a specific latitude &amp; longitude), a city, state, or country, a postal zone, or some custom-defined area. Hence, we do not assign a range to the <code>gist:refersTo</code> property (and it can be used outside the context of addresses as well).</p>
+
+<p>Also, an address can refer to multiple things, using multiple triples. This is perhaps what people really have in mind when they want an address string split into its component parts. But parsing a string just results in multiple strings. Determining what <em>actual things</em> an address refers to, and using the IRIs for those things, results in much more useful information. So, let the address instance refer to the IRIs for as many things as are useful in the domain's context.</p>
+
+<p>An important point to bear in mind is that an address string might not <em>explicitly</em> refer to a country (e.g., "1313 Mockingbird Ln, Munster, IN"). But it <em>implicitly</em> refers to it. In the example, the address implies the USA because Indiana is part of the US. So, it is perfectly acceptable to have a triple asserting that the address refers to the IRI for the country even when the address string lacks it.</p>
+
+<p>In the case of some electronic address types (e.g., email addresses), one might choose not to use the <code>gist:refersTo</code> property at all. And, of course, your use cases need not require the <code>gist:refersTo</code> assertions for physical addresses either.</p>
+
+<h3>Address Segments</h3>
+
+<p>As noted above, many data models parse physical address strings into their component parts. In the US, this is typically one or two street components for the building and street, one each for the city, state, and postal code. But that pattern is too restrictive for physical addresses internationally. Some countries use very different patterns for physical addresses.</p>
+
+<p>More to the point, many applications simply do not <em>require</em> a parsed address. Consequently, much effort goes into stitching the components back together in some consistent fashion. Hence our recommendation to treat addresses as a single string, using the gist:containedText property.</p>
+
+<p>If, however, the situation calls for such parsed address strings within the knowledge graph, one can expand upon gist, including the necessary subclasses within the user's namespace. E.g., <code>ex:streetText</code>, <code>ex:cityText</code>, <code>ex:regionText</code>, <code>ex:postalCodeText</code>.</p>
+
+<h3>Ex uno, multi? (Out of one, many?)</h3>
+
+<p>There are arguments for and against treating typographical variants of an address (e.g., <em>"Street"</em> vs <em>"St"</em>, <em>"Avenue"</em> vs <em>"Ave"</em>) as different individuals and assigning them different IRIs, or using the same <code>Address</code> object with multiple <code>containedText</code> values. This decision should be made based on your use cases. Semantic Arts makes no recommendation.</p>
+
+</div>
+</body>
+</html>
