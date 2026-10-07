@@ -81,6 +81,7 @@ ipt:AlexOnboardingProject
 ```
 
  <img width="2562" height="2379" alt="GistGraph2" src="https://github.com/user-attachments/assets/218b6ce7-8404-4553-bb00-6366dcf74c4f" /> 
+ 
 *Figure 2. The project, its component tasks, and the reusable templates on which they are based.*
 
 The concrete tasks appear in green under Gruff's **Historical Event** legend. They remain tasks; their actual-end timestamps also support the inferred `gist:HistoricalEvent` classification. The project is displayed in cyan, and the templates in purple. These are display choices for individuals that can have several RDF types.
@@ -132,6 +133,7 @@ This experiment-specific alignment lets temporal properties apply directly to th
 
 The SWRL rules compare timestamped instants, establish their ordering, and use the intervals' boundaries to derive temporal relationships. OWL inverse-property axioms provide corresponding inverse relationships. Figure 3 selects five relationship types to keep the result readable.
  <img width="3480" height="1659" alt="GistGraph3" src="https://github.com/user-attachments/assets/7d225cb5-133d-45a5-a3fd-106af59d28d1" /> 
+ 
 *Figure 3. Selected temporal relationships visible in AllegroGraph after the inferred axioms were exported from Protégé and loaded into the repository.*
 
 | Example relationship | Explanation from the schedule |
