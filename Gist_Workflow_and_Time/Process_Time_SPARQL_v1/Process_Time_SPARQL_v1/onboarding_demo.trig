@@ -8,7 +8,6 @@
 # or completion facts have been inferred from the reusable templates.
 
 @prefix gist: <https://w3id.org/semanticarts/ns/ontology/gist/> .
-@prefix graph: <https://www.in2use.com/process-time/graph/> .
 @prefix ipt: <https://www.in2use.com/process-time/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -16,7 +15,7 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-graph:source {
+<https://www.in2use.com/process-time/graph/source> {
     ipt:AlexOnboardingProject a owl:NamedIndividual,
             gist:Project,
             gist:Task ;
