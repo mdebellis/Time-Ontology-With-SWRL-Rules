@@ -4602,13 +4602,6 @@ gist:UnitOfMeasure rdf:type owl:Class ;
 <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> rdf:type owl:NamedIndividual .
 
 
-###  http://www.w3.org/2006/time#American_Civil_War
-time:American_Civil_War rdf:type owl:NamedIndividual ,
-                                 gist:Event ;
-                        time:hasBeginning time:April_12_1861 ;
-                        time:hasEnd time:May_26_1865 .
-
-
 ###  http://www.w3.org/2006/time#April_12_1861
 time:April_12_1861 rdf:type owl:NamedIndividual ;
                    time:inXSDDateTimeStamp "1861-04-12T00:00:00Z"^^xsd:dateTimeStamp .
@@ -4617,14 +4610,6 @@ time:April_12_1861 rdf:type owl:NamedIndividual ;
 ###  http://www.w3.org/2006/time#August_7_1945
 time:August_7_1945 rdf:type owl:NamedIndividual ;
                    time:inXSDDateTimeStamp "1945-08-07T00:00:00Z"^^xsd:dateTimeStamp .
-
-
-###  http://www.w3.org/2006/time#Battle_of_Gettysburg
-time:Battle_of_Gettysburg rdf:type owl:NamedIndividual ,
-                                   gist:Event ;
-                          time:hasBeginning time:July_1_1863 ;
-                          time:hasEnd time:July_3_1863 ;
-                          rdfs:label "Battle of Gettysburg"@en .
 
 
 ###  http://www.w3.org/2006/time#Friday
@@ -4643,22 +4628,6 @@ time:Friday rdf:type owl:NamedIndividual ,
                            "الجمعة"@ar ,
                            "星期五"@zh ,
                            "金曜日"@ja .
-
-
-###  http://www.w3.org/2006/time#German_Invasion_of_France
-time:German_Invasion_of_France rdf:type owl:NamedIndividual ,
-                                        gist:Event ;
-                               time:hasBeginning time:May_10_1940 ;
-                               time:hasEnd time:June_25_1940 ;
-                               rdfs:label "German Invasion of France"@en .
-
-
-###  http://www.w3.org/2006/time#Invasion_of_Poland
-time:Invasion_of_Poland rdf:type owl:NamedIndividual ,
-                                 gist:Event ;
-                        time:hasBeginning time:September_1_1939 ;
-                        time:hasEnd time:October_6_1939 ;
-                        rdfs:label "Invasion of Poland"@en .
 
 
 ###  http://www.w3.org/2006/time#July_1_1863
@@ -4747,14 +4716,6 @@ time:September_2_1945 rdf:type owl:NamedIndividual ;
                       time:inXSDDateTimeStamp "1945-09-02T00:00:00Z"^^xsd:dateTimeStamp .
 
 
-###  http://www.w3.org/2006/time#Soviet-Japanese_War_WWII
-time:Soviet-Japanese_War_WWII rdf:type owl:NamedIndividual ,
-                                       gist:Event ;
-                              time:hasBeginning time:August_7_1945 ;
-                              time:hasEnd time:September_2_1945 ;
-                              rdfs:label "Soviet Japan War during WWII"@en .
-
-
 ###  http://www.w3.org/2006/time#Sunday
 time:Sunday rdf:type owl:NamedIndividual ,
                      time:DayOfWeek ;
@@ -4771,14 +4732,6 @@ time:Sunday rdf:type owl:NamedIndividual ,
                            "الأحد (يوم)"@ar ,
                            "日曜日"@ja ,
                            "星期日"@zh .
-
-
-###  http://www.w3.org/2006/time#The_Phony_War
-time:The_Phony_War rdf:type owl:NamedIndividual ,
-                            gist:Event ;
-                   time:hasBeginning time:September_1_1939 ;
-                   time:hasEnd time:May_10_1940 ;
-                   rdfs:label "The Phony War"@en .
 
 
 ###  http://www.w3.org/2006/time#Thursday
@@ -4815,14 +4768,6 @@ time:Tuesday rdf:type owl:NamedIndividual ,
                             "الثلاثاء"@ar ,
                             "星期二"@zh ,
                             "火曜日"@ja .
-
-
-###  http://www.w3.org/2006/time#UK_Participation_in_WWII
-time:UK_Participation_in_WWII rdf:type owl:NamedIndividual ,
-                                       gist:Event ;
-                              time:hasBeginning time:September_1_1939 ;
-                              time:hasEnd time:July_4_1946 ;
-                              rdfs:label "UK Participation in WWII"@en .
 
 
 ###  http://www.w3.org/2006/time#Wednesday
@@ -5518,13 +5463,13 @@ ipt:TechnicalTrainingTemplate rdf:type owl:NamedIndividual ,
                               skos:prefLabel "Conduct technical training — template"@en .
 
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
 ] .
 
 [ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 #################################################################
